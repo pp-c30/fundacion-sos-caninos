@@ -2,7 +2,7 @@ import { con } from "../database";
 
 import {  Request, Response} from "express";
 
-import { IPerro } from "../models/Perro";
+import { ICanino } from "../models/Perro";
 export class PerroController
 {
 
@@ -12,7 +12,7 @@ export class PerroController
         //Logro la conexion con la base de datos
         const base = await con();
 
-        let perro = await base.query('select * from perro');
+        let perro = await base.query('select * from canino');
              
         return res.json(perro);
         
@@ -23,9 +23,9 @@ export class PerroController
         const base = await con();
 
        
-        let perro:IPerro = req.body;
+        let perro:ICanino = req.body;
         
-        await base.query("insert into perro set ?",[perro]);
+        await base.query("insert into canino set ?",[perro]);
         
         return res.json('El perro fue guardado');
 
@@ -36,7 +36,7 @@ export class PerroController
 
         let id =req.params.id
 
-        await base.query("delete from perro where id_perro =?",[id]);
+        await base.query("delete from canino where id_canino =?",[id]);
 
         return res.json('El perro se elimino correctamente');
     }
@@ -48,7 +48,7 @@ export class PerroController
         let id = req.params.id;
         let nuevos_datos_perro = req.body;
 
-        await base.query("update perro set ? where id_perro = ?", [nuevos_datos_perro,id]);
+        await base.query("update canino set ? where id_canino = ?", [nuevos_datos_perro,id]);
 
         return res.json('El perro se actualizo correctamente');
     }
@@ -59,7 +59,7 @@ export class PerroController
 
         let id = req.params.id;
 
-        let unPerro = await base.query("select * from perro where id_perro = ?",[id]);
+        let unPerro = await base.query("select * from canino where id_canino = ?",[id]);
 
         return res.json(unPerro[0]);
     }

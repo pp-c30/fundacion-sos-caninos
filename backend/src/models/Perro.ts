@@ -1,4 +1,4 @@
-export interface IPerro
+export interface ICanino
 {
     id?:number;
     edad:number;

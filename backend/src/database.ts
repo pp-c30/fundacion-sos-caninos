@@ -7,7 +7,7 @@ export async function con()
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'REST_API'
+        database: 'fundacion_sos'
     })
 
     return con;
