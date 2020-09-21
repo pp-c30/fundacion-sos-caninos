@@ -2,8 +2,8 @@ import { Router } from "express";
 
 import { FormularioAController } from "../controllers/formulario_adopcion.controller";
 
-let perroController = new FormularioAController;
+let formularioAController = new FormularioAController;
 //Guardo dentro de enrutador la funcionalidad Router de express
-const enrutadorPerro = Router();
+const enrutadorFormularioA = Router();
 
 //Defino las rutas de cada funcion 
