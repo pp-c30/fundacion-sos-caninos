@@ -3,9 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.server = void 0;
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const perros_routes_1 = __importDefault(require("./routes/perros.routes"));
+const evento_routes_1 = __importDefault(require("./routes/evento.routes"));
+const requisito_routes_1 = __importDefault(require("./routes/requisito.routes"));
 //Creo la clase server
 class server {
     constructor() {
@@ -22,6 +25,8 @@ class server {
     routes() {
         this.app.use(index_routes_1.default);
         this.app.use(perros_routes_1.default);
+        this.app.use(evento_routes_1.default);
+        this.app.use(requisito_routes_1.default);
     }
     middleware() {
         this.app.use(express_1.default.json()); //Nuestra aplicacion usa para el envio de datos el formato json
