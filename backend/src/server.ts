@@ -2,6 +2,8 @@ import express, {Application} from "express";
 
 import enrutadorIndex from "./routes/index.routes";
 import enrutadorPerro from "./routes/perros.routes";
+import enrutadorEvento from "./routes/evento.routes";
+import enrutadorRequisito from "./routes/requisito.routes";
 
 //Creo la clase server
 export class server {
@@ -30,6 +32,8 @@ export class server {
     {
         this.app.use(enrutadorIndex);
         this.app.use(enrutadorPerro);
+        this.app.use(enrutadorEvento);
+        this.app.use(enrutadorRequisito);
     }
 
     middleware()
