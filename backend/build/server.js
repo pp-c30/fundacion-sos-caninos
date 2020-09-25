@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const perros_routes_1 = __importDefault(require("./routes/perros.routes"));
 const evento_routes_1 = __importDefault(require("./routes/evento.routes"));
+const provincia_routes_1 = __importDefault(require("./routes/provincia.routes"));
 const requisito_routes_1 = __importDefault(require("./routes/requisito.routes"));
 //Creo la clase server
 class server {
@@ -26,6 +27,7 @@ class server {
         this.app.use(index_routes_1.default);
         this.app.use(perros_routes_1.default);
         this.app.use(evento_routes_1.default);
+        this.app.use(provincia_routes_1.default);
         this.app.use(requisito_routes_1.default);
     }
     middleware() {
