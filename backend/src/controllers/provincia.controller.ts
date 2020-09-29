@@ -51,7 +51,7 @@ export class ProvinciaController
         await base.query("update provincia set ? where id_provincia = ?", [nuevos_datos_provincia,id]);
 
         return res.json('La provincia se actualizo correctamente');
-    }
+    } 
 
     public async obtenerProvincia(req:Request,res:Response)
     {
