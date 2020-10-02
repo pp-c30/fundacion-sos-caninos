@@ -30,6 +30,8 @@ export class ProvinciaController
         return res.json('La provincia fue guardada');
 
     }
+
+    //eliminar provincia
     public async eliminarProvincia(req:Request,res:Response)
     {
         const base = await con();
