@@ -6,6 +6,7 @@ let provinciaController = new ProvinciaController;
 //Guardo dentro de enrutador la funcionalidad Router de express
 const enrutadorProvincia = Router();
 
+
 //Defino las rutas de cada funcion 
 enrutadorProvincia.route('/provincia').get(provinciaController.listarProvincia);
 enrutadorProvincia.route('/provincia').post(provinciaController.guardarProvincia);
