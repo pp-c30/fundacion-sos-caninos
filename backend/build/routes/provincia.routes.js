@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const requisito_controller_1 = require("../controllers/provincia.controller");
-let provinciaController = new ProvinciaController;
+const provincia_controller_1 = require("../controllers/provincia.controller");
+let provinciaController = new requisito_controller_1.RequisitoController;
 //Guardo dentro de enrutador la funcionalidad Router de express
 const enrutadorProvincia = express_1.Router();
 //Defino las rutas de cada funcion 
