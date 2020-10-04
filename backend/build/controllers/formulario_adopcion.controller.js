@@ -9,50 +9,50 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PerroController = void 0;
+exports.FormularioAController = void 0;
 const database_1 = require("../database");
-class PerroController {
-    listarPerro(req, res) {
+class FormularioAController {
+    listarFormularioA(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos
             const base = yield database_1.con();
-            let perro = yield base.query('select * from canino');
-            return res.json(perro);
+            let formularioA = yield base.query('select * from formulario_adopcion');
+            return res.json(formularioA);
         });
     }
-    //guardar perros
-    guardarPerro(req, res) {
+    //guardar formulario
+    guardarFormularioA(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let perro = req.body;
-            yield base.query("insert into canino set ?", [perro]);
-            return res.json('El perro fue guardado');
+            let formularioA = req.body;
+            yield base.query("insert into formulario_adopcion set ?", [formularioA]);
+            return res.json('El formulario fue guardado');
         });
     }
-    eliminarPerro(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const base = yield database_1.con();
-            let id = req.params.id;
-            yield base.query("delete from canino where id_canino =?", [id]);
-            return res.json('El perro se elimino correctamente');
-        });
-    }
-    actualizarPerro(req, res) {
+    eliminarFormularioA(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let nuevos_datos_perro = req.body;
-            yield base.query("update canino set ? where id_canino = ?", [nuevos_datos_perro, id]);
-            return res.json('El perro se actualizo correctamente');
+            yield base.query("delete from formulario_adopcion where id_formulario =?", [id]);
+            return res.json('El formulario se elimino correctamente');
         });
     }
-    obtenerPerro(req, res) {
+    actualizarFormularioA(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let unPerro = yield base.query("select * from canino where id_canino = ?", [id]);
-            return res.json(unPerro[0]);
+            let nuevos_datos_formularioA = req.body;
+            yield base.query("update formulario_adopcion set ? where id_formulario = ?", [nuevos_datos_formularioA, id]);
+            return res.json('El formulario se actualizo correctamente');
+        });
+    }
+    obtenerFormularioA(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const base = yield database_1.con();
+            let id = req.params.id;
+            let unFormularioA = yield base.query("select * from formulario_adopcion where id_formulario = ?", [id]);
+            return res.json(unFormularioA[0]);
         });
     }
 }
-exports.PerroController = PerroController;
+exports.FormularioAController = FormularioAController;

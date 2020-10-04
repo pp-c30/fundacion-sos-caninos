@@ -9,50 +9,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PerroController = void 0;
+exports.LocalidadesController = void 0;
 const database_1 = require("../database");
-class PerroController {
-    listarPerro(req, res) {
+class LocalidadesController {
+    listarLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //Logro la conexion con la base de datos
+            //Realizo la conexion con la base de datos
             const base = yield database_1.con();
-            let perro = yield base.query('select * from canino');
-            return res.json(perro);
+            let localidades = yield base.query('select * from localidades');
+            return res.json(localidades);
         });
     }
-    //guardar perros
-    guardarPerro(req, res) {
+    //guardar localidad
+    guardarLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let perro = req.body;
-            yield base.query("insert into canino set ?", [perro]);
-            return res.json('El perro fue guardado');
+            let localidades = req.body;
+            yield base.query("insert into localidades set ?", [localidades]);
+            return res.json('La localidad fue guardada');
         });
     }
-    eliminarPerro(req, res) {
+    //eliminar localidad
+    eliminarLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            yield base.query("delete from canino where id_canino =?", [id]);
-            return res.json('El perro se elimino correctamente');
+            yield base.query("delete from localidades where id_localidades =?", [id]);
+            return res.json('La localidad se elimino correctamente');
         });
     }
-    actualizarPerro(req, res) {
+    actualizarLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let nuevos_datos_perro = req.body;
-            yield base.query("update canino set ? where id_canino = ?", [nuevos_datos_perro, id]);
-            return res.json('El perro se actualizo correctamente');
+            let nuevos_datos_localidades = req.body;
+            yield base.query("update localidades set ? where id_localidades = ?", [nuevos_datos_localidades, id]);
+            return res.json('La localidad se actualizo correctamente');
         });
     }
-    obtenerPerro(req, res) {
+    obtenerLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let unPerro = yield base.query("select * from canino where id_canino = ?", [id]);
-            return res.json(unPerro[0]);
+            let unLocalidades = yield base.query("select * from localidades where id_localidades = ?", [id]);
+            return res.json(unLocalidades[0]);
         });
     }
 }
-exports.PerroController = PerroController;
+exports.LocalidadesController = LocalidadesController;

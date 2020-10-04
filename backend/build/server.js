@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.server = void 0;
 const express_1 = __importDefault(require("express"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
+const localidades_routes_1 = __importDefault(require("./routes/localidades.routes"));
 const perros_routes_1 = __importDefault(require("./routes/perros.routes"));
 const evento_routes_1 = __importDefault(require("./routes/evento.routes"));
 const provincia_routes_1 = __importDefault(require("./routes/provincia.routes"));
 const requisito_routes_1 = __importDefault(require("./routes/requisito.routes"));
+provincia_routes_1.default;
 //Creo la clase server
 class server {
     constructor() {
@@ -25,6 +27,7 @@ class server {
     }
     routes() {
         this.app.use(index_routes_1.default);
+        this.app.use(localidades_routes_1.default);
         this.app.use(perros_routes_1.default);
         this.app.use(evento_routes_1.default);
         this.app.use(provincia_routes_1.default);

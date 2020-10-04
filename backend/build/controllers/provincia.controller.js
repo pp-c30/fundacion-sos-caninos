@@ -14,7 +14,7 @@ const database_1 = require("../database");
 class ProvinciaController {
     listarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //Logro la conexion con la base de datos
+            //Realizo la conexion con la base de datos
             const base = yield database_1.con();
             let provincia = yield base.query('select * from provincia');
             return res.json(provincia);
@@ -29,6 +29,7 @@ class ProvinciaController {
             return res.json('La provincia fue guardada');
         });
     }
+    //eliminar provincia
     eliminarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
@@ -37,7 +38,7 @@ class ProvinciaController {
             return res.json('La provincia se elimino correctamente');
         });
     }
-    actualizarprovincia(req, res) {
+    actualizarProvincia(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
