@@ -3,6 +3,7 @@ import express, {Application} from "express";
 import enrutadorIndex from "./routes/index.routes";
 import enrutadorLocalidades from "./routes/localidades.routes";
 import enrutadorPerro from "./routes/perros.routes";
+import enrutadorFormularioA from "./routes/formulario_adopcion.routes";
 import enrutadorEvento from "./routes/evento.routes";
 import enrutadorProvincia from "./routes/provincia.routes";
 import enrutadorRequisito from "./routes/requisito.routes";
@@ -35,6 +36,7 @@ export class server {
     {
         this.app.use(enrutadorIndex);
         this.app.use(enrutadorLocalidades);
+        this.app.use(enrutadorFormularioA);
         this.app.use(enrutadorPerro);
         this.app.use(enrutadorEvento);
         this.app.use(enrutadorProvincia);
