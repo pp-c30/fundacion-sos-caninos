@@ -7,7 +7,9 @@ import enrutadorFormularioA from "./routes/formulario_adopcion.routes";
 import enrutadorEvento from "./routes/evento.routes";
 import enrutadorProvincia from "./routes/provincia.routes";
 import enrutadorRequisito from "./routes/requisito.routes";
-enrutadorProvincia
+import enrutadorCategoria from "./routes/cat_donacion.routes";
+import enrutadorDonaciones from "./routes/donaciones.routes";
+
 
 //Creo la clase server
 export class server {
@@ -41,6 +43,8 @@ export class server {
         this.app.use(enrutadorEvento);
         this.app.use(enrutadorProvincia);
         this.app.use(enrutadorRequisito);
+        this.app.use(enrutadorCategoria);
+        this.app.use(enrutadorDonaciones);
     }
 
     middleware()
