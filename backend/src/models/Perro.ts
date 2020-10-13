@@ -4,7 +4,7 @@ export interface ICanino
     nombre:string;
     fecha_nacimiento:Date;
     edad:number;
-    sexo:string;
+    sexo:boolean;
     tamaño:boolean;
     castrado:boolean;
     desparasitado:boolean;
