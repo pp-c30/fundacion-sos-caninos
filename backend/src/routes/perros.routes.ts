@@ -7,11 +7,11 @@ let perroController = new PerroController;
 const enrutadorPerro = Router();
 
 //Defino las rutas de cada funcion 
-enrutadorPerro.route('/perro').get(perroController.listarPerro);
-enrutadorPerro.route('/perro').post(perroController.guardarPerro);
-enrutadorPerro.route('/perro/:id').delete(perroController.eliminarPerro);
-enrutadorPerro.route('/perro/:id').put(perroController.actualizarPerro);
-enrutadorPerro.route('/perro/:id').get(perroController.obtenerPerro);
+enrutadorPerro.route('/canino').get(perroController.listarPerro);
+enrutadorPerro.route('/canino').post(perroController.guardarPerro);
+enrutadorPerro.route('/canino/:id').delete(perroController.eliminarPerro);
+enrutadorPerro.route('/canino/:id').put(perroController.actualizarPerro);
+enrutadorPerro.route('/canino/:id').get(perroController.obtenerPerro);
 
 export default enrutadorPerro;
 

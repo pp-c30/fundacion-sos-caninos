@@ -7,11 +7,11 @@ let formularioAController = new FormularioAController;
 const enrutadorFormularioA = Router();
 
 //Defino las rutas de cada funcion 
-enrutadorFormularioA.route('/formularioA').get(formularioAController.listarFormularioA);
-enrutadorFormularioA.route('/formularioA').post(formularioAController.guardarFormularioA);
-enrutadorFormularioA.route('/formularioA/:id').delete(formularioAController.eliminarFormularioA);
-enrutadorFormularioA.route('/formularioA/:id').put(formularioAController.actualizarFormularioA);
-enrutadorFormularioA.route('/formularioA/:id').get(formularioAController.obtenerFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion').get(formularioAController.listarFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion').post(formularioAController.guardarFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion/:id').delete(formularioAController.eliminarFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion/:id').put(formularioAController.actualizarFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion/:id').get(formularioAController.obtenerFormularioA);
 
 
 

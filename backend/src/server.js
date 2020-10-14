@@ -3,30 +3,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const index_routes_1 = __importDefault(require("./routes/index.routes"));
-const localidades_routes_1 = __importDefault(require("./routes/localidades.routes"));
-const perros_routes_1 = __importDefault(require("./routes/perros.routes"));
-const formulario_adopcion_routes_1 = __importDefault(require("./routes/formulario_adopcion.routes"));
-const evento_routes_1 = __importDefault(require("./routes/evento.routes"));
-const provincia_routes_1 = __importDefault(require("./routes/provincia.routes"));
-const requisito_routes_1 = __importDefault(require("./routes/requisito.routes"));
-const cat_donacion_routes_1 = __importDefault(require("./routes/cat_donacion.routes"));
-const donaciones_routes_1 = __importDefault(require("./routes/donaciones.routes"));
+var express_1 = __importDefault(require("express"));
+var index_routes_1 = __importDefault(require("./routes/index.routes"));
+var localidades_routes_1 = __importDefault(require("./routes/localidades.routes"));
+var perros_routes_1 = __importDefault(require("./routes/perros.routes"));
+var formulario_adopcion_routes_1 = __importDefault(require("./routes/formulario_adopcion.routes"));
+var evento_routes_1 = __importDefault(require("./routes/evento.routes"));
+var provincia_routes_1 = __importDefault(require("./routes/provincia.routes"));
+var requisito_routes_1 = __importDefault(require("./routes/requisito.routes"));
+var cat_donacion_routes_1 = __importDefault(require("./routes/cat_donacion.routes"));
+var donaciones_routes_1 = __importDefault(require("./routes/donaciones.routes"));
 //Creo la clase server
-class server {
-    constructor() {
+var server = /** @class */ (function () {
+    function server() {
         this.app = express_1.default(); //Todas las funcionalidades de express estan almacenadas en la variable app
         this.configuracion(); //Ejecuto la configuracion del puerto
         //Luego de middleware se ejecutan las rutas
         this.middleware();
         this.routes();
     }
-    configuracion() {
+    server.prototype.configuracion = function () {
         //Estoy llamando la funcionalidad de express port y guardando el puerto disponible a nivel de sistema o por defecto el puerto 3000
         this.app.set('port', process.env.port || 4200);
-    }
-    routes() {
+    };
+    server.prototype.routes = function () {
         this.app.use(index_routes_1.default);
         this.app.use(localidades_routes_1.default);
         this.app.use(formulario_adopcion_routes_1.default);
@@ -36,14 +36,15 @@ class server {
         this.app.use(requisito_routes_1.default);
         this.app.use(cat_donacion_routes_1.default);
         this.app.use(donaciones_routes_1.default);
-    }
-    middleware() {
+    };
+    server.prototype.middleware = function () {
         this.app.use(express_1.default.json()); //Nuestra aplicacion usa para el envio de datos el formato json
-    }
+    };
     //Le da arranque al servidor bajo un determinado puerto
-    listen() {
+    server.prototype.listen = function () {
         this.app.listen(this.app.get('port')); // Ejecutamos el servidor desde port
         console.log('Servidor corriendo en el puerto 4200');
-    }
-}
+    };
+    return server;
+}());
 exports.server = server;

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const perros_controller_1 = require("../controllers/perros.controller");
-let perroController = new perros_controller_1.PerroController;
+var express_1 = require("express");
+var perros_controller_1 = require("../controllers/perros.controller");
+var perroController = new perros_controller_1.PerroController;
 //Guardo dentro de enrutador la funcionalidad Router de express
-const enrutadorPerro = express_1.Router();
+var enrutadorPerro = express_1.Router();
 //Defino las rutas de cada funcion 
 enrutadorPerro.route('/canino').get(perroController.listarPerro);
 enrutadorPerro.route('/canino').post(perroController.guardarPerro);

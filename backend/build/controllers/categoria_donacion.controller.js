@@ -10,48 +10,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class FormularioAController {
-    listarFormularioA(req, res) {
+class CdonacionController {
+    static listarCdonacion(listarCdonacion) {
+        throw new Error("Method not implemented.");
+    }
+    listarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos
             const base = yield database_1.con();
-            let formularioA = yield base.query('select * from formulario_adopcion');
-            return res.json(formularioA);
+            let cat_donacion = yield base.query('select * from categoria_donacion');
+            return res.json(cat_donacion);
         });
     }
     //guardar formulario
-    guardarFormularioA(req, res) {
+    guardarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let formularioA = req.body;
-            yield base.query("insert into formulario_adopcion set ?", [formularioA]);
-            return res.json('El formulario fue guardado');
+            let cat_donacion = req.body;
+            yield base.query("insert into categoria_donacion set ?", [cat_donacion]);
+            return res.json('Guardado con exito');
         });
     }
-    eliminarFormularioA(req, res) {
+    eliminarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            yield base.query("delete from formulario_adopcion where id_formulario =?", [id]);
-            return res.json('El formulario se elimino correctamente');
+            let id_categoria_donacion = req.params.id_categoria_donacion;
+            yield base.query("delete from categoria_donacion where id_categoria_donacion =?", [id_categoria_donacion]);
+            return res.json('Se elimino correctamente');
         });
     }
-    actualizarFormularioA(req, res) {
+    actualizarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            let nuevos_datos_formularioA = req.body;
-            yield base.query("update formulario_adopcion set ? where id_formulario = ?", [nuevos_datos_formularioA, id]);
-            return res.json('El formulario se actualizo correctamente');
+            let id_categoria_donacion = req.params.id_categoria_donacion;
+            let nuevos_datos_Cdonacion = req.body;
+            yield base.query("update categoria_donacion set ? where id_categoria_donacion = ?", [nuevos_datos_Cdonacion, id_categoria_donacion]);
+            return res.json('Se actualizo correctamente');
         });
     }
-    obtenerFormularioA(req, res) {
+    obtenerCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            let unFormularioA = yield base.query("select * from formulario_adopcion where id_formulario = ?", [id]);
-            return res.json(unFormularioA[0]);
+            let id_categoria_donacion = req.params.id_categoria_donacion;
+            let unCdonacion = yield base.query("select * from categoria_donacion where id_categoria_donacion = ?", [id_categoria_donacion]);
+            return res.json(unCdonacion[0]);
         });
     }
 }
-exports.FormularioAController = FormularioAController;
+exports.CdonacionController = CdonacionController;

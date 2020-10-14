@@ -10,48 +10,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class RequisitoController {
-    listarRequisito(req, res) {
+class DonacionesController {
+    static listarDonaciones(listarDonaciones) {
+        throw new Error("Method not implemented.");
+    }
+    listarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos
             const base = yield database_1.con();
-            let requisito = yield base.query('select * from requisito');
-            return res.json(requisito);
+            let donaciones = yield base.query('select * from donaciones');
+            return res.json(donaciones);
         });
     }
-    //guardar requisitos
-    guardarRequisito(req, res) {
+    //guardar formulario
+    guardarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let requisito = req.body;
-            yield base.query("insert into requisito set ?", [requisito]);
-            return res.json('El requisito fue guardado');
+            let donaciones = req.body;
+            yield base.query("insert into donaciones set ?", [donaciones]);
+            return res.json('Guardado con exito');
         });
     }
-    eliminarRequisito(req, res) {
+    eliminarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const base = yield database_1.con();
-            let id = req.params.id;
-            yield base.query("delete from requisito where id_requisito =?", [id]);
-            return res.json('El requisito se elimino correctamente');
+            const db = yield database_1.con();
+            let id_donaciones = req.params.id_donaciones;
+            yield db.query('delete from donaciones where id_donaciones = ?', [id_donaciones]);
+            return res.json('Se eliminada con exito');
         });
     }
-    actualizarRequisito(req, res) {
+    actualizarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            let nuevos_datos_requisito = req.body;
-            yield base.query("update requisito set ? where id_requisito = ?", [nuevos_datos_requisito, id]);
-            return res.json('El requisito se actualizo correctamente');
+            let id_donaciones = req.params.id_donaciones;
+            let nuevos_datos_donaciones = req.body;
+            yield base.query("update donaciones set ? where id_donaciones = ?", [nuevos_datos_donaciones, id_donaciones]);
+            return res.json('Se actualizo correctamente');
         });
     }
-    obtenerRequisito(req, res) {
+    obtenerDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            let unRequisito = yield base.query("select * from requisito where id_requisito = ?", [id]);
-            return res.json(unRequisito[0]);
+            let id_donaciones = req.params.id_donaciones;
+            let unDonaciones = yield base.query("select * from donaciones where id_donaciones = ?", [id_donaciones]);
+            return res.json(unDonaciones[0]);
         });
     }
 }
-exports.RequisitoController = RequisitoController;
+exports.DonacionesController = DonacionesController;

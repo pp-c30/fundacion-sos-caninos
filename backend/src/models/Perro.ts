@@ -4,12 +4,13 @@ export interface ICanino
     nombre:string;
     fecha_nacimiento:Date;
     edad:number;
-    sexo:boolean;
-    tamaño:boolean;
-    castrado:boolean;
-    desparasitado:boolean;
-	vacunado:boolean;
-	descripcion:Text;
+    sexo:number;
+    tamaño:number;
+    castrado:number;
+    desparasitado:number;
+	vacunado:number;
+    descripcion:Text;
+    imagen:Text;
 	estado_adopcion:string;
 	fecha_adopcion:Date
 }
