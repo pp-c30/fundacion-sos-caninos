@@ -11,6 +11,6 @@ export interface ICanino
 	vacunado:number;
     descripcion:Text;
     imagen:Text;
-	estado_adopcion:string;
+	estado_adopcion:number;
 	fecha_adopcion:Date
 }
