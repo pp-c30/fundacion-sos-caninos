@@ -38,7 +38,7 @@ export class ProvinciaController
 
         let id =req.params.id
 
-        await base.query("delete from provincia where id_provincia = ?",[id]);
+        await base.query("delete from provincia where id = ?",[id]);
 
         return res.json('La provincia se elimino correctamente');
     }
@@ -50,7 +50,7 @@ export class ProvinciaController
         let id = req.params.id;
         let nuevos_datos_provincia = req.body;
 
-        await base.query("update provincia set ? where id_provincia = ?", [nuevos_datos_provincia,id]);
+        await base.query("update provincia set ? where id = ?", [nuevos_datos_provincia,id]);
 
         return res.json('La provincia se actualizo correctamente');
     } 
@@ -61,7 +61,7 @@ export class ProvinciaController
 
         let id = req.params.id;
 
-        let unProvincia = await base.query("select * from provincia where id_provincia = ?",[id]);
+        let unProvincia = await base.query("select * from provincia where id = ?",[id]);
 
         return res.json(unProvincia[0]); 
     }

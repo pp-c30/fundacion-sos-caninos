@@ -34,7 +34,7 @@ class ProvinciaController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            yield base.query("delete from provincia where id_provincia = ?", [id]);
+            yield base.query("delete from provincia where id = ?", [id]);
             return res.json('La provincia se elimino correctamente');
         });
     }
@@ -43,7 +43,7 @@ class ProvinciaController {
             const base = yield database_1.con();
             let id = req.params.id;
             let nuevos_datos_provincia = req.body;
-            yield base.query("update provincia set ? where id_provincia = ?", [nuevos_datos_provincia, id]);
+            yield base.query("update provincia set ? where id = ?", [nuevos_datos_provincia, id]);
             return res.json('La provincia se actualizo correctamente');
         });
     }
@@ -51,7 +51,7 @@ class ProvinciaController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let unProvincia = yield base.query("select * from provincia where id_provincia = ?", [id]);
+            let unProvincia = yield base.query("select * from provincia where id = ?", [id]);
             return res.json(unProvincia[0]);
         });
     }
