@@ -38,7 +38,7 @@ export class ProvinciaController
 
         let id =req.params.id
 
-        await base.query("delete from provincia where id_provincia =?",[id]);
+        await base.query("delete from provincia where id_provincia = ?",[id]);
 
         return res.json('La provincia se elimino correctamente');
     }

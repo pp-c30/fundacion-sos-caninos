@@ -34,7 +34,7 @@ class ProvinciaController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            yield base.query("delete from provincia where id_provincia =?", [id]);
+            yield base.query("delete from provincia where id_provincia = ?", [id]);
             return res.json('La provincia se elimino correctamente');
         });
     }
