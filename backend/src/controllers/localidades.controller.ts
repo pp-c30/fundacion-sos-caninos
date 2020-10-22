@@ -53,7 +53,7 @@ export class LocalidadesController
 
         return res.json('La localidad se actualizo correctamente');
     } 
-
+   
     public async obtenerLocalidades(req:Request,res:Response)
     {
         const base = await con();
