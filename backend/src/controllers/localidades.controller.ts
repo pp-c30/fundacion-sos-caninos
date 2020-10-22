@@ -37,7 +37,7 @@ export class LocalidadesController
 
         let id =req.params.id
 
-        await base.query("delete from localidades where id_localidades =?",[id]);
+        await base.query("delete from localidades where id_localidad =?",[id]);
 
         return res.json('La localidad se elimino correctamente');
     }
@@ -49,7 +49,7 @@ export class LocalidadesController
         let id = req.params.id;
         let nuevos_datos_localidades = req.body;
 
-        await base.query("update localidades set ? where id_localidades = ?", [nuevos_datos_localidades,id]);
+        await base.query("update localidades set ? where id_localidad = ?", [nuevos_datos_localidades,id]);
 
         return res.json('La localidad se actualizo correctamente');
     } 
@@ -60,7 +60,7 @@ export class LocalidadesController
 
         let id = req.params.id;
 
-        let unLocalidades = await base.query("select * from localidades where id_localidades = ?",[id]);
+        let unLocalidades = await base.query("select * from localidades where id_localidad = ?",[id]);
 
         return res.json(unLocalidades[0]); 
     }

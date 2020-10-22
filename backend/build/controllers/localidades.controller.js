@@ -34,7 +34,7 @@ class LocalidadesController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            yield base.query("delete from localidades where id_localidades =?", [id]);
+            yield base.query("delete from localidades where id_localidad =?", [id]);
             return res.json('La localidad se elimino correctamente');
         });
     }
@@ -43,7 +43,7 @@ class LocalidadesController {
             const base = yield database_1.con();
             let id = req.params.id;
             let nuevos_datos_localidades = req.body;
-            yield base.query("update localidades set ? where id_localidades = ?", [nuevos_datos_localidades, id]);
+            yield base.query("update localidades set ? where id_localidad = ?", [nuevos_datos_localidades, id]);
             return res.json('La localidad se actualizo correctamente');
         });
     }
@@ -51,7 +51,7 @@ class LocalidadesController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id = req.params.id;
-            let unLocalidades = yield base.query("select * from localidades where id_localidades = ?", [id]);
+            let unLocalidades = yield base.query("select * from localidades where id_localidad = ?", [id]);
             return res.json(unLocalidades[0]);
         });
     }
