@@ -49,7 +49,9 @@ export class server {
 
     middleware()
     {
+       
         this.app.use(express.json()); //Nuestra aplicacion usa para el envio de datos el formato json
+        
     }
 
     //Le da arranque al servidor bajo un determinado puerto
