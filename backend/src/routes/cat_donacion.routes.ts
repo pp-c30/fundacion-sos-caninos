@@ -14,3 +14,4 @@ enrutadorCategoria.route('/categoria_donacion/:id_categoria_donacion').put(Cat_d
 enrutadorCategoria.route('/categoria_donacion/:id_categoria_donacion').get(Cat_donacionController.obtenerCdonacion);
 
 export default enrutadorCategoria;
+
