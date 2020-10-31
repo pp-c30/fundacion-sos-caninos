@@ -2,7 +2,7 @@ export interface ICanino
 {
     id?:number;
     nombre:string;
-    fecha_nacimiento:Date;
+    fecha_nacimiento:string;
     edad:number;
     sexo:number;
     tamaño:number;
@@ -10,7 +10,6 @@ export interface ICanino
     desparasitado:number;
 	vacunado:number;
     descripcion:Text;
-    imagen:Text;
 	estado_adopcion:number;
 	fecha_adopcion:Date
 }

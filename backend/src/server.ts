@@ -1,4 +1,7 @@
 import express, {Application} from "express";
+import morgan from "morgan";
+import cors from "cors";
+import path from "path";
 
 import enrutadorIndex from "./routes/index.routes";
 import enrutadorLocalidades from "./routes/localidades.routes";
@@ -21,7 +24,6 @@ export class server {
     {
         this.app = express(); //Todas las funcionalidades de express estan almacenadas en la variable app
         this.configuracion(); //Ejecuto la configuracion del puerto
-
         //Luego de middleware se ejecutan las rutas
         this.middleware();
         this.routes();
@@ -45,11 +47,16 @@ export class server {
         this.app.use(enrutadorRequisito);
         this.app.use(enrutadorCategoria);
         this.app.use(enrutadorDonaciones);
+        //configura el server para que pueda leer la carpeta y leer las img
+        this.app.use('/uploads',express.static(path.resolve('uploads')));
     }
 
     middleware()
     {
+        //muestreo de las peticiones
+        this.app.use(morgan('dev'));
         this.app.use(express.json()); //Nuestra aplicacion usa para el envio de datos el formato json
+        this.app.use(cors());
     }
 
     //Le da arranque al servidor bajo un determinado puerto

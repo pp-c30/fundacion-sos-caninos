@@ -8,9 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DonacionesController = void 0;
 const database_1 = require("../database");
+const cloudinary_1 = __importDefault(require("cloudinary"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
+//conectarse a cloudinary
+cloudinary_1.default.v2.config({
+    cloud_name: 'dylbe29a5',
+    api_key: '488978864977245',
+    api_secret: 'gzdIYgfgjrCr9uGJm5SzpeyKCkg',
+});
 class DonacionesController {
     static listarDonaciones(listarDonaciones) {
         throw new Error("Method not implemented.");
@@ -26,10 +37,32 @@ class DonacionesController {
     //guardar formulario
     guardarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const files = req.files;
+            const descripcion = req.body.descripcion;
+            const contacto = req.body.contacto;
+            const direccion = req.body.direccion;
+            const categoria_donaciones = req.body.categoria_donaciones;
             const base = yield database_1.con();
-            let donaciones = req.body;
-            yield base.query("insert into donaciones set ?", [donaciones]);
-            return res.json('Guardado con exito');
+            const unaDonacion = {
+                descripcion: descripcion,
+                contacto: contacto,
+                direccion: direccion,
+                categoria_donaciones: categoria_donaciones,
+            };
+            const resultado = yield base.query("insert into donaciones set ?", [unaDonacion]);
+            for (let i = 0; i < files.length; i++) {
+                //le especificamos el path(la ruta) de la imagen guardado en uploads
+                const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
+                //obtiene la ubicacion exacta de la img
+                const imagen_donacion = {
+                    id_donaciones: resultado.insertId,
+                    imagen_url: resultado_cloudinary.url,
+                    public_id: resultado_cloudinary.public_id
+                };
+                yield base.query('insert into imagenes_donaciones set ?', [imagen_donacion]);
+                yield fs_extra_1.default.unlink(files[i].path);
+            }
+            return res.json('La donacion fue guardado');
         });
     }
     eliminarDonaciones(req, res) {

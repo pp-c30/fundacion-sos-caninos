@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.server = void 0;
 const express_1 = __importDefault(require("express"));
+const morgan_1 = __importDefault(require("morgan"));
+const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const localidades_routes_1 = __importDefault(require("./routes/localidades.routes"));
 const perros_routes_1 = __importDefault(require("./routes/perros.routes"));
@@ -37,9 +40,14 @@ class server {
         this.app.use(requisito_routes_1.default);
         this.app.use(cat_donacion_routes_1.default);
         this.app.use(donaciones_routes_1.default);
+        //configura el server para que pueda leer la carpeta y leer las img
+        this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
     }
     middleware() {
+        //muestreo de las peticiones
+        this.app.use(morgan_1.default('dev'));
         this.app.use(express_1.default.json()); //Nuestra aplicacion usa para el envio de datos el formato json
+        this.app.use(cors_1.default());
     }
     //Le da arranque al servidor bajo un determinado puerto
     listen() {
