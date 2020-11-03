@@ -19,7 +19,7 @@ export class EventoController
 
     public async listarEvento(req:Request, res:Response)
     {
-        //Logro la conexion con la base de datos
+        //Logro la conexion con la base 
         const base = await con();
 
         let evento = await base.query('select * from evento');
