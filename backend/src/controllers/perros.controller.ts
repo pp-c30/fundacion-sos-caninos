@@ -46,7 +46,7 @@ export class PerroController
         const estado_adopcion =req.body.estado_adopcion;
         const fecha_adopcion =req.body.fecha_adopcion;
       
-        //conexion  a la base
+        //conexion  a la base de datos
         const base = await con();
 
         //envio de los datos a la base
