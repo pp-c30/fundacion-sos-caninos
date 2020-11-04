@@ -16,7 +16,7 @@ exports.PerroController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
-//conectarse a cloudinary
+//conectarse en cloudinary
 cloudinary_1.default.v2.config({
     cloud_name: 'dylbe29a5',
     api_key: '488978864977245',
@@ -48,7 +48,7 @@ class PerroController {
             const descripcion = req.body.descripcion;
             const estado_adopcion = req.body.estado_adopcion;
             const fecha_adopcion = req.body.fecha_adopcion;
-            //conexion  a la base
+            //conexion  a la base de datos
             const base = yield database_1.con();
             //envio de los datos a la base
             const unCanino = {

@@ -25,7 +25,7 @@ cloudinary_1.default.v2.config({
 class EventoController {
     listarEvento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //Logro la conexion con la base de datos
+            //Logro la conexion con la base 
             const base = yield database_1.con();
             let evento = yield base.query('select * from evento');
             return res.json(evento);
