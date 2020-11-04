@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-sm-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>direccion</th>
+                    <th>dni</th>
+                    <th>telefono</th>
+                    <th>correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let formularioA of listFormularioA"> 
+                    <td>{{formularioA.nombre}}</td>
+                    <td>{{formularioA.apellido}}</td>
+                    <td>{{formularioA.direccion}}</td>
+                    <td>{{formularioA.dni}}</td>
+                    <td>{{formularioA.telefono}}</td>
+                    <td>{{formularioA.correo}}</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-4">
+
+            <div class="card">
+                <div class="card-header"> Formulario Adopcion</div>
+                <div class ="card-body">
+                    <form>
+                        <input placeholder="nombre" type="text" class="form-control">
+                        <input placeholder="apellido" type="text" class="form-control">
+                        <input placeholder="direccion" type="text" class="form-control">
+                        <input placeholder="dni" type="text" class="form-control">
+                        <input placeholder="telefono" type="text" class="form-control">
+                        <input placeholder="correo" type="text" class="form-control">
+
+                        <button class="btn btn-sucess">Enviar</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
