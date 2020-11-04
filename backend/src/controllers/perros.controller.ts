@@ -4,7 +4,7 @@ import cloudinary from "cloudinary";
 import  fs from "fs-extra";
 
 
-//conectarse a cloudinary
+//conectarse en cloudinary
 
 cloudinary.v2.config({
     cloud_name:'dylbe29a5',
