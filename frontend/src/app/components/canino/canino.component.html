@@ -1,3 +1,152 @@
 <p>canino works!</p>
 
 
+<div class="row">
+    <div class="col-sm-8">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarCanino" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Tamaño</th>
+                    <th>Castrado</th>
+                    <th>Desparasitado</th>
+                    <th>Vacunado</th>
+                    <th>Descripcion</th>
+                    <th>Estado de Adopcion</th>
+                    <th>Fecha de Adopcion</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let canino of listCanino | filter:buscarCanino | paginate:{itemsPerPage:5,currentPage:p}">
+                    <td>{{canino.id_canino}}</td>
+                    <td>{{canino.nombre}}</td>
+                    <td>{{canino.fecha_nacimiento}}</td>
+                    <td>{{canino.edad}}</td>
+                    <td>{{canino.sexo}}</td>
+                    <td>{{canino.tamanio}}</td>
+                    <td>{{canino.castrado}}</td>
+                    <td>{{canino.desparasitado}}</td>
+                    <td>{{canino.vacunado}}</td>
+                    <td>{{canino.descripcion}}</td>
+                    <td>{{canino.estado_adopcion}}</td>
+                    <td>{{canino.fecha_adopcion}}</td>
+                    <td>
+                        <div class="btn-group-sm">
+                            <button class="btn btn-danger" (click)="eliminarCanino(canino.id_canino)">Eliminar</button>
+                            <button class="btn btn-primary" (click)="editarCanino(canino)">Editar</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="card">
+            <div class="card-header">Formulario Canino</div>
+            <div class="card-body">
+                <form [formGroup]="formCanino" (ngSubmit)="guardarCanino()" novalidate>
+
+                    <input formControlName="id_canino" type="text">
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('nombre')?.touched || formCanino.get('nombre')?.dirty) && formCanino.get('nombre')?.invalid}" formControlName="nombre" placeholder="Ingrese el Nombre" type="text" class="form-control">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formCanino.get('nombre').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formCanino.get('nombre').hasError('minLength')">Mínimo 2 Caracteres</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('fecha_nacimiento')?.touched || formCanino.get('fecha_nacimiento')?.dirty) && formCanino.get('fecha_nacimiento')?.invalid}" formControlName="fecha_nacimiento" placeholder="Ingrese la Fecha de Nacimiento"
+                            type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('fecha_nacimiento').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formCanino.get('fecha_nacimiento').hasError('minLength')">10 Caracteres Ejemplo: 2020-02-15</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('edad')?.touched || formCanino.get('edad')?.dirty) && formCanino.get('edad')?.invalid}" formControlName="edad" placeholder="Ingrese la Edad" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('edad').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('sexo')?.touched || formCanino.get('sexo')?.dirty) && formCanino.get('sexo')?.invalid}" formControlName="sexo" placeholder="Ingrese el Sexo" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('sexo').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('tamanio')?.touched || formCanino.get('tamanio')?.dirty) && formCanino.get('tamanio')?.invalid}" formControlName="tamanio" placeholder="Ingrese el Tamaño" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('tamanio').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('castrado')?.touched || formCanino.get('castrado')?.dirty) && formCanino.get('castrado')?.invalid}" formControlName="castrado" placeholder="Ingrese el Estado de Castración" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('castrado').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('desparasitado')?.touched || formCanino.get('desparasitado')?.dirty) && formCanino.get('desparasitado')?.invalid}" formControlName="desparasitado" placeholder="Ingrese el Estado de Desparasitasión" type="text"
+                            class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('desparasitado').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('vacunado')?.touched || formCanino.get('vacunado')?.dirty) && formCanino.get('vacunado')?.invalid}" formControlName="vacunado" placeholder="Ingrese el Estado de Vacunación" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('vacunado').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('descripcion')?.touched || formCanino.get('descripcion')?.dirty) && formCanino.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('descripcion').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('estado_adopcion')?.touched || formCanino.get('estado_adopcion')?.dirty) && formCanino.get('estado_adopcion')?.invalid}" formControlName="estado_adopcion" placeholder="Ingrese el Estado de Adopción" type="text"
+                            class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('estado_adopcion').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCanino.get('fecha_adopcion')?.touched || formCanino.get('fecha_adopcion')?.dirty) && formCanino.get('fecha_adopcion')?.invalid}" formControlName="fecha_adopcion" placeholder="Ingrese la Fecha de Adopción" type="text"
+                            class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formCanino.get('fecha_adopcion').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formCanino.get('fecha_adopcion').hasError('minLength')">10 Caracteres<br>Ejemplo: 2020-02-15</span>
+                        </div>
+                    </div>
+
+                    <button [disabled]="formCanino.invalid" class="btn btn-success">Guardar Canino</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
