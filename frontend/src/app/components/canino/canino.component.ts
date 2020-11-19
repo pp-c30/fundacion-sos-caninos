@@ -35,7 +35,7 @@ export class CaninoComponent implements OnInit {
       vacunado:["",[Validators.required]],
       descripcion:["",[Validators.required]],
       estado_adopcion:["",[Validators.required]],
-      fecha_adopcion:["",[Validators.required,Validators.minLength(10),Validators.maxLength(10)]]
+      fecha_adopcion:["",[Validators.required,Validators.minLength(10)]]
     });
 
    }
@@ -70,8 +70,8 @@ export class CaninoComponent implements OnInit {
     this.caninoServ.saveCanino(this.formCanino.value).subscribe(
       resultado => {
         console.log(resultado);
-        this.obtenerCanino();
         this.formCanino.reset();
+        this.obtenerCanino();
       },
       error => console.log(error)
     );

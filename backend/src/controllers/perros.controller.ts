@@ -30,6 +30,7 @@ export class PerroController
     //guardar perros
    public  async guardarPerro(req:Request,res:Response) 
     {
+        try {
         //Se accede a los archivos recibidos
         const files:any = req.files;
        
@@ -87,9 +88,11 @@ export class PerroController
 
         }
         
-        return res.json('El perro fue guardado');
+        res.json('El perro fue guardado');
 
-    
+        } catch{
+            res.json('Error al guardar un canino');
+        }
     }
 
     public async eliminarPerro(req:Request,res:Response)
