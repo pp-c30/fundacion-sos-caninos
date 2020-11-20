@@ -1,1 +1,88 @@
-<p>requisitos works!</p>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input placeholder="Buscar" [(ngModel)]="buscarRequisito" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Pregunta</th>
+                    <th>Respuesta</th>
+                    <th>Observacion</th>
+                    <th>Operaciones</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let requisito of listRequisito | filter:buscarRequisito | paginate:{itemsPerPage:10,currentPage:p}"> 
+                    <td>{{requisito.id_requisito}}</td>
+                    <td>{{requisito.pregunta}}</td>
+                    <td>{{requisito.respuesta}}</td>
+                    <td>{{requisito.observacion}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button (click)="eliminarRequisitos(requisito.id_requisito)" class="btn btn-danger">Eliminar</button>
+                            <button (click)="editarRequisitos(requisito)" class="btn btn-primary">Editar</button>
+
+                        </div>
+
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-5">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+
+            <div class="card">
+                <div class="card-header"> Formulario Adopción</div>
+                <div class ="card-body">
+                    <form [formGroup] ="formRequisitos" (ngSubmit)="guardarRequisitos()"  novalidate>
+
+                        <div class="form-group">
+                            <input  [ngClass]="{'is-invalid':(formRequisitos.get('id_requisito')?.touched || formRequisitos.get('id_requisito')?.dirty) && formRequisitos.get('id_requisito')?.invalid}" formControlName="id_requisito" placeholder="ID" type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formRequisitos.get('id_requisito').hasError('required')">Campo Requerido </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formRequisitos.get('pregunta')?.touched || formRequisitos.get('pregunta')?.dirty) && formRequisitos.get('pregunta')?.invalid}" formControlName="pregunta" placeholder="Pregunta" type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formRequisitos.get('pregunta').hasError('required')">Campo Requerido </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formRequisitos.get('respuesta')?.touched || formRequisitos.get('respuesta')?.dirty) && formRequisitos.get('respuesta')?.invalid}" formControlName="respuesta" placeholder="Respuesta" type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formRequisitos.get('respuesta').hasError('required')">Campo Requerido </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formRequisitos.get('observacion')?.touched || formRequisitos.get('observacion')?.dirty) && formRequisitos.get('observacion')?.invalid}" formControlName="observacion" placeholder="Observacion" type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formRequisitos.get('observacion').hasError('required')">Campo Requerido </span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+

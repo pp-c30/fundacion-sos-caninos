@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CaninoComponent } from './components/canino/canino.component';
 import { FormularioAdopcionComponent } from './components/formulario-adopcion/formulario-adopcion.component';
+import { RequisitosComponent } from './components/requisitos/requisitos.component';
+
 
 const routes: Routes = [
   {
@@ -16,6 +18,9 @@ const routes: Routes = [
   },
   {
     path:'form-adopcion', component:FormularioAdopcionComponent
+  },
+  {
+    path:'requisitos', component:RequisitosComponent
   }
 
 ];
