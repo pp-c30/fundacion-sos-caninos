@@ -36,7 +36,7 @@ export class DonacionesController
     //guardar formulario
     public  async guardarDonaciones(req:Request, res:Response) 
     {
-           
+        try{
         const files:any = req.files;
 
         const descripcion = req.body.descripcion;
@@ -73,7 +73,10 @@ export class DonacionesController
 
         }
         
-        return res.json('La donacion fue guardado');
+        return res.json('La donacion fue guardada');
+    }catch{
+        res.json('Error al guardar una donacion');
+    }
 
     }
     
@@ -90,6 +93,7 @@ export class DonacionesController
 
     public async actualizarDonaciones(req:Request,res:Response)
     {
+        try{
         const base = await con();
 
         let id_donaciones = req.params.id_donaciones;
@@ -98,6 +102,10 @@ export class DonacionesController
         await base.query("update donaciones set ? where id_donaciones = ?", [nuevos_datos_donaciones,id_donaciones]);
 
         return res.json('Se actualizo correctamente');
+        }
+        catch{
+            res.json('Error al actualizar');
+        }
     }
 
     public async obtenerDonaciones(req:Request,res:Response)

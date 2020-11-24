@@ -8,7 +8,6 @@ import { IFormularioA } from "../modules/formulario_adopcion";
 export class FormularioAdopcionService {
 
   constructor(private http:HttpClient) { 
-
   }
 
  getFormularioA(){
@@ -18,7 +17,6 @@ export class FormularioAdopcionService {
   saveFormularioA(unFormularioA:IFormularioA){
   return this.http.post('http://localhost:4200/formulario_adopcion',unFormularioA);  
   }
-
   
   updateFormularioA(unFormularioA:IFormularioA){
     let id:number = unFormularioA.id_formulario;
@@ -28,7 +26,5 @@ export class FormularioAdopcionService {
   deleteFormularioA(id:number){
     return this.http.delete('http://localhost:4200/formulario_adopcion/'+id);
   }
-
-
 
 }
