@@ -33,52 +33,57 @@ class PerroController {
     //guardar perros
     guardarPerro(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //Se accede a los archivos recibidos
-            const files = req.files;
-            //se accede a los datos recibidos
-            const nombre = req.body.nombre;
-            const fecha_nacimiento = req.body.fecha_nacimiento;
-            const edad = req.body.edad;
-            const sexo = req.body.sexo;
-            const tamanio = req.body.tamanio;
-            const castrado = req.body.castrado;
-            const desparasitado = req.body.desparasitado;
-            const vacunado = req.body.vacunado;
-            const descripcion = req.body.descripcion;
-            const estado_adopcion = req.body.estado_adopcion;
-            const fecha_adopcion = req.body.fecha_adopcion;
-            //conexion  a la base de datos
-            const base = yield database_1.con();
-            //envio de los datos a la base
-            const unCanino = {
-                nombre: nombre,
-                fecha_nacimiento: fecha_nacimiento,
-                edad: edad,
-                sexo: sexo,
-                tamanio: tamanio,
-                castrado: castrado,
-                desparasitado: desparasitado,
-                vacunado: vacunado,
-                descripcion: descripcion,
-                estado_adopcion: estado_adopcion,
-                fecha_adopcion: fecha_adopcion
-            };
-            const resultado = yield base.query('insert into canino set ?', [unCanino]);
-            //console.log(resultado);
-            //recorre los archicos recibidos
-            for (let i = 0; i < files.length; i++) {
-                //le especificamos el path(la ruta) de la imagen guardado en uploads
-                const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
-                //obtiene la ubicacion exacta de la img
-                const imagen_canino = {
-                    id_canino: resultado.insertId,
-                    imagen_url: resultado_cloudinary.url,
-                    public_id: resultado_cloudinary.public_id
+            try {
+                //Se accede a los archivos recibidos
+                const files = req.files;
+                //se accede a los datos recibidos
+                const nombre = req.body.nombre;
+                const fecha_nacimiento = req.body.fecha_nacimiento;
+                const edad = req.body.edad;
+                const sexo = req.body.sexo;
+                const tamanio = req.body.tamanio;
+                const castrado = req.body.castrado;
+                const desparasitado = req.body.desparasitado;
+                const vacunado = req.body.vacunado;
+                const descripcion = req.body.descripcion;
+                const estado_adopcion = req.body.estado_adopcion;
+                const fecha_adopcion = req.body.fecha_adopcion;
+                //conexion  a la base de datos
+                const base = yield database_1.con();
+                //envio de los datos a la base
+                const unCanino = {
+                    nombre: nombre,
+                    fecha_nacimiento: fecha_nacimiento,
+                    edad: edad,
+                    sexo: sexo,
+                    tamanio: tamanio,
+                    castrado: castrado,
+                    desparasitado: desparasitado,
+                    vacunado: vacunado,
+                    descripcion: descripcion,
+                    estado_adopcion: estado_adopcion,
+                    fecha_adopcion: fecha_adopcion
                 };
-                yield base.query('insert into imagenes_canino set ?', [imagen_canino]);
-                yield fs_extra_1.default.unlink(files[i].path);
+                const resultado = yield base.query('insert into canino set ?', [unCanino]);
+                //console.log(resultado);
+                //recorre los archicos recibidos
+                for (let i = 0; i < files.length; i++) {
+                    //le especificamos el path(la ruta) de la imagen guardado en uploads
+                    const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
+                    //obtiene la ubicacion exacta de la img
+                    const imagen_canino = {
+                        id_canino: resultado.insertId,
+                        imagen_url: resultado_cloudinary.url,
+                        public_id: resultado_cloudinary.public_id
+                    };
+                    yield base.query('insert into imagenes_canino set ?', [imagen_canino]);
+                    yield fs_extra_1.default.unlink(files[i].path);
+                }
+                res.json('El perro fue guardado');
             }
-            return res.json('El perro fue guardado');
+            catch (_a) {
+                res.json('Error al guardar un canino');
+            }
         });
     }
     eliminarPerro(req, res) {

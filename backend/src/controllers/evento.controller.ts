@@ -50,6 +50,7 @@ export class EventoController {
     //guardar eventos
     public  async guardarEvento(req:Request,res:Response) 
     {
+        try{
         const files:any = req.files;
 
         const titulo = req.body.titulo;
@@ -89,7 +90,9 @@ export class EventoController {
         }
         
         return res.json('El evento fue guardado');
-
+    } catch{
+        res.json('Error al guardar un evento');
+    }
     }
    
      

@@ -1,11 +1,11 @@
 export interface ICanino
 {
-    id?:number;
+    id_canino?:number;
     nombre:string;
     fecha_nacimiento:string;
     edad:number;
     sexo:number;
-    tamaño:number;
+    tamanio:number;
     castrado:number;
     desparasitado:number;
 	vacunado:number;

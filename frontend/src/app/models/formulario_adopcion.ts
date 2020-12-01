@@ -1,6 +1,6 @@
 export interface IFormularioA
 {
-    id?:number;
+    id_formulario?:number;
     nombre:string;
     apellido:string;
     direccion:string;
