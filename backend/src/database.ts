@@ -1,4 +1,4 @@
-import {createPool  } from "promise-mysql";
+import { createPool } from "promise-mysql";
 
 export async function con()
 {

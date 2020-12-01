@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { CaninoComponent } from './components/canino/canino.component';
 import { CategoriaDonacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
-import { EventoComponent } from './components/evento/evento.component';
 import { FormularioAdopcionComponent } from './components/formulario-adopcion/formulario-adopcion.component';
 import { NavegacionComponent } from './components/navegacion/navegacion.component';
+import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.component";
+import { AdminDetalleEventoComponent } from "./components/admin-detalle-evento/admin-detalle-evento.component";
+
 
 import { HttpClientModule } from "@angular/common/http";
 import { LocalidadesComponent } from './components/localidades/localidades.component';
@@ -20,12 +22,13 @@ import { RequisitosComponent } from './components/requisitos/requisitos.componen
     CaninoComponent,
     CategoriaDonacionComponent,
     DonacionesComponent,
-    EventoComponent,
     FormularioAdopcionComponent,
     NavegacionComponent,
     LocalidadesComponent,
     ProvinciaComponent,
-    RequisitosComponent
+    RequisitosComponent,
+    AdmindEventoComponent,
+    AdminDetalleEventoComponent
   ],
   imports: [
     BrowserModule,
