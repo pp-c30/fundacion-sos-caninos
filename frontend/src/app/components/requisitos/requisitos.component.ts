@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRequisito } from 'src/app/modules/Requisito';
+import { IRequisito } from 'src/app/models/Requisito';
 import { RequisitosService } from "../../service/requisitos.service";
 import { FormBuilder,FormGroup,Form,Validators } from "@angular/forms";
 

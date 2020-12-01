@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DonacionesService } from "../../service/donaciones.service";
 
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
-import { IDonaciones } from 'src/app/modules/Donaciones';
+import { IDonaciones } from 'src/app/models/donaciones';
 
 @Component({
   selector: 'app-donaciones',

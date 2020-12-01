@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from "@angular/router";
 
-import { EventoService } from "../../services/evento.service";
+import { EventoService } from "../../service/evento.service";
 
 import { IEventoDetalle } from "../../models/eventoDetalle";
 

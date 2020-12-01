@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { IFormularioA } from "../modules/formulario_adopcion";
+import { IFormularioA } from "../models/formulario_adopcion";
 
 @Injectable({
   providedIn: 'root'

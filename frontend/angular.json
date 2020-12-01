@@ -28,6 +28,7 @@
                             "node_modules/bootswatch/dist/minty/bootstrap.min.css"
                         ],
                         "scripts": [
+                            "node_modules/bootswatch/dist/minty/jquery.min.js",
                             "node_modules/bootswatch/dist/minty/bootstrap.min.js"
                         ]
                     },

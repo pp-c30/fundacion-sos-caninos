@@ -1,22 +1,16 @@
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
 
 import { HttpClient } from "@angular/common/http";
 
 import {IEvento  } from "../models/evento";
 
 import { IEventoDetalle } from "../models/eventoDetalle";
-=======
-import { HttpClient } from "@angular/common/http";
-import { IEvento } from "../modules/Evento";
->>>>>>> c873a41971edea8cd3030451cd23de34241a6f32
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
 
-<<<<<<< HEAD
   constructor( private http:HttpClient) {
     
    }
@@ -88,31 +82,3 @@ export class EventoService {
     }
    }
 
-=======
-  constructor(private http:HttpClient) {
-
-   }
-
-getEvento()
-{
-  return this.http.get<IEvento[]>("http://localhost:4200/evento");
-}
-
-saveEvento(unEvento:IEvento)
-{
-  return this.http.post("http://localhost:4200/evento", unEvento);
-}
-
-updateEvento(unEvento:IEvento)
-{
-  let id:number = unEvento.id_evento;
-  return this.http.put("http://localhost:4200/evento/"+id, unEvento);
-}
-
-deleteEvento(id_evento:number)
-{
-  return this.http.delete("http://localhost:4200/evento/"+id_evento);
-}
-
-}
->>>>>>> c873a41971edea8cd3030451cd23de34241a6f32

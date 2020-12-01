@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import { ICanino } from "../modules/Canino";
+import { ICanino } from "../models/canino";
 
 @Injectable({
   providedIn: 'root'

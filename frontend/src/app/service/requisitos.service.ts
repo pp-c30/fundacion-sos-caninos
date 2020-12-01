@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRequisito } from "../modules/Requisito";
+import { IRequisito } from "../models/Requisito";
 
 
 @Injectable({

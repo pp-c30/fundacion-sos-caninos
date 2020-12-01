@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IEvento } from 'src/app/models/evento';
 
-import { EventoService } from "../../services/evento.service";
+import { EventoService } from "../../service/evento.service";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CaninoService } from "../../service/canino.service";
 
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
-import { ICanino } from 'src/app/modules/Canino';
+import { ICanino } from 'src/app/models/canino';
 
 @Component({
   selector: 'app-canino',
