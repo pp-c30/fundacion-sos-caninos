@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IFormularioA } from 'src/app/modules/formulario_adopcion';
+import { IFormularioA } from 'src/app/models/formulario_adopcion';
 import { FormularioAdopcionService } from "../../service/formulario-adopcion.service";
 
 @Component({
