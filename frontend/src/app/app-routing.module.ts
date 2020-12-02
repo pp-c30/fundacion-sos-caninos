@@ -8,14 +8,22 @@ import { FormularioAdopcionComponent } from './components/formulario-adopcion/fo
 import { AdminDetalleEventoComponent } from "./components/admin-detalle-evento/admin-detalle-evento.component";
 import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.component";
 import { RequisitosComponent } from './components/requisitos/requisitos.component';
-
+import { AdminNavegacionComponent } from './components/admin-navegacion/admin-navegacion.component';
+import { AdminCuerpoNavegacionComponent } from './components/admin-cuerpo-navegacion/admin-cuerpo-navegacion.component';
 
 const routes: Routes = [
   {
-    path:'', redirectTo:'/canino',
+    path:'', redirectTo:'/admin-cuerpo-navegacion',
     pathMatch:'full'
   },
-  
+  {
+    path:'admin-cuerpo-navegacion', 
+    component:AdminCuerpoNavegacionComponent
+  }, 
+  {
+    path:'admin-navegacion', 
+    component:AdminNavegacionComponent
+  },  
   {
     path:'canino', 
     component:CaninoComponent

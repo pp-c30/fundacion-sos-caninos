@@ -4,7 +4,6 @@ import { IEvento } from "../models/Evento";
 import cloudinary from "cloudinary";
 import  fs from "fs-extra";
 
-let evento;
 //conectarse a cloudinary
 cloudinary.v2.config({
     cloud_name:'dylbe29a5',

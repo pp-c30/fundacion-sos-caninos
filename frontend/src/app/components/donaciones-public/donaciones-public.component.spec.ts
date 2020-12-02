@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminLocalidadesComponent } from './admin-localidades.component';
+import { DonacionesPublicComponent } from './donaciones-public.component';
 
-describe('AdminLocalidadesComponent', () => {
-  let component: AdminLocalidadesComponent;
-  let fixture: ComponentFixture<AdminLocalidadesComponent>;
+describe('DonacionesPublicComponent', () => {
+  let component: DonacionesPublicComponent;
+  let fixture: ComponentFixture<DonacionesPublicComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminLocalidadesComponent ]
+      declarations: [ DonacionesPublicComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLocalidadesComponent);
+    fixture = TestBed.createComponent(DonacionesPublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

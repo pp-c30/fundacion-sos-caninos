@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminCaninoComponent } from './admin-canino.component';
+import { NavegacionPublicComponent } from './navegacion-public.component';
 
-describe('AdminCaninoComponent', () => {
-  let component: AdminCaninoComponent;
-  let fixture: ComponentFixture<AdminCaninoComponent>;
+describe('NavegacionPublicComponent', () => {
+  let component: NavegacionPublicComponent;
+  let fixture: ComponentFixture<NavegacionPublicComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminCaninoComponent ]
+      declarations: [ NavegacionPublicComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminCaninoComponent);
+    fixture = TestBed.createComponent(NavegacionPublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

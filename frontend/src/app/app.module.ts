@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { CategoriaDonacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
 import { FormularioAdopcionComponent } from './components/formulario-adopcion/formulario-adopcion.component';
-import { NavegacionComponent } from './components/navegacion/navegacion.component';
 import { CaninoComponent } from './components/canino/canino.component';
 import { LocalidadesComponent } from './components/localidades/localidades.component';
 import { ProvinciaComponent } from './components/provincia/provincia.component';
@@ -19,14 +18,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from "ngx-pagination";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 
-import { AdminCaninoComponent } from './components/admin-canino/admin-canino.component';
-import { AdminProvinciaComponent } from './components/admin-provincia/admin-provincia.component';
-import { AdminNavegacionComponent } from './components/admin-navegacion/admin-navegacion.component';
-import { AdminDonacionesComponent } from "./components/admin-donaciones/admin-donaciones.component";
+
+
 import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.component";
 import { AdminDetalleEventoComponent } from "./components/admin-detalle-evento/admin-detalle-evento.component";
-import { AdminLocalidadesComponent } from './components/admin-localidades/admin-localidades.component';
-import { AdminRequisitosComponent } from './components/admin-requisitos/admin-requisitos.component';
+import { AdminCuerpoNavegacionComponent } from './components/admin-cuerpo-navegacion/admin-cuerpo-navegacion.component';
+import { AdminNavegacionComponent } from './components/admin-navegacion/admin-navegacion.component';
+import { CaninoPublicComponent } from './components/canino-public/canino-public.component';
+import { ProvinciaPublicComponent } from './components/provincia-public/provincia-public.component';
+import { DonacionesPublicComponent } from './components/donaciones-public/donaciones-public.component';
+import { LocaclidadesPublicComponent } from './components/locaclidades-public/locaclidades-public.component';
+import { FormularioAdopcionPublicComponent } from './components/formulario-adopcion-public/formulario-adopcion-public.component';
+import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
+import { NavegacionPublicComponent } from './components/navegacion-public/navegacion-public.component';
 
 
 
@@ -37,19 +41,21 @@ import { AdminRequisitosComponent } from './components/admin-requisitos/admin-re
     CategoriaDonacionComponent,
     DonacionesComponent,
     FormularioAdopcionComponent,
-    NavegacionComponent,
     LocalidadesComponent,
     ProvinciaComponent,
     RequisitosComponent,
     EventoComponent,
     AdmindEventoComponent,
-    AdminDetalleEventoComponent,
-    AdminCaninoComponent,
-    AdminProvinciaComponent,
-    AdminDonacionesComponent,
+    AdminDetalleEventoComponent,   
+    AdminCuerpoNavegacionComponent,
     AdminNavegacionComponent,
-    AdminLocalidadesComponent,
-    AdminRequisitosComponent
+    CaninoPublicComponent,
+    ProvinciaPublicComponent,
+    DonacionesPublicComponent,
+    LocaclidadesPublicComponent,
+    FormularioAdopcionPublicComponent,
+    RequisitosPublicComponent,
+    NavegacionPublicComponent
   ],
   imports: [
     BrowserModule,
