@@ -27,4 +27,7 @@ enrutadorEvento.route('/agregar-imagenes-evento/:id_evento').put(multer.array('i
 
 enrutadorEvento.route('/eliminar-imagen-evento/:id_ie/:public_id').delete(eventoController.eliminarImagenEvento);
 
+enrutadorEvento.route('/evento-portada/:id_ie').get(eventoController.establecerPortada);
+
+
 export default enrutadorEvento;

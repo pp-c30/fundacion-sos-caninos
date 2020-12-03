@@ -30,7 +30,6 @@ export class AdminDetalleEventoComponent implements OnInit {
 
   imagenes_leidas = [];
 
-
   constructor(private fb:FormBuilder,private activatedRoute:ActivatedRoute,private serviceEvento:EventoService) 
   {
     this.formDetalleEvento = this.fb.group({
@@ -100,6 +99,16 @@ export class AdminDetalleEventoComponent implements OnInit {
       }
     )
    }
+  }
+
+  establecerPortada(id_ie:number)
+  {
+    this.serviceEvento.establecerPortada(id_ie).subscribe(
+      resultado => {
+        //Refrescamos la grilla
+        this.listarImagenesEventos(this.id_evento);
+      }
+    )
   }
 
 

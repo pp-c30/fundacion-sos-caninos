@@ -15,6 +15,12 @@ export class EventoService {
     
    }
 
+//metodo encargado de edtiar un registro y poner la portada en estado 0
+  establecerPortada(id_ie:number)
+  {
+    return this.http.get('http://localhost:4200/evento-portada/'+id_ie,);
+  }
+  
    updateEvento(datosEvento:IEvento)
    {
     

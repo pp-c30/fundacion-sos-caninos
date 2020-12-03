@@ -13,6 +13,28 @@ cloudinary.v2.config({
 
 export class EventoController {
 
+    async establecerPortada(req:Request,res:Response)
+    {
+        let id_ie = req.params.id_ie;
+
+        const base = await con();
+
+        //Primero ponemos todas las imagenes como portada = 0
+        const portadasEnEstadocero = {
+            portada:0.
+        }
+        await base.query ('update imagenes_evento set ?',[portadasEnEstadocero]);
+
+        
+        //Establecer como portada una imagen
+        const datosImagenesEvento = {
+            portada:1
+        }
+        await base.query ('update imagenes_evento set ? where id_ie = ?',[datosImagenesEvento,id_ie]);
+        
+        res.json ('Se establecio la portada');
+    }
+
     async actualizarEvento(req:Request,res:Response)
     {
        if(req.files)

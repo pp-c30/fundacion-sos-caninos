@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -18,6 +18,7 @@
                     <td>
                         <div class="btn-group btn-group-sm">
                             <button (click)="eliminarImagenEvento(fila.id_ie,fila.public_id)" class="btn btn-danger">Eliminar</button>
+                            <button [disabled]="fila.portada == 1 ? true:false" (click)="establecerPortada(fila.id_ie)" class="btn btn-warning">Establecer como portada</button>
                         </div>
                     </td>
                 </tr>
@@ -27,14 +28,14 @@
         </table>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <form [formGroup]="formDetalleEvento">
             <div class="form-group">
                 <input (change)="mostrarImagenesSeleccionadas($event)" formControlName="archivo" class="form-control-file" type="file" multiple>
             </div>
 
             <div class="form-group">
-                <button (click)="agregarImagenesEvento()" class="btn btn-sucess">Agregar Imagenes</button>
+                <button (click)="agregarImagenesEvento()" class="btn btn-primary">Agregar Imagenes</button>
             </div>
         </form>
 

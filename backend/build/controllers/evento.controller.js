@@ -22,6 +22,23 @@ cloudinary_1.default.v2.config({
     api_secret: 'gzdIYgfgjrCr9uGJm5SzpeyKCkg',
 });
 class EventoController {
+    establecerPortada(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let id_ie = req.params.id_ie;
+            const base = yield database_1.con();
+            //Primero ponemos todas las imagenes como portada = 0
+            const portadasEnEstadocero = {
+                portada: 0.
+            };
+            yield base.query('update imagenes_evento set ?', [portadasEnEstadocero]);
+            //Establecer como portada una imagen
+            const datosImagenesEvento = {
+                portada: 1
+            };
+            yield base.query('update imagenes_evento set ? where id_ie = ?', [datosImagenesEvento, id_ie]);
+            res.json('Se establecio la portada');
+        });
+    }
     actualizarEvento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             if (req.files) {
