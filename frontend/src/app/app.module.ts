@@ -30,7 +30,7 @@ import { DonacionesPublicComponent } from './components/donaciones-public/donaci
 import { FormularioAdopcionPublicComponent } from './components/formulario-adopcion-public/formulario-adopcion-public.component';
 import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
 import { NavegacionPublicComponent } from './components/navegacion-public/navegacion-public.component';
-import { LocalidadesPublicComponent } from './localidades-public/localidades-public.component';
+import { LocalidadesPublicComponent } from './components/localidades-public/localidades-public.component';
 
 
 
