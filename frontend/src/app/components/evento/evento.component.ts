@@ -62,14 +62,14 @@ export class EventoComponent implements OnInit {
       )
     }else{
     //console.log(this.formEvento.value);
-    this.eventoServ.saveEvento(this.formEvento.value).subscribe(
+    /*this.eventoServ.saveEvento(this.formEvento.value).subscribe(
       resultado => {
         console.log(resultado);
         this.formEvento.reset();
         this.obtenerEvento();
       },
       error => console.log(error)
-    );
+    );*/
     }
 
 

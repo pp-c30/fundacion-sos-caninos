@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CategoriaDonacionComponent } from './components/categoria-donacion/categoria-donacion.component';
+import { Categoria_donacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
 import { FormularioAdopcionComponent } from './components/formulario-adopcion/formulario-adopcion.component';
 import { CaninoComponent } from './components/canino/canino.component';
@@ -27,10 +27,10 @@ import { AdminNavegacionComponent } from './components/admin-navegacion/admin-na
 import { CaninoPublicComponent } from './components/canino-public/canino-public.component';
 import { ProvinciaPublicComponent } from './components/provincia-public/provincia-public.component';
 import { DonacionesPublicComponent } from './components/donaciones-public/donaciones-public.component';
-import { LocaclidadesPublicComponent } from './components/locaclidades-public/locaclidades-public.component';
 import { FormularioAdopcionPublicComponent } from './components/formulario-adopcion-public/formulario-adopcion-public.component';
 import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
 import { NavegacionPublicComponent } from './components/navegacion-public/navegacion-public.component';
+import { LocalidadesPublicComponent } from './localidades-public/localidades-public.component';
 
 
 
@@ -38,7 +38,7 @@ import { NavegacionPublicComponent } from './components/navegacion-public/navega
   declarations: [
     AppComponent,
     CaninoComponent,
-    CategoriaDonacionComponent,
+    Categoria_donacionComponent,
     DonacionesComponent,
     FormularioAdopcionComponent,
     LocalidadesComponent,
@@ -52,10 +52,10 @@ import { NavegacionPublicComponent } from './components/navegacion-public/navega
     CaninoPublicComponent,
     ProvinciaPublicComponent,
     DonacionesPublicComponent,
-    LocaclidadesPublicComponent,
     FormularioAdopcionPublicComponent,
     RequisitosPublicComponent,
-    NavegacionPublicComponent
+    NavegacionPublicComponent,
+    LocalidadesPublicComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,80 @@
-<p>localidades works!</p>
+<div class="row">
+    <div class="col-sm-8">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarLocalidades" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let localidades of listLocalidades | filter:buscarLocalidades | paginate:{itemsPerPage:5,currentPage:p}">
+                    <td>{{localidades.id_localidad}}</td>
+                    <td>{{localidades.nombre}}</td>
+                    <td>{{localidades.fecha_nacimiento}}</td>
+                    <td>{{localidades.edad}}</td>
+                    <td>
+                        <div class="btn-group-sm">
+                            <button class="btn btn-danger" (click)="eliminarLocalidades(localidades.id_localidad)">Eliminar</button>
+                            <button class="btn btn-primary" (click)="editarLocalidades(localidades)">Editar</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="card">
+            <div class="card-header">Formulario Localidades</div>
+            <div class="card-body">
+                <form [formGroup]="formLocalidades" (ngSubmit)="guardarLocalidades()" novalidate>
+
+                    <input formControlName="id_localidad" type="text">
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formLocalidades.get('nombre')?.touched || formLocalidades.get('nombre')?.dirty) && formLocalidades.get('nombre')?.invalid}" formControlName="nombre" placeholder="Ingrese el Nombre" type="text" class="form-control">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formLocalidades.get('nombre').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formLocalidades.get('nombre').hasError('minLength')">Mínimo 2 Caracteres</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formLocalidades.get('fecha_nacimiento')?.touched || formLocalidades.get('fecha_nacimiento')?.dirty) && formLocalidades.get('fecha_nacimiento')?.invalid}" formControlName="fecha_nacimiento" placeholder="Ingrese la Fecha de Nacimiento"
+                            type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('fecha_nacimiento').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formLocalidades.get('fecha_nacimiento').hasError('minLength')">10 Caracteres Ejemplo: 2020-02-15</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formLocalidades.get('edad')?.touched || formLocalidades.get('edad')?.dirty) && formLocalidades.get('edad')?.invalid}" formControlName="edad" placeholder="Ingrese la Edad" type="text" class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('edad').hasError('required')">Campo Requerido </span>
+                        </div>
+                    </div>
+
+                    <button [disabled]="formLocalidades.invalid" class="btn btn-success">Guardar Localidades</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

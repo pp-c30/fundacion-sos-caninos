@@ -10,6 +10,9 @@ import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.
 import { RequisitosComponent } from './components/requisitos/requisitos.component';
 import { AdminNavegacionComponent } from './components/admin-navegacion/admin-navegacion.component';
 import { AdminCuerpoNavegacionComponent } from './components/admin-cuerpo-navegacion/admin-cuerpo-navegacion.component';
+import { LocalidadesComponent } from './components/localidades/localidades.component';
+import { Categoria_donacionComponent } from './components/categoria-donacion/categoria-donacion.component';
+import { ProvinciaComponent } from './components/provincia/provincia.component';
 
 const routes: Routes = [
   {
@@ -39,12 +42,22 @@ const routes: Routes = [
   {
     path:'admin-detalle-evento/:id_evento',
     component:AdminDetalleEventoComponent
-    
   },
   {
     path:'donaciones', 
     component:DonacionesComponent
-  
+  },
+  {
+    path:'localidades', 
+    component:LocalidadesComponent
+  },
+  {
+    path:'provincia', 
+    component:ProvinciaComponent
+  },
+  {
+    path:'categoria-donaciones', 
+    component:Categoria_donacionComponent
   },
   {
     path:'requisitos', 
