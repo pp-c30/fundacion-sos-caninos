@@ -6,7 +6,19 @@ import { ILocalidades } from "../models/Localidades";
 export class LocalidadesController
 {
 
+    public async listLocalidades(req:Request, res:Response)
+    {
+        //Realizo la conexion con la base de datos
+        const base = await con();
 
+        const provincia_id = req.body.id;
+
+        let lista = await base.query('select * from localidades where provincia_id =?',[provincia_id]);
+             
+        return res.json(lista);
+        
+    }
+    
     public async listarLocalidades(req:Request, res:Response)
     {
         //Realizo la conexion con la base de datos

@@ -19,6 +19,7 @@
                     <th>Telefono</th>
                     <th>Correo</th>
                     <th>Canino</th>
+                    <th>Provincia</th>
                     <th>Localidad</th>
                     <th>Requisito</th>
                     <th>Operaciones</th>
@@ -107,8 +108,21 @@
                         </div>
 
                         <div class="form-group">
-                            <input [ngClass]="{'is-invalid':(formAdopcion.get('id_localidad')?.touched || formAdopcion.get('id_localidad')?.dirty) && formAdopcion.get('id_localidad')?.invalid}" formControlName="id_localidad" placeholder="Localidad" type="text" class="form-control">
+                            <select class="form-control">
+                                <option value="0" disabled selected>Seleccionar Provincia</option>
+                                <option *ngFor="let provincia of lista_provincia" value={{provincia.id}}>{{provincia.nombre}}</option>
+                            </select>
+                           
                         </div>
+
+                        <div class="form-group">
+                            <select formControlName="localidad" class="form-control">
+                                <option *ngFor="let localidades of lista_localidades" value={{localidad.id_localidad}}>{{localidades.nombre}}</option>
+                            </select>
+
+
+                        </div>
+
 
                         <div class="form-group">
                             <input [ngClass]="{'is-invalid':(formAdopcion.get('requisito')?.touched || formAdopcion.get('requisito')?.dirty) && formAdopcion.get('requisito')?.invalid}" formControlName="requisito" placeholder="Requisito" type="text" class="form-control">

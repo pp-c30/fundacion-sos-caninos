@@ -11,6 +11,10 @@ export class LocalidadesService {
   constructor(private http:HttpClient) {
 
    }
+obtenerLocalidades(provincia_id:number)
+{
+  return this.http.get<ILocalidades[]>("http://localhost:4200/localidades"+provincia_id);
+}
 
 getLocalidades()
 {

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IFormularioA } from 'src/app/models/formulario_adopcion';
 import { FormularioAdopcionService } from "../../service/formulario-adopcion.service";
+import { LocalidadesService } from "../../service/localidades.service";
+
+import { ProvinciaService } from "../../service/provincia.service";
 import { FormBuilder,FormGroup, Form, Validators } from "@angular/forms";
+import { IProvincia } from 'src/app/models/provincia';
+import { ILocalidades } from 'src/app/models/localidades';
 
 @Component({
   selector: 'app-formulario-adopcion',
@@ -11,6 +16,8 @@ import { FormBuilder,FormGroup, Form, Validators } from "@angular/forms";
 export class FormularioAdopcionComponent implements OnInit {
 
  listFormularioA : IFormularioA[];
+ lista_provincia: IProvincia[];
+ lista_localidades: ILocalidades[];
 
  formAdopcion:FormGroup;
 
@@ -19,19 +26,20 @@ export class FormularioAdopcionComponent implements OnInit {
  p:number = 1;
 
 
-  constructor(private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder) {
+  constructor(private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder, private localidadesServ:LocalidadesService, private provinciaServ:ProvinciaService) {
    
       this.formAdopcion = this.fb.group({
         id_formulario:[null],
         nombre:['',[Validators.required,Validators.minLength(3)]],
         apellido:['',[Validators.required,Validators.minLength(3)]],
         direccion:['',[Validators.required]],
-        dni:['',[Validators.required]],
+        dni:[null,[Validators.required]],
         telefono:['',[Validators.required,Validators.minLength(8)]],
         correo:['',[Validators.required]],
-        canino:['',[Validators.required]],
-        id_localidad:['',[Validators.required]],
-        requisito:['',[Validators.required]]
+        canino:[null,[Validators.required]],
+        id_localidad:[null,[Validators.required]],
+        requisito:[null,[Validators.required]],
+        provincia_id:[null,[Validators.required]]
 
 
       });
@@ -40,8 +48,28 @@ export class FormularioAdopcionComponent implements OnInit {
   ngOnInit(): void {
 
    this.listarFormularioA();
+   this.obtenerProvincia();
 
+  }
 
+  obtenerProvincia()
+  {
+    this.provinciaServ.getProvincia().subscribe(
+      resultado => {
+      this.lista_provincia = resultado;
+    },
+      error => console.log(error)
+    )
+  }
+
+  obtenerLocalidades(provincia_id:number)
+  {
+    this.localidadesServ.getLocalidades().subscribe(
+      resultado =>{
+       this.lista_localidades = resultado;
+      }, 
+      error => console.log(error)
+    )
   }
 
   listarFormularioA()

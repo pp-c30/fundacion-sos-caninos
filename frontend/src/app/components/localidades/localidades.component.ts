@@ -25,7 +25,7 @@ export class LocalidadesComponent implements OnInit {
     this.formLocalidades = this.fb.group({
 
       id_localidad:[null],
-      provincia_id:["",[Validators.required,]],
+      provincia_id:[null,[Validators.required,]],
       nombre:["",[Validators.required,]],
       codigopostal:["",[Validators.required]]
     });

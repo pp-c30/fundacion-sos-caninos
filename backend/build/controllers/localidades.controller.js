@@ -9,8 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LocalidadesController = void 0;
 const database_1 = require("../database");
 class LocalidadesController {
+    listLocalidades(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Realizo la conexion con la base de datos
+            const base = yield database_1.con();
+            const provincia_id = req.body.id;
+            let lista = yield base.query('select * from localidades where provincia_id =?', [provincia_id]);
+            return res.json(lista);
+        });
+    }
     listarLocalidades(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Realizo la conexion con la base de datos

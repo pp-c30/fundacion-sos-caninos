@@ -9,6 +9,7 @@ const enrutadorLocalidades = Router();
 
 //Defino las rutas de cada funcion 
 enrutadorLocalidades.route('/localidades').get(localidadesController.listarLocalidades);
+enrutadorLocalidades.route('/localidades/:provincia_id').get(localidadesController.listLocalidades);
 enrutadorLocalidades.route('/localidades').post(localidadesController.guardarLocalidades);
 enrutadorLocalidades.route('/localidades/:id').delete(localidadesController.eliminarLocalidades);
 enrutadorLocalidades.route('/localidades/:id').put(localidadesController.actualizarLocalidades);
