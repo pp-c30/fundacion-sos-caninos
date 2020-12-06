@@ -62,9 +62,9 @@ export class FormularioAdopcionComponent implements OnInit {
     )
   }
 
-  obtenerLocalidades(provincia_id:number)
+  dameLocalidades(provincia_id:number)
   {
-    this.localidadesServ.getLocalidades().subscribe(
+    this.localidadesServ.obtenerLocalidades(provincia_id).subscribe(
       resultado =>{
        this.lista_localidades = resultado;
       }, 

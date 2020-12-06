@@ -13,17 +13,17 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Provincia</th>
                     <th>Nombre</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Edad</th>
+                    <th>Código Postal</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let localidades of listLocalidades | filter:buscarLocalidades | paginate:{itemsPerPage:5,currentPage:p}">
                     <td>{{localidades.id_localidad}}</td>
+                    <td>{{localidades.provincia_id}}</td>
                     <td>{{localidades.nombre}}</td>
-                    <td>{{localidades.fecha_nacimiento}}</td>
-                    <td>{{localidades.edad}}</td>
+                    <td>{{localidades.codigopostal}}</td>
                     <td>
                         <div class="btn-group-sm">
                             <button class="btn btn-danger" (click)="eliminarLocalidades(localidades.id_localidad)">Eliminar</button>
@@ -49,6 +49,15 @@
 
                     <input formControlName="id_localidad" type="text">
 
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formLocalidades.get('provincia_id')?.touched || formLocalidades.get('provincia_id')?.dirty) && formLocalidades.get('provincia_id')?.invalid}" formControlName="provincia_id" placeholder="Ingrese la Provincia" type="text"
+                            class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('provincia_id').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formLocalidades.get('provincia_id').hasError('minLength')">10 Caracteres Ejemplo: 2020-02-15</span>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formLocalidades.get('nombre')?.touched || formLocalidades.get('nombre')?.dirty) && formLocalidades.get('nombre')?.invalid}" formControlName="nombre" placeholder="Ingrese el Nombre" type="text" class="form-control">
                         <div class="invalid-feedback">
@@ -58,16 +67,9 @@
                     </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formLocalidades.get('fecha_nacimiento')?.touched || formLocalidades.get('fecha_nacimiento')?.dirty) && formLocalidades.get('fecha_nacimiento')?.invalid}" formControlName="fecha_nacimiento" placeholder="Ingrese la Fecha de Nacimiento"
-                            type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('fecha_nacimiento').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formLocalidades.get('fecha_nacimiento').hasError('minLength')">10 Caracteres Ejemplo: 2020-02-15</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formLocalidades.get('edad')?.touched || formLocalidades.get('edad')?.dirty) && formLocalidades.get('edad')?.invalid}" formControlName="edad" placeholder="Ingrese la Edad" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('edad').hasError('required')">Campo Requerido </span>
+                        <input [ngClass]="{'is-invalid':(formLocalidades.get('codigopostal')?.touched || formLocalidades.get('codigopostal')?.dirty) && formLocalidades.get('codigopostal')?.invalid}" formControlName="codigopostal" placeholder="Ingrese el Código Postal" type="text"
+                            class="form-control">
+                        <div class="invalid-feedback"><span *ngIf="formLocalidades.get('codigopostal').hasError('required')">Campo Requerido </span>
                         </div>
                     </div>
 

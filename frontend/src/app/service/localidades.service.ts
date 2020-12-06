@@ -13,7 +13,7 @@ export class LocalidadesService {
    }
 obtenerLocalidades(provincia_id:number)
 {
-  return this.http.get<ILocalidades[]>("http://localhost:4200/localidades"+provincia_id);
+  return this.http.get<ILocalidades[]>("http://localhost:4200/localidades/"+provincia_id);
 }
 
 getLocalidades()
