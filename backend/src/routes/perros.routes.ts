@@ -1,18 +1,32 @@
 import { Router } from "express";
 import multer from "../libs/multer";
 
-import { PerroController } from "../controllers/perros.controller";
+import { CaninoController } from "../controllers/perros.controller";
 
-const perroController = new PerroController();
+const caninoController = new CaninoController();
 //Guardo dentro de enrutador la funcionalidad Router de express
-const enrutadorPerro = Router();
+const enrutadorCanino = Router();
+//Defino las rutas de canino
+enrutadorCanino.route('/canino').get(caninoController.listarCanino);
 
-//Defino las rutas de cada funcion 
-enrutadorPerro.route('/canino').get(perroController.listarPerro);
-enrutadorPerro.route('/canino').post(multer.array('imagenes_canino'),perroController.guardarPerro);
-enrutadorPerro.route('/canino/:id').delete(perroController.eliminarPerro);
-enrutadorPerro.route('/canino/:id').put(perroController.actualizarPerro);
-enrutadorPerro.route('/canino/:id').get(perroController.obtenerPerro);
+enrutadorCanino.route('/canino').post(multer.array('img_canino'),caninoController.guardarCanino);
 
-export default enrutadorPerro;
+enrutadorCanino.route('/eliminar-canino/:id_canino').delete(caninoController.eliminarCanino);
+
+enrutadorCanino.route('/canino/:id_canino').put(caninoController.actualizarCanino);
+
+enrutadorCanino.route('/canino/:id_canino').get(caninoController.obtenerCanino);
+
+
+//Defino las rutas de detalle canino
+enrutadorCanino.route('/listar-imagenes-canino/:id_canino').get(caninoController.listarImagenesCanino);
+
+enrutadorCanino.route('/agregar-imagenes-canino/:id_canino').put(multer.array('img_canino'),caninoController.agregarImagenesCanino);
+
+enrutadorCanino.route('/eliminar-imagen-canino/:id_ic/:public_id').delete(caninoController.eliminarImagenCanino);
+
+enrutadorCanino.route('/canino-portada/:id_ic').get(caninoController.establecerPortada);
+
+
+export default enrutadorCanino;
 
