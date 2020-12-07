@@ -61,7 +61,7 @@ export class CaninoService {
 
    getCanino()
    {
-     return this.http.get<ICanino[]>('http://localhost:4200/Canino');
+     return this.http.get<ICanino[]>('http://localhost:4200/canino');
    }
    
    getImagenesCanino(id_canino:number)

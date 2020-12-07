@@ -115,7 +115,7 @@ detalleCanino(id_canino:number)
 {
   
   //Para redirigirme a una ruta voy a tener que importarme un par de modulos. Para esto debe existir la ruta en el app-routing
-  this.router.navigate(['/admin-detalle-evento',id_canino]);
+  this.router.navigate(['/admin-detalle-canino',id_canino]);
   
 }
 
@@ -133,7 +133,7 @@ eliminarCanino(id_canino:number)
 }
 //llenar el formulario
 editarCanino(datosCanino:ICanino)
-{
+{ 
 
     this.ocultar_boton_archivos = 'display:none;'
     this.formCanino.setValue({
