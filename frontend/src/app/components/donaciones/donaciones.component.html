@@ -73,9 +73,9 @@
                     </div>
 
                     <div class="form-group">
-                        <select formControlName="categoria" class="form-control">
+                        <select formControlName="categoria_donaciones" class="form-control">
                                 <option >Seleccionar Categoria</option>
-                                <option *ngFor="let donaciones of lista_categoria" value={{categoria_donacion.id_categoria_donacion}}>
+                                <option *ngFor="let categoria_donacion of lista_categoria" value={{categoria_donacion.id_categoria_donacion}}>
                                   {{categoria_donacion.descripcion}}
                                 </option>
                         </select>

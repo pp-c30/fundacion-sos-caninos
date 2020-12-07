@@ -5,6 +5,7 @@ import { DonacionesService } from "../../service/donaciones.service";
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
 import { IDonaciones } from 'src/app/models/donaciones';
 import { Categoria_donacionService } from 'src/app/service/categoria_donacion.service';
+import { ICat_donacion } from 'src/app/models/categoria_donacion';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Categoria_donacionService } from 'src/app/service/categoria_donacion.se
 export class DonacionesComponent implements OnInit {
 
   listDonaciones = [];
-  lista_categoria= [];
+  lista_categoria : ICat_donacion[];
 
   formDonaciones: FormGroup;
 
