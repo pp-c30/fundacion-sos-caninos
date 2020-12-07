@@ -11,41 +11,41 @@
             <input formControllName="id_canino" type="hidden">
            
             <div class="form-group">
-                <input formControlName="nombre" placeholder="Ingrese nombre del evento" type="text" class="form-control">
+                <input formControlName="nombre" placeholder="Ingrese nombre del canino" type="text" class="form-control">
             </div>
             <div class="form-group">
-                <textarea formControlName="fecha_nacimiento" placeholder="Ingrese una descripción" class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                <textarea formControlName="fecha_nacimiento" placeholder="Ingrese fecha de nacimiento" class="form-control" name="" id="" cols="30" rows="4"></textarea>
             </div>
             <div class="form-group">
-                <input formControlName="edad" placeholder="Ingrese un contacto" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="edad" placeholder="Ingrese edad" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="sexo" placeholder="Ingrese una ubicacion" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="sexo" placeholder="Ingrese sexo" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="tamanio" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="tamanio" placeholder="Ingrese tamaño" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="castrado" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="castrado" placeholder="Ingrese estado de castracion" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="desparasitado" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="desparasitado" placeholder="Ingrese estado de desparacitación" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="vacunado" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="vacunado" placeholder="Ingrese estado de vacunas" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="descripcion" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="descripcion" placeholder="Ingrese descripcion del canino" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="estado_adopcion" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="estado_adopcion" placeholder="Ingrese estado de adopcion" class="form-control" name="" id="" cols="30" rows="4">
             </div>
             <div class="form-group">
-                <input formControlName="fecha_adopcion" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                <input formControlName="fecha_adopcion" placeholder="Ingrese fecha de adopcion" class="form-control" name="" id="" cols="30" rows="4">
             </div>
 
             <div [style]="ocultar_boton_archivos" class="form-group">
-                <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
+                <input (change)="mostrarImagenSeleccionada($canino)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
             </div>
 
             <div class="btn-group">
@@ -53,7 +53,7 @@
                 <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
             </div>
         </form>
-        </div> evento
+        </div>
 
         <div  [style]="ocultar_boton_archivos" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">

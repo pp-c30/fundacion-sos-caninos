@@ -60,7 +60,7 @@ export class AdminDetalleCaninoComponent implements OnInit {
       error => console.log(error)
     )
   } 
-  mostrarImagenesSeleccionadas(canino:IHtmlInputCanine)
+  mostrarImagenesSeleccionadasCanino(canino:IHtmlInputCanine)
   {
   this.files = canino.target.files;
    if(this.files)

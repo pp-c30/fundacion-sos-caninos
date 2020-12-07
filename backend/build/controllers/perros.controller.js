@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PerroController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -22,23 +21,61 @@ cloudinary_1.default.v2.config({
     api_key: '488978864977245',
     api_secret: 'gzdIYgfgjrCr9uGJm5SzpeyKCkg',
 });
-class PerroController {
-    listarPerro(req, res) {
+class CaninoController {
+    establecerPortada(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //Logro la conexion con la base de datos
+            let id_ic = req.params.id_ic;
             const base = yield database_1.con();
-            let perro = yield base.query('select * from canino');
-            return res.json(perro);
+            //Primero ponemos todas las imagenes como portada = 0
+            const portadasEnEstadocero = {
+                portada: 0.
+            };
+            yield base.query('update imagenes_canino set ?', [portadasEnEstadocero]);
+            //Establecer como portada una imagen
+            const datosImagenesCanino = {
+                portada: 1
+            };
+            yield base.query('update imagenes_canino set ? where id_ic = ?', [datosImagenesCanino, id_ic]);
+            res.json('Se establecio la portada');
         });
     }
-    //guardar perros
-    guardarPerro(req, res) {
+    actualizarCanino(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (req.files) {
+                let unCanino = req.body;
+                const updateCanino = {
+                    nombre_canino: req.body.nombre_canino,
+                    fecha_nacimiento: req.body.fecha_nacimiento,
+                    edad: req.body.edad,
+                    sexo: req.body.sexo,
+                    tamaño: req.body.tamaño,
+                    castrado: req.body.castrado,
+                    desparasitado: req.body.desparasitado,
+                    vacunado: req.body.vacunado,
+                    descripcion: req.body.descripcion,
+                    estado_adopcion: req.body.estado_adopcion,
+                    fecha_adopcion: req.body.fecha_adopcion
+                };
+                const base = yield database_1.con();
+                yield base.query('update canino set ? where id_canino = ?', [updateCanino, req.body.id_canino]);
+                res.json("Se actualizo correctamente");
+            }
+        });
+    }
+    listarCanino(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Logro la conexion con la base 
+            const base = yield database_1.con();
+            let canino = yield base.query('select * from canino');
+            return res.json(canino);
+        });
+    }
+    //guardar eventos
+    guardarCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                //Se accede a los archivos recibidos
                 const files = req.files;
-                //se accede a los datos recibidos
-                const nombre = req.body.nombre;
+                const nombre_canino = req.body.nombre_canino;
                 const fecha_nacimiento = req.body.fecha_nacimiento;
                 const edad = req.body.edad;
                 const sexo = req.body.sexo;
@@ -49,11 +86,9 @@ class PerroController {
                 const descripcion = req.body.descripcion;
                 const estado_adopcion = req.body.estado_adopcion;
                 const fecha_adopcion = req.body.fecha_adopcion;
-                //conexion  a la base de datos
                 const base = yield database_1.con();
-                //envio de los datos a la base
                 const unCanino = {
-                    nombre: nombre,
+                    nombre_canino: nombre_canino,
                     fecha_nacimiento: fecha_nacimiento,
                     edad: edad,
                     sexo: sexo,
@@ -66,51 +101,87 @@ class PerroController {
                     fecha_adopcion: fecha_adopcion
                 };
                 const resultado = yield base.query('insert into canino set ?', [unCanino]);
-                //console.log(resultado);
-                //recorre los archicos recibidos
                 for (let i = 0; i < files.length; i++) {
                     //le especificamos el path(la ruta) de la imagen guardado en uploads
                     const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
                     //obtiene la ubicacion exacta de la img
-                    const imagen_canino = {
+                    const imagenes_canino = {
                         id_canino: resultado.insertId,
                         imagen_url: resultado_cloudinary.url,
                         public_id: resultado_cloudinary.public_id
                     };
-                    yield base.query('insert into imagenes_canino set ?', [imagen_canino]);
+                    yield base.query('insert into imagenes_canino set ?', [imagenes_canino]);
                     yield fs_extra_1.default.unlink(files[i].path);
                 }
-                res.json('El perro fue guardado');
+                return res.json('El canino fue guardado');
             }
             catch (_a) {
                 res.json('Error al guardar un canino');
             }
         });
     }
-    eliminarPerro(req, res) {
+    obtenerCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            yield base.query("delete from canino where id_canino =?", [id]);
-            return res.json('El perro se elimino correctamente');
+            let id_canino = req.params.id_canino;
+            let unCanino = yield base.query('select * from canino where id_canino = ?', [id_canino]);
+            return res.json(unCanino[0]);
         });
     }
-    actualizarPerro(req, res) {
+    listarImagenesCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            //listamos todas las imagenes pertenecientes a un evento. ESte metodo va a tener que recibir como parametro
+            //la id de un evento
+            let id_canino = req.params.id_canino; //la ruta recoje este parametro para posteriormente hacer jquery- obtener imagens
             const base = yield database_1.con();
-            let id = req.params.id;
-            let nuevos_datos_perro = req.body;
-            yield base.query("update canino set ? where id_canino = ?", [nuevos_datos_perro, id]);
-            return res.json('El perro se actualizo correctamente');
+            //la lista que obtenemos a traves de query la guardamos en la variable lista_imagenes_evento
+            let listar_imagenes_canino = yield base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
+            //retornamos lo almacenado en la variable
+            res.json(listar_imagenes_canino);
         });
     }
-    obtenerPerro(req, res) {
+    agregarImagenesCanino(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const files = req.files;
+            let id_canino = req.params.id_canino;
+            const base = yield database_1.con();
+            for (let index = 0; index < files.length; index++) {
+                const resultado_cloud = yield cloudinary_1.default.v2.uploader.upload(files[index].path);
+                const imagen_canino = {
+                    id_canino: id_canino,
+                    imagen_url: resultado_cloud.url,
+                    public_id: resultado_cloud.public_id
+                };
+                yield base.query('insert into imagenes_canino set ?', [imagen_canino]);
+                yield fs_extra_1.default.unlink(files[index].path); //con esto logro ubicar la imagen para poder eliminarla
+            }
+            res.json("Se agregaron las imagenes de manera exitosa");
+        });
+    }
+    eliminarImagenCanino(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //debo recibir el id de la imagen ya que
+            //necesito eliminar desde el id de la imagen, no del evento
+            let id_ic = req.params.id_ic; //cuando consuma la ruta voy a eliminar desde el id
+            let public_id = req.params.public_id; //necesitamos el public id para eliminarlo desde cloudinary evitando ocupar espacio innecesario.
+            const base = yield database_1.con();
+            yield base.query('delete from imagenes_canino where id_ic = ?', [id_ic]);
+            yield cloudinary_1.default.v2.uploader.destroy(public_id);
+            res.json("se elimino exitosamente");
+        });
+    }
+    eliminarCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
-            let id = req.params.id;
-            let unPerro = yield base.query("select * from canino where id_canino = ?", [id]);
-            return res.json(unPerro[0]);
+            let id_canino = req.params.id_canino;
+            let listar_imagenes_canino = yield base.query('select * from imagenes_canino where id_canino =?', [id_canino]); //Selecciono todas las imagenes de un evento en particular
+            yield base.query('delete from canino where id_canino =?', [id_canino]);
+            for (let index = 0; index < listar_imagenes_canino.length; index++) {
+                yield cloudinary_1.default.v2.uploader.destroy(listar_imagenes_canino[index].public_id); //A medida que recorre el for y cumple un ciclo obtiene el public_id y elimino la imagen desde cloud
+            }
+            yield base.query('delete from imagenes_canino where id_canino =?', [id_canino]);
+            return res.json('El canino se elimino completamente');
         });
     }
 }
-exports.PerroController = PerroController;
+exports.CaninoController = CaninoController;

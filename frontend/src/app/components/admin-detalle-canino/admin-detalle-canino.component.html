@@ -18,7 +18,7 @@
                     <td>
                         <div class="btn-group btn-group-sm">
                             <button (click)="eliminarImagenCanino(fila.id_ic,fila.public_id)" class="btn btn-danger">Eliminar</button>
-                            <button [disabled]="fila.portada == 1 ? true:false" (click)="establecerPortada(fila.id_ie)" class="btn btn-warning">Establecer como portada</button>
+                            <button [disabled]="fila.portada == 1 ? true:false" (click)="establecerPortada(fila.id_ic)" class="btn btn-warning">Establecer como portada</button>
                         </div>
                     </td>
                 </tr>
@@ -31,7 +31,7 @@
     <div class="col-lg-8">
         <form [formGroup]="formDetalleCanino">
             <div class="form-group">
-                <input (change)="mostrarImagenesSeleccionadas($canino)" formControlName="archivo" class="form-control-file" type="file" multiple>
+                <input (change)="mostrarImagenesSeleccionadasCanino($canino)" formControlName="archivo" class="form-control-file" type="file" multiple>
             </div>
 
             <div class="form-group">
