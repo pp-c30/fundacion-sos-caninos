@@ -127,13 +127,19 @@ eliminarEvento(id_evento:number)
   }
 }
 //llenar el formulario
+
+editarEventolaSecuela(evento:IEvento)
+{
+  this.formEvento.setValue(evento);
+}
+
 editarEvento(datosEvento:IEvento)
 {
 
     this.ocultar_boton_archivos = 'display:none;'
     this.formEvento.setValue({
     id_evento:datosEvento.id_evento,
-    nombre_evento:datosEvento.titulo,
+    titulo:datosEvento.titulo,
     descripcion:datosEvento.descripcion,
     contacto:datosEvento.contacto,
     ubicacion:datosEvento.ubicacion,
