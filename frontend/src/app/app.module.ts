@@ -31,6 +31,7 @@ import { FormularioAdopcionPublicComponent } from './components/formulario-adopc
 import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
 import { NavegacionPublicComponent } from './components/navegacion-public/navegacion-public.component';
 import { LocalidadesPublicComponent } from './components/localidades-public/localidades-public.component';
+import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component';
 
 
 
@@ -55,7 +56,8 @@ import { LocalidadesPublicComponent } from './components/localidades-public/loca
     FormularioAdopcionPublicComponent,
     RequisitosPublicComponent,
     NavegacionPublicComponent,
-    LocalidadesPublicComponent
+    LocalidadesPublicComponent,
+    AdminDetalleCaninoComponent
   ],
   imports: [
     BrowserModule,
