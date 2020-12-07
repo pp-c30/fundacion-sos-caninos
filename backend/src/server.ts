@@ -12,6 +12,7 @@ import enrutadorProvincia from "./routes/provincia.routes";
 import enrutadorRequisito from "./routes/requisito.routes";
 import enrutadorCategoria from "./routes/cat_donacion.routes";
 import enrutadorDonaciones from "./routes/donaciones.routes";
+import enrutadorAut from "./routes/autenticacion.routes";
 
 
 //Creo la clase server
@@ -47,6 +48,7 @@ export class server {
         this.app.use(enrutadorRequisito);
         this.app.use(enrutadorCategoria);
         this.app.use(enrutadorDonaciones);
+        this.app.use(enrutadorAut);
         //configura el server para que pueda leer la carpeta y leer las img
         this.app.use('/uploads',express.static(path.resolve('uploads')));
     }

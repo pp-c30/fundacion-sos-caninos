@@ -49,7 +49,8 @@ export class FormularioAdopcionComponent implements OnInit {
 
    this.listarFormularioA();
    this.obtenerProvincia();
-
+   this.dameLocalidades;
+ 
   }
 
   obtenerProvincia()
