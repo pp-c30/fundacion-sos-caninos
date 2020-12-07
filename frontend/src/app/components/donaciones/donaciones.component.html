@@ -73,10 +73,13 @@
                     </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonaciones.get('categoria_donaciones')?.touched || formDonaciones.get('categoria_donaciones')?.dirty) && formDonaciones.get('categoria_donaciones')?.invalid}" formControlName="categoria_donaciones" placeholder="Ingrese la categoría"
-                            type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formDonaciones.get('categoria_donaciones').hasError('required')">Campo Requerido </span>
-                        </div>
+                        <select formControlName="categoria_donaciones" class="form-control">
+                                <option >Seleccionar Categoria</option>
+                                <option *ngFor="let categoria_donacion of lista_categoria" value={{categoria_donacion.id_categoria_donacion}}>
+                                  {{categoria_donacion.descripcion}}
+                                </option>
+                        </select>
+
                     </div>
 
                     <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar Donacion</button>

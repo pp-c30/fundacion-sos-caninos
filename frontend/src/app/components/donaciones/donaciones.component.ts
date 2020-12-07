@@ -4,6 +4,9 @@ import { DonacionesService } from "../../service/donaciones.service";
 
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
 import { IDonaciones } from 'src/app/models/donaciones';
+import { Categoria_donacionService } from 'src/app/service/categoria_donacion.service';
+import { ICat_donacion } from 'src/app/models/categoria_donacion';
+
 
 @Component({
   selector: 'app-donaciones',
@@ -13,6 +16,7 @@ import { IDonaciones } from 'src/app/models/donaciones';
 export class DonacionesComponent implements OnInit {
 
   listDonaciones = [];
+  lista_categoria : ICat_donacion[];
 
   formDonaciones: FormGroup;
 
@@ -20,7 +24,7 @@ export class DonacionesComponent implements OnInit {
 
   p:number = 1;
 
-  constructor(private DonacionesServ:DonacionesService, private fb: FormBuilder) {
+  constructor(private DonacionesServ:DonacionesService, private fb: FormBuilder, private CategoriaServ:Categoria_donacionService) {
 
     this.formDonaciones = this.fb.group({
 
@@ -28,13 +32,25 @@ export class DonacionesComponent implements OnInit {
       descripcion:["",[Validators.required,Validators.minLength(2)]],
       contacto:["",[Validators.required,Validators.minLength(12)]],
       direccion:["",[Validators.required]],
-      categoria_donaciones:["",[Validators.required]],
+      categoria_donaciones:[null,[Validators.required]],
     });
 
    }
 
   ngOnInit(): void {
     this.obtenerDonaciones();
+    this.obtenerCategoria();
+
+  }
+
+  obtenerCategoria(){
+    this.CategoriaServ.getCategoria_donacion().subscribe(
+      resultado => {
+      this.lista_categoria = resultado;
+    },
+      error => console.log(error)
+    )
+
   }
 
   obtenerDonaciones()
