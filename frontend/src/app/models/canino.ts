@@ -2,7 +2,7 @@ export interface ICanino
 {
     id_canino?:number;
     nombre:string;
-    fecha_nacimiento:string;
+    fecha_nacimiento:any;
     edad:string;
     sexo:string;
     tamanio:string;
@@ -11,5 +11,6 @@ export interface ICanino
 	vacunado:string;
     descripcion:string;
 	estado_adopcion:string;
-	fecha_adopcion:string
+    fecha_adopcion:any;
+    
 }

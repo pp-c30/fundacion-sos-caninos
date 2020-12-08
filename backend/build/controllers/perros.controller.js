@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CaninoController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -48,7 +49,7 @@ class CaninoController {
                     fecha_nacimiento: req.body.fecha_nacimiento,
                     edad: req.body.edad,
                     sexo: req.body.sexo,
-                    tamaño: req.body.tamaño,
+                    tamanio: req.body.tamanio,
                     castrado: req.body.castrado,
                     desparasitado: req.body.desparasitado,
                     vacunado: req.body.vacunado,
@@ -75,16 +76,17 @@ class CaninoController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const files = req.files;
+                console.log(req.body);
                 const nombre_canino = req.body.nombre_canino;
                 const fecha_nacimiento = req.body.fecha_nacimiento;
-                const edad = req.body.edad;
-                const sexo = req.body.sexo;
-                const tamanio = req.body.tamanio;
-                const castrado = req.body.castrado;
-                const desparasitado = req.body.desparasitado;
-                const vacunado = req.body.vacunado;
+                const edad = Number(req.body.edad);
+                const sexo = Number(req.body.sexo);
+                const tamanio = Number(req.body.tamanio);
+                const castrado = Number(req.body.castrado);
+                const desparasitado = Number(req.body.desparasitado);
+                const vacunado = Number(req.body.vacunado);
                 const descripcion = req.body.descripcion;
-                const estado_adopcion = req.body.estado_adopcion;
+                const estado_adopcion = Number(req.body.estado_adopcion);
                 const fecha_adopcion = req.body.fecha_adopcion;
                 const base = yield database_1.con();
                 const unCanino = {

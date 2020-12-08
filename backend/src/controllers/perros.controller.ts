@@ -46,7 +46,7 @@ export class CaninoController {
                fecha_nacimiento:req.body.fecha_nacimiento,
                edad:req.body.edad,
                sexo:req.body.sexo,
-               tamaño:req.body.tamaño,
+               tamanio:req.body.tamanio,
                castrado:req.body.castrado,
                desparasitado:req.body.desparasitado,
                vacunado:req.body.vacunado,
@@ -78,18 +78,19 @@ export class CaninoController {
     {
         try{
         const files:any = req.files;
+        console.log(req.body);
 
         const nombre_canino = req.body.nombre_canino;
         const fecha_nacimiento = req.body.fecha_nacimiento;
-        const edad= req.body.edad;
-        const sexo = req.body.sexo;
-        const tamanio = req.body.tamanio;
-        const castrado = req.body.castrado;
-        const desparasitado = req.body.desparasitado;
-        const vacunado = req.body.vacunado;
+        const edad= Number(req.body.edad);
+        const sexo = Number(req.body.sexo);
+        const tamanio = Number(req.body.tamanio);
+        const castrado = Number(req.body.castrado);
+        const desparasitado = Number(req.body.desparasitado);
+        const vacunado = Number(req.body.vacunado);
         const descripcion = req.body.descripcion;
-        const estado_adopcion = req.body.estado_adopcion;
-        const  fecha_adopcion = req.body.fecha_adopcion;
+        const estado_adopcion = Number(req.body.estado_adopcion);
+        const fecha_adopcion = req.body.fecha_adopcion;
     
         const base = await con();
 

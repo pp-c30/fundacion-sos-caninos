@@ -25,7 +25,7 @@ export class EventoComponent implements OnInit {
     this.formEvento = this.fb.group({
 
       id_evento:[null],
-      titulo:["",[Validators.required,Validators.minLength(2)]],
+      titulo:["",[Validators.required]],
       descripcion:["",[Validators.required]],
       contacto:["",[Validators.required]],
       ubicacion:["",[Validators.required]],

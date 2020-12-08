@@ -39,7 +39,7 @@ export class CaninoComponent implements OnInit {
         vacunado:['',[Validators.required]],
         descripcion:['',[Validators.required]],
         estado_adopcion:['',[Validators.required]],
-        fecha_adopcion:['',[Validators.required]],
+        fecha_adopcion:['',],
         archivo:['',[Validators.required]]
     });
 
@@ -76,7 +76,7 @@ export class CaninoComponent implements OnInit {
         console.log(resultado);
         this.imagenes_url = [];
         this.formCanino.reset();
-        this.listaCanino
+        this.listaCanino();
       },
       error => console.log(error)
     );
@@ -132,6 +132,11 @@ eliminarCanino(id_canino:number)
   }
 }
 //llenar el formulario
+
+editarCanino2(canino:ICanino)
+{
+  this.formCanino.setValue(canino);
+}
 editarCanino(datosCanino:ICanino)
 { 
 
