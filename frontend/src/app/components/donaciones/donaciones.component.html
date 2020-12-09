@@ -3,9 +3,7 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group">
-                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarDonaciones" type="text" class="form-control">
-                </div>
+                
             </div>
         </div>
 
@@ -20,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let donaciones of listDonaciones | filter:buscarDonaciones | paginate:{itemsPerPage:5,currentPage:p}">
+                <tr *ngFor="let donaciones of listDonaciones |  paginate:{itemsPerPage:5,currentPage:p}">
                     <td>{{donaciones.id_donaciones}}</td>
                     <td>{{donaciones.descripcion}}</td>
                     <td>{{donaciones.contacto}}</td>
@@ -30,6 +28,7 @@
                         <div class="btn-group-sm">
                             <button class="btn btn-danger" (click)="eliminarDonaciones(donaciones.id_donaciones)">Eliminar</button>
                             <button class="btn btn-primary" (click)="editarDonaciones(donaciones)">Editar</button>
+                            <button (click)="detalleDonaciones(fila.id_donaciones)" class="btn btn-primary">Detalle</button>
                         </div>
                     </td>
                 </tr>
@@ -80,8 +79,14 @@
                         </select>
 
                     </div>
-
-                    <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar Donacion</button>
+                    <div [style]="ocultar_boton_archivos" class="form-group">
+                        <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
+                    </div>
+        
+                    <div class="btn-group">
+                        <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar donacion</button>
+                        <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
+                    </div>
 
                 </form>
             </div>

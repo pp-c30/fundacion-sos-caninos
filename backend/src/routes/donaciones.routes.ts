@@ -8,7 +8,7 @@ const enrutadorDonaciones = Router();
 
 //Defino las rutas de cada funcion 
 enrutadorDonaciones.route('/donaciones').get(donacionesController.listarDonaciones);
-enrutadorDonaciones.route('/donaciones').post(multer.array('imagenes_donaciones'),donacionesController.guardarDonaciones);
+enrutadorDonaciones.route('/donaciones').post(multer.array('img_donaciones'),donacionesController.guardarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').delete(donacionesController.eliminarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').put(donacionesController.actualizarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').get(donacionesController.obtenerDonaciones);

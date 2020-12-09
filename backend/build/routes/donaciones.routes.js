@@ -11,7 +11,7 @@ let donacionesController = new donaciones_controller_1.DonacionesController;
 const enrutadorDonaciones = express_1.Router();
 //Defino las rutas de cada funcion 
 enrutadorDonaciones.route('/donaciones').get(donacionesController.listarDonaciones);
-enrutadorDonaciones.route('/donaciones').post(multer_1.default.array('imagenes_donaciones'), donacionesController.guardarDonaciones);
+enrutadorDonaciones.route('/donaciones').post(multer_1.default.array('img_donaciones'), donacionesController.guardarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').delete(donacionesController.eliminarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').put(donacionesController.actualizarDonaciones);
 enrutadorDonaciones.route('/donaciones/:id_donaciones').get(donacionesController.obtenerDonaciones);

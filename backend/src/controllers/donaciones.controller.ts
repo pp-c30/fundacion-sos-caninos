@@ -61,13 +61,13 @@ export class DonacionesController
             const resultado_cloudinary = await cloudinary.v2.uploader.upload(files[i].path);
 
             //obtiene la ubicacion exacta de la img
-            const imagen_donacion = {
+            const img_donaciones = {
                 id_donaciones:resultado.insertId,
                 imagen_url:resultado_cloudinary.url,
                 public_id:resultado_cloudinary.public_id
             }
         
-            await base.query('insert into imagenes_donaciones set ?',[imagen_donacion]);
+            await base.query('insert into imagenes_donaciones set ?',[img_donaciones]);
             await fs.unlink(files[i].path);
 
 

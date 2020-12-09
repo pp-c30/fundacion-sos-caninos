@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
 import { IDonaciones } from 'src/app/models/donaciones';
 import { Categoria_donacionService } from 'src/app/service/categoria_donacion.service';
 import { ICat_donacion } from 'src/app/models/categoria_donacion';
+import { IHtmlInputDonaciones } from "../../models/inputElement";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -16,15 +18,22 @@ import { ICat_donacion } from 'src/app/models/categoria_donacion';
 export class DonacionesComponent implements OnInit {
 
   listDonaciones = [];
+
   lista_categoria : ICat_donacion[];
 
-  formDonaciones: FormGroup;
+  donaciones:IDonaciones[]=[];
 
-  buscarDonaciones:any;
+  formDonaciones:FormGroup;
 
   p:number = 1;
 
-  constructor(private DonacionesServ:DonacionesService, private fb: FormBuilder, private CategoriaServ:Categoria_donacionService) {
+  files:FileList; //Creamos una lista de archivos para almacenar las imagenes
+  
+  imagenes_url= [];
+
+  ocultar_boton_archivos:any = 'display:block';
+
+  constructor(private router:Router,private DonacionesService:DonacionesService, private fb: FormBuilder, private CategoriaServ:Categoria_donacionService) {
 
     this.formDonaciones = this.fb.group({
 
@@ -33,6 +42,7 @@ export class DonacionesComponent implements OnInit {
       contacto:["",[Validators.required,Validators.minLength(12)]],
       direccion:["",[Validators.required]],
       categoria_donaciones:[null,[Validators.required]],
+      archivo:['',[Validators.required]]
     });
 
    }
@@ -55,7 +65,7 @@ export class DonacionesComponent implements OnInit {
 
   obtenerDonaciones()
   {
-    this.DonacionesServ.getDonaciones().subscribe(
+    this.DonacionesService.getDonaciones().subscribe(
       resultado => this.listDonaciones = resultado,
       error => console.log(error)
     )
@@ -66,7 +76,7 @@ export class DonacionesComponent implements OnInit {
 
     if(this.formDonaciones.value.id_donaciones)
     {
-      this.DonacionesServ.updateDonaciones(this.formDonaciones.value).subscribe(
+      this.DonacionesService.updateDonaciones(this.formDonaciones.value).subscribe(
         respuesta=> {
           console.log(respuesta);
           this.obtenerDonaciones();
@@ -76,11 +86,12 @@ export class DonacionesComponent implements OnInit {
       )
     }else{
     //console.log(this.formDonaciones.value);
-    this.DonacionesServ.saveDonaciones(this.formDonaciones.value).subscribe(
+    this.DonacionesService.saveDonaciones(this.formDonaciones.value,this.files).subscribe(
       resultado => {
         console.log(resultado);
+        this.imagenes_url = [];
         this.formDonaciones.reset();
-        this.obtenerDonaciones();
+        this.obtenerDonaciones
       },
       error => console.log(error)
     );
@@ -89,17 +100,27 @@ export class DonacionesComponent implements OnInit {
 
   }
 
-  editarDonaciones(donaciones:IDonaciones)
-  {
-    this.formDonaciones.setValue(donaciones);
-  }
+  editarDonaciones(datosDonaciones:IDonaciones)
+{ 
+
+    this.ocultar_boton_archivos = 'display:none;'
+
+    this.formDonaciones.setValue({
+    id_donaciones:datosDonaciones.id_donaciones,
+    descripcion:datosDonaciones.descripcion,
+    contacto:datosDonaciones.contacto,
+    direccion:datosDonaciones.direccion,
+    categoria_donaciones:datosDonaciones.categoria_donaciones,
+    archivo:'',
+  });
+}
 
   eliminarDonaciones(id_donaciones:number)
   {
 
     if(confirm("¿Está seguro que desea ejecutar esta acción?"))
     {
-      this.DonacionesServ.deleteDonaciones(id_donaciones).subscribe(
+      this.DonacionesService.deleteDonaciones(id_donaciones).subscribe(
         respuesta => {
           console.log(respuesta);
           this.obtenerDonaciones();
@@ -110,4 +131,48 @@ export class DonacionesComponent implements OnInit {
 
 }
 
+mostrarImagenSeleccionada(donaciones:IHtmlInputDonaciones)
+{
+
+  this.imagenes_url=[];
+
+  this.files = donaciones.target.files; //A travez de un donacion target logra acceder a los archivos seleccionados
+  
+  if (this.files) 
+  {
+    for (let index = 0; index < this.files.length; index++) // el for nos va a recorrer cada uno de los archivos
+    {        
+        const reader = new FileReader ();
+        //Se hace lectura de los archivos
+       reader.readAsDataURL(this.files[index])
+       //Cargamos esa lectura-Obtenemos la URL (ubicacion) de la img y podemos mostrarlas
+       reader.onload = () => 
+       {
+        //guardamos el resultado de la lectura de imagenes en el arreglo imagenes_url
+        this.imagenes_url.push(reader.result)
+       }   
+        
+    }
+  }
+}
+//metodo encargado de mostrarme el detalle sobre el evento REDIRECCION
+detalleDonaciones(id_donaciones:number) 
+{
+  
+  //Para redirigirme a una ruta voy a tener que importarme un par de modulos. Para esto debe existir la ruta en el app-routing
+  this.router.navigate(['/admin-detalle-donaciones',id_donaciones]);
+  
+}
+vaciarForm()
+{
+  this.ocultar_boton_archivos = 'display:block;'
+  this.formDonaciones.setValue({
+  id_donaciones:null,
+  descripcion:'',
+  contacto:'',
+  direccion:'',
+  categoria_donaciones:'',
+  archivo:''
+});
+}
 }

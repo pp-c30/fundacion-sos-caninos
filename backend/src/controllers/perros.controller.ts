@@ -2,8 +2,12 @@ import { con } from "../database";
 import {  Request, Response} from "express";
 import cloudinary from "cloudinary";
 import  fs from "fs-extra";
+<<<<<<< HEAD
+import { ICanino } from "../models/Perro";
+=======
 import { decodeBase64 } from "bcryptjs";
 
+>>>>>>> 4ca32e627436d816fc443e400b4040a87644a42d
 
 //conectarse en cloudinary
 

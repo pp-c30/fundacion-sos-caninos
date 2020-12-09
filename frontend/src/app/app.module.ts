@@ -32,6 +32,7 @@ import { RequisitosPublicComponent } from './components/requisitos-public/requis
 import { NavegacionPublicComponent } from './components/navegacion-public/navegacion-public.component';
 import { LocalidadesPublicComponent } from './components/localidades-public/localidades-public.component';
 import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component';
+import { AdminDetalleDonacionesComponent } from './components/admin-detalle-donaciones/admin-detalle-donaciones.component';
 
 
 
@@ -57,7 +58,8 @@ import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/a
     RequisitosPublicComponent,
     NavegacionPublicComponent,
     LocalidadesPublicComponent,
-    AdminDetalleCaninoComponent
+    AdminDetalleCaninoComponent,
+    AdminDetalleDonacionesComponent
   ],
   imports: [
     BrowserModule,

@@ -55,7 +55,7 @@ export class EventoService {
     }                                                          //y como responde retornamos su respuesta
 
     getEvento()
-    {
+    { 
       return this.http.get<IEvento[]>('http://localhost:4200/evento');
     }
     
