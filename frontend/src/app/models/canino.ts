@@ -12,5 +12,6 @@ export interface ICanino
     descripcion:string;
 	estado_adopcion:string;
     fecha_adopcion:any;
-    
+    fa_formateada:string;
+    fn_formateada:string;
 }

@@ -27,7 +27,7 @@ export class EventoService {
     let id_evento = datosEvento.id_evento;
    
    
-    return this.http.put('http://localhost:4200/evento'+id_evento,datosEvento);
+    return this.http.put('http://localhost:4200/evento/'+id_evento,datosEvento);
   
    }
 

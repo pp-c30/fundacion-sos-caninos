@@ -13,6 +13,7 @@ import { AdminCuerpoNavegacionComponent } from './components/admin-cuerpo-navega
 import { LocalidadesComponent } from './components/localidades/localidades.component';
 import { Categoria_donacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { ProvinciaComponent } from './components/provincia/provincia.component';
+import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component'
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:'admin-detalle-evento/:id_evento',
     component:AdminDetalleEventoComponent
+  },
+  {
+    path:'admin-detalle-canino/:id_canino',
+    component:AdminDetalleCaninoComponent
   },
   {
     path:'donaciones', 

@@ -5,5 +5,5 @@ export interface IEvento
     descripcion:string;
     contacto:string;
     ubicacion:string;
-    fecha_hora:string;
+    fecha_hora:any;
 }

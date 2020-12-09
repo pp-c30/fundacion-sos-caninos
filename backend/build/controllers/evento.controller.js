@@ -26,26 +26,31 @@ class EventoController {
     establecerPortada(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id_ie = req.params.id_ie;
+            let id_evento = req.params.id_evento;
             const base = yield database_1.con();
             //Primero ponemos todas las imagenes como portada = 0
             const portadasEnEstadocero = {
                 portada: 0.
             };
-            yield base.query('update imagenes_evento set ?', [portadasEnEstadocero]);
+            yield base.query('update imagenes_evento set ?', [portadasEnEstadocero, id_evento]);
             //Establecer como portada una imagen
             const datosImagenesEvento = {
                 portada: 1
             };
             yield base.query('update imagenes_evento set ? where id_ie = ?', [datosImagenesEvento, id_ie]);
+            const unaFila = yield base.query('select * from imagenes_evento where id_ie = ?', [id_ie]);
+            let datosEvento = {
+                imagen_portada: unaFila[0].imagen_url
+            };
+            yield base.query('update evento set ? where id_evento = ?', [datosEvento, id_evento]);
             res.json('Se establecio la portada');
         });
     }
     actualizarEvento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (req.files) {
+            if (!req.files) {
                 let unEvento = req.body;
                 const updateEvento = {
-                    nombre_evento: req.body.nombre_evento,
                     titulo: req.body.titulo,
                     descripcion: req.body.descripcion,
                     contacto: req.body.contacto,
@@ -54,7 +59,6 @@ class EventoController {
                 };
                 const base = yield database_1.con();
                 yield base.query('update evento set ? where id_evento = ?', [updateEvento, req.body.id_evento]);
-                res.json("Se actualizo correctamente");
             }
         });
     }
@@ -71,6 +75,7 @@ class EventoController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const files = req.files;
+                console.log(req.body);
                 const titulo = req.body.titulo;
                 const descripcion = req.body.descripcion;
                 const contacto = req.body.contacto;
@@ -100,7 +105,7 @@ class EventoController {
                 return res.json('El evento fue guardado');
             }
             catch (_a) {
-                res.json('Error al guardar un evento');
+                res.json('hello');
             }
         });
     }

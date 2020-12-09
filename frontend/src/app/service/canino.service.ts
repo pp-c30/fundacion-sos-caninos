@@ -14,9 +14,9 @@ export class CaninoService {
   }
 
 //metodo encargado de edtiar un registro y poner la portada en estado 0
- establecerPortada(id_ic:number)
+ establecerPortada(id_ic:number,id_canino:number)
  {
-   return this.http.get('http://localhost:4200/canino-portada/'+id_ic,);
+   return this.http.get('http://localhost:4200/canino-portada/'+id_ic+'/'+id_canino);
  }
  
   updateCanino(datosCanino:ICanino)

@@ -39,8 +39,8 @@ export class CaninoComponent implements OnInit {
         vacunado:['',[Validators.required]],
         descripcion:['',[Validators.required]],
         estado_adopcion:['',[Validators.required]],
-        fecha_adopcion:['',],
-        archivo:['',[Validators.required]]
+        fecha_adopcion:[''],
+        archivo:['']
     });
 
   }
@@ -133,10 +133,7 @@ eliminarCanino(id_canino:number)
 }
 //llenar el formulario
 
-editarCanino2(canino:ICanino)
-{
-  this.formCanino.setValue(canino);
-}
+
 editarCanino(datosCanino:ICanino)
 { 
 

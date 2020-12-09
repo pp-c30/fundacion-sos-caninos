@@ -26,35 +26,41 @@ class CaninoController {
     establecerPortada(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id_ic = req.params.id_ic;
+            let id_canino = req.params.id_canino;
             const base = yield database_1.con();
             //Primero ponemos todas las imagenes como portada = 0
             const portadasEnEstadocero = {
-                portada: 0.
+                portada: 0
             };
-            yield base.query('update imagenes_canino set ?', [portadasEnEstadocero]);
+            yield base.query('update imagenes_canino set ? where id_canino = ?', [portadasEnEstadocero, id_canino]);
             //Establecer como portada una imagen
             const datosImagenesCanino = {
                 portada: 1
             };
             yield base.query('update imagenes_canino set ? where id_ic = ?', [datosImagenesCanino, id_ic]);
+            const unaFila = yield base.query('select * from imagenes_canino where id_ic = ?', [id_ic]);
+            let datosCanino = {
+                imagen_portada: unaFila[0].imagen_url
+            };
+            yield base.query('update canino set ? where id_canino = ?', [datosCanino, id_canino]);
             res.json('Se establecio la portada');
         });
     }
     actualizarCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (req.files) {
+            if (!req.files) {
                 let unCanino = req.body;
                 const updateCanino = {
-                    nombre_canino: req.body.nombre_canino,
+                    nombre: req.body.nombre,
                     fecha_nacimiento: req.body.fecha_nacimiento,
-                    edad: req.body.edad,
-                    sexo: req.body.sexo,
-                    tamanio: req.body.tamanio,
-                    castrado: req.body.castrado,
-                    desparasitado: req.body.desparasitado,
-                    vacunado: req.body.vacunado,
+                    edad: Number(req.body.edad),
+                    sexo: Number(req.body.sexo),
+                    tamanio: Number(req.body.tamanio),
+                    castrado: Number(req.body.castrado),
+                    desparasitado: Number(req.body.desparasitado),
+                    vacunado: Number(req.body.vacunado),
                     descripcion: req.body.descripcion,
-                    estado_adopcion: req.body.estado_adopcion,
+                    estado_adopcion: Number(req.body.estado_adopcion),
                     fecha_adopcion: req.body.fecha_adopcion
                 };
                 const base = yield database_1.con();
@@ -67,7 +73,7 @@ class CaninoController {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base 
             const base = yield database_1.con();
-            let canino = yield base.query('select * from canino');
+            let canino = yield base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino');
             return res.json(canino);
         });
     }
@@ -77,7 +83,7 @@ class CaninoController {
             try {
                 const files = req.files;
                 console.log(req.body);
-                const nombre_canino = req.body.nombre_canino;
+                const nombre_canino = req.body.nombre;
                 const fecha_nacimiento = req.body.fecha_nacimiento;
                 const edad = Number(req.body.edad);
                 const sexo = Number(req.body.sexo);
@@ -90,7 +96,7 @@ class CaninoController {
                 const fecha_adopcion = req.body.fecha_adopcion;
                 const base = yield database_1.con();
                 const unCanino = {
-                    nombre_canino: nombre_canino,
+                    nombre: nombre_canino,
                     fecha_nacimiento: fecha_nacimiento,
                     edad: edad,
                     sexo: sexo,
@@ -117,8 +123,8 @@ class CaninoController {
                 }
                 return res.json('El canino fue guardado');
             }
-            catch (_a) {
-                res.json('Error al guardar un canino');
+            catch (err) {
+                res.json(err);
             }
         });
     }
