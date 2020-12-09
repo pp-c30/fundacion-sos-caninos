@@ -16,7 +16,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>ID</th>
                         <th>Nombre del canino</th>
                         <th>Fecha de nacimiento</th>
                         <th>Edad</th>
@@ -25,7 +25,7 @@
                         <th>castrado</th>
                         <th>Desparasitado</th>
                         <th>Vacunado</th>
-                        <th>descripción del canino</th>
+                        <th>Descripción del Canino</th>
                         <th>Estado adopcion</th>
                         <th>Fecha adopcion</th>
                         <th>Acciones</th>
@@ -37,31 +37,85 @@
                         <td>{{fila.nombre}}</td>
                         <td>{{fila.fn_formateada}}</td>
                         <td>{{fila.edad}}</td>
-                        <td>{{fila.sexo}}</td>
-                        <td>{{fila.tamanio}}</td>
-                        <td>{{fila.castrado}}</td>
-                        <td>{{fila.desparasitado}}</td>
                         <td align="center">
-                            <div *ngIf="fila.vacunado == 0; else vacunado_bool">
-                                <span class="badge badge-danger">No vacunado</span>
+                            <div *ngIf="fila.sexo == 0">
+                                <span class="badge badge-primary">Hembra</span>
                             </div>
-
-                            <ng-template #vacunado_bool>
-                                <span class="badge badge-primary">Vacunado</span>
-                            </ng-template>
-                        </td>
-                        <td>{{fila.descripcion}}</td>
-                        <td>{{fila.estado_adopcion}}</td>
-                        <td>{{fila.fa_formateada}}</td>
-
-                        <td>
-                            <div class="btn-group btn-group-sm">
-                                <button (click)="detalleCanino(fila.id_canino)" class="btn btn-primary">Detalle</button>
-                                <button (click)="eliminarCanino(fila.id_canino)" class="btn btn-danger">Eliminar</button>
-                                <button (click)="editarCanino(fila)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Actualizar</button>
+                            <div *ngIf="fila.sexo == 1">
+                                <span class="badge badge-primary">Macho</span>
                             </div>
-
+                            <div *ngIf="fila.sexo == 2">
+                                <span class="badge badge-danger">No Registrado</span>
+                            </div>
                         </td>
+                        <td align="center">
+                            <div *ngIf="fila.tamanio == 0">
+                                <span class="badge badge-primary">Pequeño</span>
+                            </div>
+                            <div *ngIf="fila.tamanio == 1">
+                                <span class="badge badge-primary">Mediano</span>
+                            </div>
+                            <div *ngIf="fila.tamanio == 2">
+                                <span class="badge badge-primary">Grande</span>
+                            </div>
+                            <div *ngIf="fila.tamanio == 3">
+                                <span class="badge badge-danger">No Registrado</span>
+                            </div>
+                        </td>
+                        <td align="center">
+                            <div *ngIf="fila.castrado == 0; else castrado_bool">
+                                <span class="badge badge-danger">No Castrado</span>
+                            </div>
+                            <div *ngIf="fila.castrado == 1">
+                                <span class="badge badge-primary">Castrado</span>
+                            </div>
+                            <div *ngIf="fila.castrado == 2">
+                                <span class="badge badge-danger">No Registrado</span>
+                            </div>
+                            <td align="center">
+                                <div *ngIf="fila.desparasitado == 0">
+                                    <span class="badge badge-danger">No Desparasitado</span>
+                                </div>
+                                <div *ngIf="fila.desparasitado == 1">
+                                    <span class="badge badge-primary">Desparasitado</span>
+                                </div>
+                                <div *ngIf="fila.desparasitado == 2">
+                                    <span class="badge badge-danger">No Registrado</span>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <div *ngIf="fila.vacunado == 0">
+                                    <span class="badge badge-danger">No Vacunado</span>
+                                </div>
+                                <div *ngIf="fila.vacunado == 1">
+                                    <span class="badge badge-primary">Vacunado</span>
+                                </div>
+                                <div *ngIf="fila.vacunado == 2">
+                                    <span class="badge badge-danger">No Registrado</span>
+                                </div>
+                            </td>
+                            <td>{{fila.descripcion}}</td>
+                            <td align="center">
+                                <div *ngIf="fila.estado_adopcion == 0">
+                                    <span class="badge badge-danger">No Adoptado</span>
+                                </div>
+                                <div *ngIf="fila.estado_adopcion == 1">
+                                    <span class="badge badge-primary">Adoptado</span>
+                                </div>
+                                <div *ngIf="fila.estado_adopcion == 2">
+                                    <span class="badge badge-danger">No Registrado</span>
+                                </div>
+                            </td>
+                            <td>{{fila.fa_formateada}}</td>
+
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <button (click)="detalleCanino(fila.id_canino)" class="btn btn-primary">Detalle</button>
+                                    <button (click)="eliminarCanino(fila.id_canino)" class="btn btn-danger">Eliminar</button>
+                                    <button (click)="editarCanino(fila)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Actualizar</button>
+                                </div>
+
+                            </td>
                     </tr>
                 </tbody>
             </table>
@@ -93,25 +147,50 @@
                         <input formControlName="edad" placeholder="Ingrese edad" class="form-control" name="" id="" cols="30" rows="4">
                     </div>
                     <div class="form-group">
-                        <input formControlName="sexo" placeholder="Ingrese sexo" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="sexo" placeholder="Ingrese el sexo" class="form-control" name="Ingrese el Sexo">
+                            <option value="2">Ingrese el sexo</option>
+                            <option value="0">Hembra</option>
+                            <option value="1">Macho</option>
+                            </select>
                     </div>
                     <div class="form-group">
-                        <input formControlName="tamanio" placeholder="Ingrese tamaño" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="tamanio" placeholder="Ingrese tamaño" class="form-control" name="Ingrese Tamaño">
+                            <option value="3">Ingrese el tamaño</option>
+                            <option value="0">Pequeño</option>
+                            <option value="1">Mediano</option>
+                            <option value="2">Grande</option>
+                            </select>
                     </div>
                     <div class="form-group">
-                        <input formControlName="castrado" placeholder="Ingrese estado de castracion" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="castrado" placeholder="Ingrese estado de castración" class="form-control" name="Ingrese Estado de Castración">
+                            <option value="2">Ingrese el estado de castración</option>
+                            <option value="0">No Castrado</option>
+                            <option value="1">Castrado</option>
+                            </select>
                     </div>
                     <div class="form-group">
-                        <input formControlName="desparasitado" placeholder="Ingrese estado de desparacitación" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="desparasitado" placeholder="Ingrese estado de desparasitación" class="form-control" name="Ingrese Estado de Desparasitación">
+                            <option value="2">Ingrese el estado de desparasitación</option>
+                            <option value="0">No desparasitado</option>
+                            <option value="1">Desparasitado</option>
+                            </select>
                     </div>
                     <div class="form-group">
-                        <input formControlName="vacunado" placeholder="Ingrese estado de vacunas" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="vacunado" placeholder="Ingrese estado de vacunación" class="form-control" name="Ingrese Estado de Vacunación">
+                            <option value="2">Ingrese el estado de vacunación</option>
+                            <option value="0">No Vacunado</option>
+                            <option value="1">Vacunado</option>
+                            </select>
                     </div>
                     <div class="form-group">
                         <input formControlName="descripcion" placeholder="Ingrese descripcion del canino" class="form-control" name="" id="" cols="30" rows="4">
                     </div>
                     <div class="form-group">
-                        <input formControlName="estado_adopcion" placeholder="Ingrese estado de adopcion" class="form-control" name="" id="" cols="30" rows="4">
+                        <select formControlName="estado_adopcion" placeholder="Ingrese estado de adopcion" class="form-control" name="Ingrese Estado de Adopción">
+                            <option value="2">Ingrese el estado de adopción</option>
+                            <option value="0">No Adoptado</option>
+                            <option value="1">Adoptado</option>
+                            </select>
                     </div>
                     <div class="form-group">
                         <input formControlName="fecha_adopcion" placeholder="Ingrese fecha de adopcion" class="form-control" name="" id="" cols="30" rows="4">
