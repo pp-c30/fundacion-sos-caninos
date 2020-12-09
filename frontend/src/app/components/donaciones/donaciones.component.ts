@@ -111,7 +111,7 @@ export class DonacionesComponent implements OnInit {
     contacto:datosDonaciones.contacto,
     direccion:datosDonaciones.direccion,
     categoria_donaciones:datosDonaciones.categoria_donaciones,
-    archivo:''
+    archivo:'',
   });
 }
 
