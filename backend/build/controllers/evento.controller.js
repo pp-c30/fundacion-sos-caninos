@@ -59,6 +59,7 @@ class EventoController {
                 };
                 const base = yield database_1.con();
                 yield base.query('update evento set ? where id_evento = ?', [updateEvento, req.body.id_evento]);
+                res.json("Actualización Exitosa");
             }
         });
     }

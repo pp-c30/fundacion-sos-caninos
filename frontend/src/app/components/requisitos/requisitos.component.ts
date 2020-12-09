@@ -23,7 +23,7 @@ export class RequisitosComponent implements OnInit {
     
     this.formRequisitos= this.fb.group({
 
-      id_requisito:['',[Validators.required]],
+      id_requisito:[''],
       pregunta:['',[Validators.required]],
       respuesta:['',[Validators.required]],
       observacion:['',[Validators.required]]

@@ -5,9 +5,6 @@ import {  Request, Response} from "express";
 import { ICat_donacion } from "../models/categoria_donacion";
 export class CdonacionController
 {
-    static listarCdonacion(listarCdonacion: any) {
-        throw new Error("Method not implemented.");
-    }
 
 
     public async listarCdonacion(req:Request, res:Response)

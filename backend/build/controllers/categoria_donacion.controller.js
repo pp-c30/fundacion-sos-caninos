@@ -12,9 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CdonacionController = void 0;
 const database_1 = require("../database");
 class CdonacionController {
-    static listarCdonacion(listarCdonacion) {
-        throw new Error("Method not implemented.");
-    }
     listarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos

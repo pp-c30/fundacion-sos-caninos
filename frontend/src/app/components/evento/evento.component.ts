@@ -62,8 +62,8 @@ export class EventoComponent implements OnInit {
       this.eventoServ.updateEvento(this.formEvento.value).subscribe(
         respuesta=> {
           console.log(respuesta);
-          this.obtenerEvento();
           this.formEvento.reset();
+          this.obtenerEvento();
         },
         error => console.log(error)
       )
