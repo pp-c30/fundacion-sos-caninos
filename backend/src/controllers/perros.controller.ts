@@ -2,7 +2,12 @@ import { con } from "../database";
 import {  Request, Response} from "express";
 import cloudinary from "cloudinary";
 import  fs from "fs-extra";
+<<<<<<< HEAD
 import { ICanino } from "../models/Perro";
+=======
+import { decodeBase64 } from "bcryptjs";
+
+>>>>>>> 4ca32e627436d816fc443e400b4040a87644a42d
 
 //conectarse en cloudinary
 
@@ -16,42 +21,50 @@ export class CaninoController {
     async establecerPortada(req:Request,res:Response)
     {
         let id_ic = req.params.id_ic;
+        let id_canino = req.params.id_canino;
 
         const base = await con();
 
         //Primero ponemos todas las imagenes como portada = 0
         const portadasEnEstadocero = {
-            portada:0.
+            portada:0
         }
-        await base.query ('update imagenes_canino set ?',[portadasEnEstadocero]);
+        await base.query('update imagenes_canino set ? where id_canino = ?',[portadasEnEstadocero,id_canino]);
 
         
         //Establecer como portada una imagen
         const datosImagenesCanino = {
             portada:1
         }
-        await base.query ('update imagenes_canino set ? where id_ic = ?',[datosImagenesCanino,id_ic]);
+        await base.query('update imagenes_canino set ? where id_ic = ?',[datosImagenesCanino,id_ic]);
         
+        const unaFila = await base.query('select * from imagenes_canino where id_ic = ?',[id_ic]);
+
+        let datosCanino = {
+            imagen_portada:unaFila[0].imagen_url
+        }
+
+        await base.query('update canino set ? where id_canino = ?',[datosCanino,id_canino]);
         res.json ('Se establecio la portada');
     }
 
     async actualizarCanino(req:Request,res:Response)
     {
-       if(req.files)
+       if(!req.files)
        {
            let unCanino = req.body;         
 
            const updateCanino = {
-               nombre_canino:req.body.nombre_canino,
+               nombre:req.body.nombre,
                fecha_nacimiento:req.body.fecha_nacimiento,
-               edad:req.body.edad,
-               sexo:req.body.sexo,
-               tamaño:req.body.tamaño,
-               castrado:req.body.castrado,
-               desparasitado:req.body.desparasitado,
-               vacunado:req.body.vacunado,
+               edad:Number(req.body.edad),
+               sexo:Number(req.body.sexo),
+               tamanio:Number(req.body.tamanio),
+               castrado:Number(req.body.castrado),
+               desparasitado:Number(req.body.desparasitado),
+               vacunado:Number(req.body.vacunado),
                descripcion:req.body.descripcion,
-               estado_adopcion:req.body.estado_adopcion,
+               estado_adopcion:Number(req.body.estado_adopcion),
                fecha_adopcion:req.body.fecha_adopcion
            }
            const base = await con();
@@ -59,7 +72,6 @@ export class CaninoController {
            
            res.json("Se actualizo correctamente");
         }
-      
     }
 
 
@@ -68,7 +80,7 @@ export class CaninoController {
         //Logro la conexion con la base 
         const base = await con();
 
-        let canino = await base.query('select * from canino');
+        let canino = await base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino');
              
         return res.json(canino);
         
@@ -78,23 +90,24 @@ export class CaninoController {
     {
         try{
         const files:any = req.files;
+        console.log(req.body);
 
-        const nombre_canino = req.body.nombre_canino;
+        const nombre_canino = req.body.nombre;
         const fecha_nacimiento = req.body.fecha_nacimiento;
-        const edad= req.body.edad;
-        const sexo = req.body.sexo;
-        const tamanio = req.body.tamanio;
-        const castrado = req.body.castrado;
-        const desparasitado = req.body.desparasitado;
-        const vacunado = req.body.vacunado;
+        const edad= Number(req.body.edad);
+        const sexo = Number(req.body.sexo);
+        const tamanio = Number(req.body.tamanio);
+        const castrado = Number(req.body.castrado);
+        const desparasitado = Number(req.body.desparasitado);
+        const vacunado = Number(req.body.vacunado);
         const descripcion = req.body.descripcion;
-        const estado_adopcion = req.body.estado_adopcion;
-        const  fecha_adopcion = req.body.fecha_adopcion;
+        const estado_adopcion = Number(req.body.estado_adopcion);
+        const fecha_adopcion = req.body.fecha_adopcion;
     
         const base = await con();
 
         const unCanino = {
-               nombre_canino:nombre_canino,
+               nombre:nombre_canino,
                fecha_nacimiento:fecha_nacimiento,
                edad:edad,
                sexo:sexo,
@@ -128,8 +141,8 @@ export class CaninoController {
         }
         
         return res.json('El canino fue guardado');
-    } catch{
-        res.json('Error al guardar un canino');
+    } catch(err){
+        res.json(err);
     }
     }
    
