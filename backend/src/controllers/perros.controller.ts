@@ -2,7 +2,7 @@ import { con } from "../database";
 import {  Request, Response} from "express";
 import cloudinary from "cloudinary";
 import  fs from "fs-extra";
-
+import { ICanino } from "../models/Perro";
 
 //conectarse en cloudinary
 

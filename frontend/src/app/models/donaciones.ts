@@ -4,6 +4,6 @@ export interface IDonaciones
     descripcion:string;
     contacto:string;
     direccion:string;
-    categoria_donaciones:number;
+    categoria_donaciones:string;
 
 }

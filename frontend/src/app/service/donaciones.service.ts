@@ -14,17 +14,35 @@ export class DonacionesService {
 getDonaciones()
 {
   return this.http.get<IDonaciones[]>("http://localhost:4200/donaciones");
-}
+}n
 
-saveDonaciones(unDonaciones:IDonaciones)
+saveDonaciones(datosDonaciones:IDonaciones,files:FileList)
 {
-  return this.http.post("http://localhost:4200/donaciones", unDonaciones);
-}
+
+ const fd = new FormData(); //Genero la instancia fd (FORM DATA)
+
+  //Con la dicha instancia puedo ordenar los datos. Dentro de fd se almacena nombre evento, descripcion, etc
+ fd.append('descripcion',datosDonaciones.descripcion);
+ fd.append('contacto',datosDonaciones.contacto);
+ fd.append('direccion',datosDonaciones.direccion);
+ fd.append('categoria_donacioness',datosDonaciones.categoria_donaciones);
+
+ //Recorro la lista de imagenes con un FOR, a medida que se recorren se insertan
+ for (let index = 0; index < files.length; index++) {
+  
+   fd.append('img_donaciones',files[index]) //A medida que recorre imagen por imagen vamos almacenando en img-evento 
+                                       //las imagenes que en definitiva se almacena en fd   
+ }
+
+
+  return this.http.post('http://localhost:4200/donaciones',fd); //A traves del metodo POST y a traves de la ruta enviamos fd a la REST API 
+ }                                                          //y como responde retornamos su respuesta
+
 
 updateDonaciones(unDonaciones:IDonaciones)
 {
-  let id:number = unDonaciones.id_donaciones;
-  return this.http.put("http://localhost:4200/donaciones/"+id, unDonaciones);
+  let id_donaciones:number = unDonaciones.id_donaciones;
+  return this.http.put("http://localhost:4200/donaciones/"+id_donaciones, unDonaciones);
 }
 
 deleteDonaciones(id_donaciones:number)

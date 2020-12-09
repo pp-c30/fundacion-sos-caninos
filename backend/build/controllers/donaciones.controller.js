@@ -54,12 +54,12 @@ class DonacionesController {
                     //le especificamos el path(la ruta) de la imagen guardado en uploads
                     const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
                     //obtiene la ubicacion exacta de la img
-                    const imagen_donacion = {
+                    const img_donaciones = {
                         id_donaciones: resultado.insertId,
                         imagen_url: resultado_cloudinary.url,
                         public_id: resultado_cloudinary.public_id
                     };
-                    yield base.query('insert into imagenes_donaciones set ?', [imagen_donacion]);
+                    yield base.query('insert into imagenes_donaciones set ?', [img_donaciones]);
                     yield fs_extra_1.default.unlink(files[i].path);
                 }
                 return res.json('La donacion fue guardada');

@@ -63,7 +63,7 @@ export class CaninoComponent implements OnInit {
     if (this.formCanino.value.id_canino)
     {
       this.serviceCanino.updateCanino(this.formCanino.value).subscribe(
-        resultado =>{
+        resultado => {
           this.formCanino.reset();
           this.listaCanino();
         }
@@ -136,6 +136,7 @@ editarCanino(datosCanino:ICanino)
 { 
 
     this.ocultar_boton_archivos = 'display:none;'
+
     this.formCanino.setValue({
     id_canino:datosCanino.id_canino,
     nombre:datosCanino.nombre,
