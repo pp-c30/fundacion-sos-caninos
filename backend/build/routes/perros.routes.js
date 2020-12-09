@@ -19,5 +19,5 @@ enrutadorCanino.route('/canino/:id_canino').get(caninoController.obtenerCanino);
 enrutadorCanino.route('/listar-imagenes-canino/:id_canino').get(caninoController.listarImagenesCanino);
 enrutadorCanino.route('/agregar-imagenes-canino/:id_canino').put(multer_1.default.array('img_canino'), caninoController.agregarImagenesCanino);
 enrutadorCanino.route('/eliminar-imagen-canino/:id_ic/:public_id').delete(caninoController.eliminarImagenCanino);
-enrutadorCanino.route('/canino-portada/:id_ic').get(caninoController.establecerPortada);
+enrutadorCanino.route('/canino-portada/:id_ic/:id_canino').get(caninoController.establecerPortada);
 exports.default = enrutadorCanino;

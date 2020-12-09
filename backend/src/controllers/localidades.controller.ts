@@ -11,7 +11,7 @@ export class LocalidadesController
         //Realizo la conexion con la base de datos
         const base = await con();
 
-        const provincia_id = req.body.id;
+        const provincia_id = req.params.provincia_id;
 
         let lista = await base.query('select * from localidades where provincia_id =?',[provincia_id]);
              

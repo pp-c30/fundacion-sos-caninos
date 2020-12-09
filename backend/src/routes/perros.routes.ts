@@ -25,7 +25,7 @@ enrutadorCanino.route('/agregar-imagenes-canino/:id_canino').put(multer.array('i
 
 enrutadorCanino.route('/eliminar-imagen-canino/:id_ic/:public_id').delete(caninoController.eliminarImagenCanino);
 
-enrutadorCanino.route('/canino-portada/:id_ic').get(caninoController.establecerPortada);
+enrutadorCanino.route('/canino-portada/:id_ic/:id_canino').get(caninoController.establecerPortada);
 
 
 export default enrutadorCanino;

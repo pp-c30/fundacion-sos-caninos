@@ -16,6 +16,7 @@ export class EventoController {
     async establecerPortada(req:Request,res:Response)
     {
         let id_ie = req.params.id_ie;
+        let id_evento = req.params.id_evento;
 
         const base = await con();
 
@@ -23,7 +24,7 @@ export class EventoController {
         const portadasEnEstadocero = {
             portada:0.
         }
-        await base.query ('update imagenes_evento set ?',[portadasEnEstadocero]);
+        await base.query ('update imagenes_evento set ?',[portadasEnEstadocero,id_evento]);
 
         
         //Establecer como portada una imagen
@@ -32,17 +33,26 @@ export class EventoController {
         }
         await base.query ('update imagenes_evento set ? where id_ie = ?',[datosImagenesEvento,id_ie]);
         
+        const unaFila = await base.query('select * from imagenes_evento where id_ie = ?',[id_ie]);
+
+        let datosEvento = {
+            imagen_portada:unaFila[0].imagen_url
+        }
+
+        
+        await base.query('update evento set ? where id_evento = ?',[datosEvento,id_evento]);
+
         res.json ('Se establecio la portada');
     }
 
     async actualizarEvento(req:Request,res:Response)
     {
-       if(req.files)
+       if(!req.files)
        {
+
            let unEvento = req.body;         
 
            const updateEvento = {
-               nombre_evento:req.body.nombre_evento,
                titulo:req.body.titulo,
                descripcion:req.body.descripcion,
                contacto:req.body.contacto,
@@ -51,10 +61,7 @@ export class EventoController {
            }
            const base = await con();
            await base.query('update evento set ? where id_evento = ?',[updateEvento,req.body.id_evento])
-           
-           res.json("Se actualizo correctamente");
         }
-      
     }
 
 
@@ -69,10 +76,11 @@ export class EventoController {
         
     }
     //guardar eventos
-    public  async guardarEvento(req:Request,res:Response) 
+    public async guardarEvento(req:Request,res:Response) 
     {
         try{
         const files:any = req.files;
+        console.log(req.body);
 
         const titulo = req.body.titulo;
         const descripcion = req.body.descripcion;
@@ -111,8 +119,8 @@ export class EventoController {
         }
         
         return res.json('El evento fue guardado');
-    } catch{
-        res.json('Error al guardar un evento');
+    }catch{
+        res.json('hello');
     }
     }
    

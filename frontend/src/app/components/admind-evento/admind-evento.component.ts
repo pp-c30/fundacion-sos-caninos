@@ -35,7 +35,7 @@ export class AdmindEventoComponent implements OnInit {
         contacto:['',[Validators.required]],
         ubicacion:['',[Validators.required]],
         fecha_hora:['',[Validators.required]],
-        archivo:['',[Validators.required]]
+        archivo:['',]
     });
 
   }

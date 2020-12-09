@@ -14,9 +14,9 @@ export class CaninoService {
   }
 
 //metodo encargado de edtiar un registro y poner la portada en estado 0
- establecerPortada(id_ic:number)
+ establecerPortada(id_ic:number,id_canino:number)
  {
-   return this.http.get('http://localhost:4200/canino-portada/'+id_ic,);
+   return this.http.get('http://localhost:4200/canino-portada/'+id_ic+'/'+id_canino);
  }
  
   updateCanino(datosCanino:ICanino)
@@ -25,7 +25,7 @@ export class CaninoService {
    let id_canino = datosCanino.id_canino;
   
   
-   return this.http.put('http://localhost:4200/canino'+id_canino,datosCanino);
+   return this.http.put('http://localhost:4200/canino/'+id_canino,datosCanino);
  
   }
 
@@ -46,7 +46,7 @@ export class CaninoService {
    fd.append('vacunado',datosCanino.vacunado);
    fd.append('descripcion',datosCanino.descripcion);
    fd.append('estado_adopcion',datosCanino.estado_adopcion);
-   fd.append('fecha_adopcion',datosCanino.estado_adopcion);
+   fd.append('fecha_adopcion',datosCanino.fecha_adopcion);
 
    //Recorro la lista de imagenes con un FOR, a medida que se recorren se insertan
    for (let index = 0; index < files.length; index++) {

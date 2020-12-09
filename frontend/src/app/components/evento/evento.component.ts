@@ -4,6 +4,7 @@ import { EventoService } from "../../service/evento.service";
 
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
 import { IEvento } from 'src/app/models/evento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-evento',
@@ -16,21 +17,26 @@ export class EventoComponent implements OnInit {
 
   formEvento: FormGroup;
 
+  files:FileList;
+
   buscarEvento:any;
 
-  p:number = 1;
+  ocultar_boton_archivos:any = 'display:block';
 
-  constructor(private eventoServ:EventoService, private fb: FormBuilder) {
+  p:number = 1;
+  imagenes_url= [];
+
+  constructor(private router:Router,private fb:FormBuilder,private eventoServ:EventoService) {
 
     this.formEvento = this.fb.group({
 
       id_evento:[null],
-      titulo:["",[Validators.required,Validators.minLength(2)]],
+      titulo:["",[Validators.required]],
       descripcion:["",[Validators.required]],
       contacto:["",[Validators.required]],
       ubicacion:["",[Validators.required]],
-      fecha_hora:["",[Validators.required]]
-
+      fecha_hora:["",[Validators.required]],
+      archivo:[""]
     });
 
    }
@@ -42,8 +48,9 @@ export class EventoComponent implements OnInit {
   obtenerEvento()
   {
     this.eventoServ.getEvento().subscribe(
-      resultado => this.listEvento = resultado,
-      error => console.log(error)
+      resultado => {
+        this.listEvento = resultado;
+      }
     )
   }
 
@@ -61,23 +68,32 @@ export class EventoComponent implements OnInit {
         error => console.log(error)
       )
     }else{
-    //console.log(this.formEvento.value);
-    /*this.eventoServ.saveEvento(this.formEvento.value).subscribe(
+    this.eventoServ.saveEvento(this.formEvento.value,this.files).subscribe(
       resultado => {
         console.log(resultado);
+        this.imagenes_url = [];
         this.formEvento.reset();
         this.obtenerEvento();
       },
       error => console.log(error)
-    );*/
+    );
     }
 
 
   }
 
-  editarEvento(evento:IEvento)
-  {
-    this.formEvento.setValue(evento);
+  editarEvento(datosEvento:IEvento)
+  { 
+      this.ocultar_boton_archivos = 'display:none;'
+      this.formEvento.setValue({
+      id_evento:datosEvento.id_evento,
+      titulo:datosEvento.titulo,
+      descripcion:datosEvento.descripcion,
+      contacto:datosEvento.contacto,
+      ubicacion:datosEvento.ubicacion,
+      fecha_hora:datosEvento.fecha_hora,
+      archivo:''
+    });
   }
 
   eliminarEvento(id_evento:number)

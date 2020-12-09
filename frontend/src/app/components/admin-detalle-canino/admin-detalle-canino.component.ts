@@ -101,7 +101,7 @@ export class AdminDetalleCaninoComponent implements OnInit {
 
   establecerPortada(id_ic:number)
   {
-    this.serviceCanino.establecerPortada(id_ic).subscribe(
+    this.serviceCanino.establecerPortada(id_ic,this.id_canino).subscribe(
       resultado => {
         //Refrescamos la grilla
         this.listarImagenesCanino(this.id_canino);
