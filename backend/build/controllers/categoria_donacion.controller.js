@@ -11,9 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
 class CdonacionController {
-    static listarCdonacion(listarCdonacion) {
-        throw new Error("Method not implemented.");
-    }
     listarCdonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos

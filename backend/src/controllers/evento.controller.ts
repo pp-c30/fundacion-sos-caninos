@@ -60,7 +60,8 @@ export class EventoController {
                fecha_hora:req.body.fecha_hora
            }
            const base = await con();
-           await base.query('update evento set ? where id_evento = ?',[updateEvento,req.body.id_evento])
+           await base.query('update evento set ? where id_evento = ?',[updateEvento,req.body.id_evento]);
+           res.json("Actualización Exitosa");
         }
     }
 

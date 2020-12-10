@@ -7,6 +7,8 @@ import { ProvinciaService } from "../../service/provincia.service";
 import { FormBuilder,FormGroup, Form, Validators } from "@angular/forms";
 import { IProvincia } from 'src/app/models/provincia';
 import { ILocalidades } from 'src/app/models/localidades';
+import { ICanino } from 'src/app/models/canino' 
+import { CaninoService } from "../../service/canino.service";
 
 @Component({
   selector: 'app-formulario-adopcion',
@@ -15,9 +17,10 @@ import { ILocalidades } from 'src/app/models/localidades';
 })
 export class FormularioAdopcionComponent implements OnInit {
 
- listFormularioA : IFormularioA[];
+ listFormularioA : IFormularioA[]=[];
  lista_provincia: IProvincia[];
  lista_localidades: ILocalidades[];
+ lista_caninos: ICanino[];
 
  formAdopcion:FormGroup;
 
@@ -26,22 +29,20 @@ export class FormularioAdopcionComponent implements OnInit {
  p:number = 1;
 
 
-  constructor(private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder, private localidadesServ:LocalidadesService, private provinciaServ:ProvinciaService) {
+  constructor(private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder, private localidadesServ:LocalidadesService, private provinciaServ:ProvinciaService, private caninoServ:CaninoService) {
    
       this.formAdopcion = this.fb.group({
         id_formulario:[null],
         nombre:['',[Validators.required,Validators.minLength(3)]],
         apellido:['',[Validators.required,Validators.minLength(3)]],
         direccion:['',[Validators.required]],
-        dni:[null,[Validators.required]],
+        dni:['',[Validators.required]],
         telefono:['',[Validators.required,Validators.minLength(8)]],
         correo:['',[Validators.required]],
-        canino:[null,[Validators.required]],
-        id_localidad:[null,[Validators.required]],
-        requisito:[null,[Validators.required]],
-        provincia_id:[null,[Validators.required]]
-
-
+        canino:['',[Validators.required]],
+        id_localidad:['',[Validators.required]],
+        provincia_id:[,[Validators.required]],
+        requisito:['',[Validators.required]],
       });
    }
 
@@ -50,7 +51,18 @@ export class FormularioAdopcionComponent implements OnInit {
    this.listarFormularioA();
    this.obtenerProvincia();
    this.dameLocalidades;
+   this.obtenerCanino();
  
+  }
+
+  obtenerCanino()
+  {
+    this.caninoServ.getCanino().subscribe(
+      resultado => {
+      this.lista_caninos = resultado;
+    },
+      error => console.log(error)
+    )
   }
 
   obtenerProvincia()
@@ -130,17 +142,5 @@ export class FormularioAdopcionComponent implements OnInit {
         error => console.log(error)
       )
     }
-
- 
+  } 
 }
-
-
-}
-
-
-
-  
-
-
-
-

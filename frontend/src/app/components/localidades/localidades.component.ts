@@ -4,6 +4,8 @@ import { LocalidadesService } from "../../service/localidades.service";
 
 import { FormBuilder, FormGroup, Form, Validators } from "@angular/forms";
 import { ILocalidades } from 'src/app/models/localidades';
+import { ProvinciaService } from "../../service/provincia.service";
+import { IProvincia } from 'src/app/models/provincia';
 
 @Component({
   selector: 'app-localidades',
@@ -17,10 +19,12 @@ export class LocalidadesComponent implements OnInit {
   formLocalidades: FormGroup;
 
   buscarLocalidades:any;
-
+  
+  lista_provincia: IProvincia[]; 
+  
   p:number = 1;
 
-  constructor(private localidadesServ:LocalidadesService, private fb: FormBuilder) {
+  constructor(private localidadesServ:LocalidadesService, private fb: FormBuilder, private provinciaServ:ProvinciaService) {
 
     this.formLocalidades = this.fb.group({
 
@@ -34,6 +38,17 @@ export class LocalidadesComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerLocalidades();
+    this.obtenerProvincia();
+  }
+
+  obtenerProvincia()
+  {
+    this.provinciaServ.getProvincia().subscribe(
+      resultado => {
+      this.lista_provincia = resultado;
+    },
+      error => console.log(error)
+    )
   }
 
   obtenerLocalidades()
