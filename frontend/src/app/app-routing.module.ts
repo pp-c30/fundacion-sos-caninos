@@ -14,6 +14,8 @@ import { LocalidadesComponent } from './components/localidades/localidades.compo
 import { Categoria_donacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { ProvinciaComponent } from './components/provincia/provincia.component';
 import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component'
+import { CaninoPublicComponent } from './components/canino-public/canino-public.component';
+import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 
 const routes: Routes = [
   {
@@ -67,6 +69,14 @@ const routes: Routes = [
   {
     path:'requisitos', 
     component:RequisitosComponent
+  },
+  {
+    path:'detalle-jordan/:id_canino', 
+    component:DetalleCaninoPublicComponent
+  },
+  {
+    path:'nuestros-jordanes', 
+    component:CaninoPublicComponent
   }
 
 ];

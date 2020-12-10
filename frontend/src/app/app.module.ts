@@ -33,6 +33,7 @@ import { NavegacionPublicComponent } from './components/navegacion-public/navega
 import { LocalidadesPublicComponent } from './components/localidades-public/localidades-public.component';
 import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component';
 import { AdminDetalleDonacionesComponent } from './components/admin-detalle-donaciones/admin-detalle-donaciones.component';
+import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 
 
 
@@ -59,7 +60,8 @@ import { AdminDetalleDonacionesComponent } from './components/admin-detalle-dona
     NavegacionPublicComponent,
     LocalidadesPublicComponent,
     AdminDetalleCaninoComponent,
-    AdminDetalleDonacionesComponent
+    AdminDetalleDonacionesComponent,
+    DetalleCaninoPublicComponent
   ],
   imports: [
     BrowserModule,

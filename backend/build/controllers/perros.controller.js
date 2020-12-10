@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
+//conectarse en cloudinary
 cloudinary_1.default.v2.config({
     cloud_name: 'dylbe29a5',
     api_key: '488978864977245',
