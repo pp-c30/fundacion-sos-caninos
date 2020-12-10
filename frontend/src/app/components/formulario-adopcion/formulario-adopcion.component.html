@@ -35,6 +35,7 @@
                     <td>{{formularioA.telefono}}</td>
                     <td>{{formularioA.correo}}</td>
                     <td>{{formularioA.canino}}</td>
+                    <td>{{formularioA.provincia_id}}</td>
                     <td>{{formularioA.id_localidad}}</td>
                     <td>{{formularioA.requisito}}</td>
                     <td>
@@ -104,21 +105,24 @@
                     </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('canino')?.touched || formAdopcion.get('canino')?.dirty) && formAdopcion.get('canino')?.invalid}" formControlName="canino" placeholder="Canino" type="text" class="form-control">
+                        <select formControlName="canino" class="form-control">
+                            <option value="0" disabled selected>Seleccionar Canino</option>
+                            <option *ngFor="let canino of lista_caninos" [value]="canino.id_canino">{{canino.nombre}}</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <select (change)="dameLocalidades($event.target.value)" formControlName="provincia_id" class="form-control">
-                                <option value="0" disabled selected>Seleccionar Provincia</option>
-                                <option *ngFor="let provincia of lista_provincia" [value]="provincia.id">{{provincia.nombre}}</option>
-                            </select>
+                            <option value="0" disabled selected>Seleccionar Provincia</option>
+                            <option *ngFor="let provincia of lista_provincia" [value]="provincia.id">{{provincia.nombre}}</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <select formControlName="id_localidad" class="form-control">
                             <option value="0" disabled selected>Seleccionar Localidad</option>
                             <option *ngFor="let localidades of lista_localidades" [value]="localidades.id_localidad">{{localidades.nombre}}</option>
-                            </select>
+                        </select>
                     </div>
 
 
