@@ -36,7 +36,7 @@ export class CaninoPublicComponent implements OnInit {
 {
   
   //Para redirigirme a una ruta voy a tener que importarme un par de modulos. Para esto debe existir la ruta en el app-routing
-  this.router.navigate(['/detalle-canino-public',id_canino]);
+  this.router.navigate(['/detalle-jordan',id_canino]);
   
 }
 

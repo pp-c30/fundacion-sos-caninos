@@ -91,5 +91,6 @@ export class CaninoService {
    {
      return this.http.delete('http://localhost:4200/eliminar-canino/'+id_canino);
    }
+   
   }
 
