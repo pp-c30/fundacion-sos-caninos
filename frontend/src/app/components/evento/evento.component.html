@@ -1,97 +1,15 @@
-<div class="row">
-    <div class="col-sm-8">
-
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarEvento" type="text" class="form-control">
-                </div>
-            </div>
-        </div>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Descripción</th>
-                    <th>Contacto</th>
-                    <th>Ubicación</th>
-                    <th>Fecha y Hora</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let evento of listEvento | filter:buscarEvento | paginate:{itemsPerPage:5,currentPage:p}">
-                    <td>{{evento.id_evento}}</td>
-                    <td>{{evento.titulo}}</td>
-                    <td>{{evento.descripcion}}</td>
-                    <td>{{evento.contacto}}</td>
-                    <td>{{evento.ubicacion}}</td>
-                    <td>{{evento.fecha_hora}}</td>
-                    <td>
-                        <div class="btn-group-sm">
-                            <button class="btn btn-danger" (click)="eliminarEvento(evento.id_evento)">Eliminar</button>
-                            <button class="btn btn-primary" (click)="editarEvento(evento)">Editar</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-4">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4">
-
-        <div class="card">
-            <div class="card-header">Formulario Evento</div>
+    <div class="card mb-3" *ngFor="let evento of lista_eventos">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src]="evento.imagen_portada" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
-                <form [formGroup]="formEvento" (ngSubmit)="guardarEvento()" novalidate>
-
-                    <input formControlName="id_evento" type="text">
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formEvento.get('titulo')?.touched || formEvento.get('titulo')?.dirty) && formEvento.get('titulo')?.invalid}" formControlName="titulo" placeholder="Ingrese el Título" type="text" class="form-control">
-                        <div class="invalid-feedback">
-                            <span *ngIf="formEvento.get('titulo').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formEvento.get('titulo').hasError('minLength')">Mínimo 2 Caracteres</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formEvento.get('descripcion')?.touched || formEvento.get('descripcion')?.dirty) && formEvento.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripción" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formEvento.get('descripcion').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formEvento.get('descripcion').hasError('minLength')">10 Caracteres Ejemplo: 2020-02-15</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formEvento.get('contacto')?.touched || formEvento.get('contacto')?.dirty) && formEvento.get('contacto')?.invalid}" formControlName="contacto" placeholder="Ingrese el Contacto" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formEvento.get('contacto').hasError('required')">Campo Requerido </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formEvento.get('ubicacion')?.touched || formEvento.get('ubicacion')?.dirty) && formEvento.get('ubicacion')?.invalid}" formControlName="ubicacion" placeholder="Ingrese la Ubicación" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formEvento.get('ubicacion').hasError('required')">Campo Requerido </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formEvento.get('fecha_hora')?.touched || formEvento.get('fecha_hora')?.dirty) && formEvento.get('fecha_hora')?.invalid}" formControlName="fecha_hora" placeholder="Ingrese la Fecha y Hora" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formEvento.get('fecha_hora').hasError('required')">Campo Requerido </span>
-                        </div>
-                    </div>
-
-
-
-                    <button [disabled]="formEvento.invalid" class="btn btn-success">Guardar Evento</button>
-
-                </form>
+              <h5 class="card-title">{{evento.titulo}}</h5>
+              <p class="card-text">{{evento.descripcion}}</p>
+              <p class="card-text"><small class="text-muted">{{evento.ubicacion}}</small></p>
+              <button class="btn btn-primary">Contacto</button>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
