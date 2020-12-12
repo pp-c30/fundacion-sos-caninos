@@ -43,7 +43,7 @@
             <div class="card-body">
                 <form [formGroup]="formProvincia" (ngSubmit)="guardarProvincia()" novalidate>
 
-                    <input formControlName="id" type="text">
+                    <input formControlName="id" type="text" type="hidden">
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formProvincia.get('nombre')?.touched || formProvincia.get('nombre')?.dirty) && formProvincia.get('nombre')?.invalid}" formControlName="nombre" placeholder="Ingrese el Nombre" type="text" class="form-control">

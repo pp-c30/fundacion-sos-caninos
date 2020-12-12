@@ -25,7 +25,7 @@ class LocalidadesController {
         return __awaiter(this, void 0, void 0, function* () {
             //Realizo la conexion con la base de datos
             const base = yield database_1.con();
-            let localidades = yield base.query('select * from localidades');
+            let localidades = yield base.query('select *, (select nombre from provincia where id = l.provincia_id) as provincia_id from localidades l');
             return res.json(localidades);
         });
     }

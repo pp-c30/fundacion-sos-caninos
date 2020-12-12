@@ -16,7 +16,7 @@ class FormularioAController {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos
             const base = yield database_1.con();
-            let formularioA = yield base.query('select * from formulario_adopcion');
+            let formularioA = yield base.query('select *, (select nombre from canino where id_canino = f.canino) as canino, (select nombre from provincia where id = f.provincia_id) as provincia_id, (select nombre from localidades where id_localidad = f.id_localidad) as id_localidad from formulario_adopcion f');
             return res.json(formularioA);
         });
     }

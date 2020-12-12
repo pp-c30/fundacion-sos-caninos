@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-sm-4">
-                
+
             </div>
         </div>
 
@@ -48,7 +48,7 @@
             <div class="card-body">
                 <form [formGroup]="formDonaciones" (ngSubmit)="guardarDonaciones()" novalidate>
 
-                    <input formControlName="id_donaciones" type="text">
+                    <input formControlName="id_donaciones" type="text" type="hidden">
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formDonaciones.get('descripcion')?.touched || formDonaciones.get('descripcion')?.dirty) && formDonaciones.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion" type="text" class="form-control">
@@ -82,7 +82,7 @@
                     <div [style]="ocultar_boton_archivos" class="form-group">
                         <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
                     </div>
-        
+
                     <div class="btn-group">
                         <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar donacion</button>
                         <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>

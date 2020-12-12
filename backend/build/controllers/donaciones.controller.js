@@ -30,7 +30,7 @@ class DonacionesController {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base de datos
             const base = yield database_1.con();
-            let donaciones = yield base.query('select * from donaciones');
+            let donaciones = yield base.query('select *, (select descripcion from categoria_donacion where id_categoria_donacion = d.categoria_donaciones) as categoria_donaciones from donaciones d');
             return res.json(donaciones);
         });
     }

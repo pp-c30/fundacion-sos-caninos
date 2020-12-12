@@ -63,7 +63,7 @@
             <div class="card-body">
                 <form [formGroup]="formAdopcion" (ngSubmit)="guardarFormularioA()" novalidate>
 
-                    <input formControlName="id_formulario" type="text">
+                    <input formControlName="id_formulario" type="text" type="hidden">
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formAdopcion.get('nombre')?.touched || formAdopcion.get('nombre')?.dirty) && formAdopcion.get('nombre')?.invalid}" formControlName="nombre" placeholder="Nombre" type="text" class="form-control">

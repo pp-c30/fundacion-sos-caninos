@@ -152,7 +152,7 @@ vaciarForm()
   this.ocultar_boton_archivos = 'display:block;'
   this.formEvento.setValue({
   id_evento:null,
-  nombre_evento:'',
+  titulo:'',
   descripcion:'',
   contacto:'',
   ubicacion:'',

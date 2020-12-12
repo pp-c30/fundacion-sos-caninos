@@ -27,7 +27,7 @@ export class DonacionesController
         //Logro la conexion con la base de datos
         const base = await con();
 
-        let donaciones = await base.query('select * from donaciones');
+        let donaciones = await base.query('select *, (select descripcion from categoria_donacion where id_categoria_donacion = d.categoria_donaciones) as categoria_donaciones from donaciones d');
              
         return res.json(donaciones);
         

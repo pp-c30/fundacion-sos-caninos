@@ -44,7 +44,7 @@
             <div class="card-body">
                 <form [formGroup]="formCategoria_donacion" (ngSubmit)="guardarCategoria_donacion()" novalidate>
 
-                    <input formControlName="id_categoria_donacion" type="text">
+                    <input formControlName="id_categoria_donacion" type="text" type="hidden">
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formCategoria_donacion.get('descripcion')?.touched || formCategoria_donacion.get('descripcion')?.dirty) && formCategoria_donacion.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion"

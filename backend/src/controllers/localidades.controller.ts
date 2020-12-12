@@ -24,7 +24,7 @@ export class LocalidadesController
         //Realizo la conexion con la base de datos
         const base = await con();
 
-        let localidades = await base.query('select * from localidades');
+        let localidades = await base.query('select *, (select nombre from provincia where id = l.provincia_id) as provincia_id from localidades l');
              
         return res.json(localidades);
         
