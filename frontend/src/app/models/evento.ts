@@ -6,4 +6,5 @@ export interface IEvento
     contacto:string;
     ubicacion:string;
     fecha_hora:any;
+    fh_formateada:string;
 }

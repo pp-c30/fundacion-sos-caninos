@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventoController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -66,7 +67,7 @@ class EventoController {
         return __awaiter(this, void 0, void 0, function* () {
             //Logro la conexion con la base 
             const base = yield database_1.con();
-            let evento = yield base.query('select * from evento');
+            let evento = yield base.query('select *, DATE_FORMAT(fecha_hora, "%d/%m/%Y") as fh_formateada from evento');
             return res.json(evento);
         });
     }

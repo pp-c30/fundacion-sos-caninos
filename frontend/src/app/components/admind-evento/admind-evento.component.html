@@ -4,93 +4,93 @@
         <div class="card">
             <div class="card-header">
                 Formulario Evento
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formEvento" (ngSubmit)="guardarEvento()" novalidate>
+
+                    <input formControllName="id_evento" type="hidden">
+
+                    <div class="form-group">
+                        <input formControlName="titulo" placeholder="Ingrese nombre del evento" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <textarea formControlName="descripcion" placeholder="Ingrese una descripción" class="form-control" name="" id="" cols="30" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="contacto" placeholder="Ingrese un contacto" class="form-control" name="" id="" cols="30" rows="4">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="ubicacion" placeholder="Ingrese una ubicacion" class="form-control" name="" id="" cols="30" rows="4">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="fecha_hora" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
+                    </div>
+
+                    <div [style]="ocultar_boton_archivos" class="form-group">
+                        <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
+                    </div>
+
+                    <div class="btn-group">
+                        <button [disabled]="formEvento.invalid" class="btn btn-success">Guardar evento</button>
+                        <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div [style]="ocultar_boton_archivos" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div *ngFor="let url of imagenes_url; let isFirst = first" [ngClass]="{active:isFirst}" class="carousel-item">
+                        <img [src]="url" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
         </div>
-        <div class="card-body">        
-        <form [formGroup]="formEvento" (ngSubmit)="guardarEvento()" novalidate>
-           
-            <input formControllName="id_evento" type="hidden">
-           
-            <div class="form-group">
-                <input formControlName="titulo" placeholder="Ingrese nombre del evento" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <textarea formControlName="descripcion" placeholder="Ingrese una descripción" class="form-control" name="" id="" cols="30" rows="4"></textarea>
-            </div>
-            <div class="form-group">
-                <input formControlName="contacto" placeholder="Ingrese un contacto" class="form-control" name="" id="" cols="30" rows="4">
-            </div>
-            <div class="form-group">
-                <input formControlName="ubicacion" placeholder="Ingrese una ubicacion" class="form-control" name="" id="" cols="30" rows="4">
-            </div>
-            <div class="form-group">
-                <input formControlName="fecha_hora" placeholder="Ingrese fecha y hora" class="form-control" name="" id="" cols="30" rows="4">
-            </div>
-
-            <div [style]="ocultar_boton_archivos" class="form-group">
-                <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
-            </div>
-
-            <div class="btn-group">
-                <button [disabled]="formEvento.invalid" class="btn btn-success">Guardar evento</button>
-                <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
-            </div>
-        </form>
-        </div>
-
-        <div  [style]="ocultar_boton_archivos" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div *ngFor="let url of imagenes_url; let isFirst = first" [ngClass]="{active:isFirst}" class="carousel-item">
-                <img [src]="url" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-
-      </div>
     </div>
     <br>
     <div class="col-lg-8">
 
-        <div class="card">           
-            
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Nombre del evento</th>
-                            <th>descripción del evento</th>                           
-                            <th>contacto del evento</th>
-                            <th>ubicacion del evento</th>
-                            <th>fecha y hora del evento</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let fila of evento">                            
-                            <td>{{fila.id_evento}}</td>
-                            <td>{{fila.titulo}}</td>
-                            <td>{{fila.descripcion}}</td>                           
-                            <td>{{fila.contacto}}</td>
-                            <td>{{fila.ubicacion}}</td>
-                            <td>{{fila.fecha_hora}}</td>
-                            <td>
-                                <div class="btn-group btn-group-sm">
-                                    <button (click)="detalleEvento(fila.id_evento)" class="btn btn-primary">Detalle</button>
-                                    <button (click)="eliminarEvento(fila.id_evento)" class="btn btn-danger">Eliminar</button>
-                                    <button (click)="editarEvento(fila)" class="btn btn-primary">Actualizar</button>
-                                </div>
+        <div class="card">
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre del evento</th>
+                        <th>descripción del evento</th>
+                        <th>contacto del evento</th>
+                        <th>ubicacion del evento</th>
+                        <th>fecha y hora del evento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fila of evento">
+                        <td>{{fila.id_evento}}</td>
+                        <td>{{fila.titulo}}</td>
+                        <td>{{fila.descripcion}}</td>
+                        <td>{{fila.contacto}}</td>
+                        <td>{{fila.ubicacion}}</td>
+                        <td>{{fila.fh_formateada}}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button (click)="detalleEvento(fila.id_evento)" class="btn btn-primary">Detalle</button>
+                                <button (click)="eliminarEvento(fila.id_evento)" class="btn btn-danger">Eliminar</button>
+                                <button (click)="editarEvento(fila)" class="btn btn-primary">Actualizar</button>
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </div>

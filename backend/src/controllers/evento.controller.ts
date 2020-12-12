@@ -71,7 +71,7 @@ export class EventoController {
         //Logro la conexion con la base 
         const base = await con();
 
-        let evento = await base.query('select * from evento');
+        let evento = await base.query('select *, DATE_FORMAT(fecha_hora, "%d/%m/%Y") as fh_formateada from evento');
              
         return res.json(evento);
         
