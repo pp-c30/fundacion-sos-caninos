@@ -17,7 +17,7 @@ import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/a
 import { CaninoPublicComponent } from './components/canino-public/canino-public.component';
 import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 import { EventoComponent } from './components/evento/evento.component';
-import { ContactoComponent } from './contacto/contacto.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 const routes: Routes = [
   {
@@ -77,7 +77,7 @@ const routes: Routes = [
     component:RequisitosComponent
   },
   {
-    path:'eventos', 
+    path:'nuestros-eventos', 
     component:EventoComponent
   },
   {
@@ -85,8 +85,8 @@ const routes: Routes = [
     component:DetalleCaninoPublicComponent
   },
   {
-    path:'nuestros-eventos', 
-    component:EventoComponent
+    path:'contacto', 
+    component:ContactoComponent
   },
   {
     path:'nuestros-jordanes', 

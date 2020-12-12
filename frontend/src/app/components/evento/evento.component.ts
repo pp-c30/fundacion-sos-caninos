@@ -32,6 +32,13 @@ export class EventoComponent implements OnInit {
       }
     )
   }
+  contacto() 
+  {
+    
+    //Para redirigirme a una ruta voy a tener que importarme un par de modulos. Para esto debe existir la ruta en el app-routing
+    this.router.navigate(['/contacto']);
+    
+  }
 
 
 

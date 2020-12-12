@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-lg-9" >        
+    <div class="col-lg-9" >      
    
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -23,7 +23,6 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
           <table class="table table-danger">
             <thead>
                 <tr>                 
@@ -36,13 +35,12 @@
                     <th>Desparasitado</th>
                     <th>Vacunado</th>
                     <th>Descripción del Canino</th>
-                    <th>Estado adopcion</th>                
-                 
+                    <th>Estado adopcion</th>            
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let fila of lista_caninos">
-                    <td>{{fila.nombre}}</td>
+              <tr *ngFor="let fila of lista_caninos">
+                <td>{{fila.nombre}}</td>               
             </tbody>
            
         </table>

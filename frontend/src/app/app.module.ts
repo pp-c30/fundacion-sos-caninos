@@ -34,7 +34,7 @@ import { LocalidadesPublicComponent } from './components/localidades-public/loca
 import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/admin-detalle-canino.component';
 import { AdminDetalleDonacionesComponent } from './components/admin-detalle-donaciones/admin-detalle-donaciones.component';
 import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
-import { ContactoComponent } from './contacto/contacto.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 
 
