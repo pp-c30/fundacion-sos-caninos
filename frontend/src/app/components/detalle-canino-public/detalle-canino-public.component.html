@@ -23,27 +23,17 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-          <table class="table table-danger">
-            <thead>
-                <tr>                 
-                    <th>Nombre</th>
-                    <th>Fecha de nacimiento (aproximada)</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Tamaño</th>
-                    <th>Castrado</th>
-                    <th>Desparasitado</th>
-                    <th>Vacunado</th>
-                    <th>Descripción del Canino</th>
-                    <th>Estado adopcion</th>            
-                </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let fila of lista_caninos">
-                <td>{{fila.nombre}}</td>               
-            </tbody>
-           
-        </table>
+
+
+<p>
+  <select [(ngModel)]="selected" name="status" placeholder="select" (ngModelChange)="caninoSeleccionado()">
+  
+  <option *ngFor="let canino of status" [ngValue]="canino">
+    {{canino}}
+  </option>
+</select>
+</p>
+{{filtered|json}}
     </div>
 
 </div>
