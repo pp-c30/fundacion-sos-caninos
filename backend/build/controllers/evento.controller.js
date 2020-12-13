@@ -30,7 +30,7 @@ class EventoController {
             const base = yield database_1.con();
             //Primero ponemos todas las imagenes como portada = 0
             const portadasEnEstadocero = {
-                portada: 0.
+                portada: 0
             };
             yield base.query('update imagenes_evento set ?', [portadasEnEstadocero, id_evento]);
             //Establecer como portada una imagen
@@ -95,18 +95,18 @@ class EventoController {
                     //le especificamos el path(la ruta) de la imagen guardado en uploads
                     const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
                     //obtiene la ubicacion exacta de la img
-                    const imagen_evento = {
+                    const imagenes_evento = {
                         id_evento: resultado.insertId,
                         imagen_url: resultado_cloudinary.url,
                         public_id: resultado_cloudinary.public_id
                     };
-                    yield base.query('insert into imagenes_evento set ?', [imagen_evento]);
+                    yield base.query('insert into imagenes_evento set ?', [imagenes_evento]);
                     yield fs_extra_1.default.unlink(files[i].path);
                 }
                 return res.json('El evento fue guardado');
             }
-            catch (_a) {
-                res.json('hello');
+            catch (err) {
+                res.json(err);
             }
         });
     }
