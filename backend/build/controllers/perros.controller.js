@@ -198,12 +198,12 @@ class CaninoController {
             res.json(unCanino[0]);
         });
     }
-    listarImagenesUnCanino(req, res) {
+    obtenerImagenesUnCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id_canino = req.params.id_canino;
             const base = yield database_1.con();
-            const imagenesUnCanino = yield base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
-            res.json(imagenesUnCanino);
+            let listar_imagenes_canino = yield base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            res.json(listar_imagenes_canino);
         });
     }
 }
