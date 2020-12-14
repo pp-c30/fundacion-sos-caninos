@@ -29,7 +29,6 @@ enrutadorCanino.route('/canino-portada/:id_ic/:id_canino').get(caninoController.
 
 enrutadorCanino.route('/canino/:id_canino').get(caninoController.listarUnCanino);
 
-enrutadorCanino.route('/listar-imagenes-un-canino/:id_canino').get(caninoController.listarImagenesUnCanino);
 
 export default enrutadorCanino;
 
