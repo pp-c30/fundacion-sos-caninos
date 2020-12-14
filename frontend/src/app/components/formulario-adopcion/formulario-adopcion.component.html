@@ -69,7 +69,7 @@
                         <input [ngClass]="{'is-invalid':(formAdopcion.get('nombre')?.touched || formAdopcion.get('nombre')?.dirty) && formAdopcion.get('nombre')?.invalid}" formControlName="nombre" placeholder="Nombre" type="text" class="form-control">
 
                         <div class="invalid-feedback">
-                            <span *ngIf="formAdopcion.get('nombre').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="formAdopcion.get('nombre').hasError('required')">Requerido </span>
                             <span *ngIf="!formAdopcion.get('nombre').hasError('minLength')">Mínimo 3 Caracteres</span>
                         </div>
                     </div>

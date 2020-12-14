@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-6 mx-auto" >
+        <div class="card">
+            <div class="card-header">
+                Ingresar
+            </div>
+            <div class="card-body">
+                <form  [formGroup]="formIngreso" (ngSubmit)=" ingresar()"  novalidate> 
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formIngreso.get('username')?.touched || formIngreso.get('username')?.dirty) && formIngreso.get('username')?.invalid}"  formControlName="username" type="text" class="form-control" placeholder="Usuario">
+                        <div class="invalid-feedback">
+                        <span *ngIf="formIngreso.get('username').hasError('required')">Campo Requerido </span>
+                        <span *ngIf="!formIngreso.get('username').hasError('minLength')">Mínimo 8 Caracteres</span>
+                        
+                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formIngreso.get('password')?.touched || formIngreso.get('password')?.dirty) && formIngreso.get('password')?.invalid}"  formControlName="password" type="password" class="form-control" placeholder="Contraseña">
+
+                        <div class="invalid-feedback">
+                            <span *ngIf="formIngreso.get('password').hasError('required')">Campo Requerido </span>
+                            <span *ngIf="!formIngreso.get('password').hasError('minLength')">Mínimo 8 Caracteres</span>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <button [disabled]="formIngreso.invalid" class="btn btn-primary">Ingresar</button>
+                    </div>
+
+                    
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

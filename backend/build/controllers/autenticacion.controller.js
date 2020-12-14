@@ -8,23 +8,50 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class AutenticacionController {
-    registrar(res, req) {
+    registrar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            //cifrar la contraseña ingresada
+            const salt = yield bcryptjs_1.default.genSalt(10);
+            const password_cifrado = yield bcryptjs_1.default.hash(req.body.password, salt);
             const unUsuario = {
                 username: req.body.username,
-                password: req.body.password,
-                email: req.body.password
+                password: password_cifrado,
+                email: req.body.email
             };
             const base = yield database_1.con();
-            yield base.query("insert into usuario set ?", [unUsuario]);
-            return res.json('Usuario guardado con exito');
+            const resultado = yield base.query('insert into usuario set ?', [unUsuario]);
+            //crear un token para acceder a los permisos
+            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN_SECRET || '3jdslf');
+            return res.json(token);
         });
     }
-    ingresar(res, req) {
+    ingresar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const base = yield database_1.con();
+            const usuario = yield base.query('select * from usuario where username = ?', [req.body.username]);
+            if (!usuario[0]) {
+                res.json(0);
+            }
+            else {
+                const correctpassword = yield bcryptjs_1.default.compare(req.body.password, usuario[0].password);
+                if (!correctpassword) {
+                    res.json(1);
+                }
+                else {
+                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN_SECRET || '3jdslf', {
+                        expiresIn: 60 * 60 * 24
+                    });
+                    res.json(token);
+                }
+            }
         });
     }
 }

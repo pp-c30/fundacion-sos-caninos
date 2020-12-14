@@ -14,41 +14,48 @@
         <a class="nav-link" routerLink="">Adoptá</a>
         <a class="nav-link" routerLink="">Doná</a> 
         <a class="nav-link" routerLink="contacto">Contacto</a>
-        
-        </div>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#">
-            <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
-          </a>
-          <div class="dropdown-menu" style="background: white;">
-           
-            <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/canino">Caninos</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/admin-evento">Eventos</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/form-adopcion">Adopcion</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/requisitos">Requisitos</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/donaciones">Donaciones</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/categoria-donaciones">Categoría Donaciones</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/provincia">Provincia</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" routerLink="/localidades">Localidades</a>
-          </li>
-          
+
+        <div class="administrador">
+          <a class="nav-link" routerLink="ingresar">ingresar</a>
+          <a class="nav-link" routerLink="registro">Registrarme</a>
           </div>
-        </li>
+          <a class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" *ngIf="authServ.verificarUsuarioLogueado()" data-toggle="dropdown" data-target="desplegable" href="#">
+              <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
+            </a>
+            <div class="dropdown-menu" style="background: white;">
+             
+             
+              <li class="nav-item">
+                <a class="nav-link"  *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/canino">Caninos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/admin-evento">Eventos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()"  href="#" routerLink="/form-adopcion">Adopcion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/requisitos">Requisitos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/donaciones">Donaciones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/categoria-donaciones">Categoría Donaciones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/provincia">Provincia</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/localidades">Localidades</a>
+            </li>
+            
+            </div>
+          </a>
+
+        </div>
+     
       
       </div>
     

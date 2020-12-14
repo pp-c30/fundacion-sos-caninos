@@ -13,7 +13,7 @@ import { ProvinciaComponent } from './components/provincia/provincia.component';
 import { RequisitosComponent } from './components/requisitos/requisitos.component';
 import { EventoComponent } from "./components/evento/evento.component";
 
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from "ngx-pagination";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
@@ -36,6 +36,10 @@ import { AdminDetalleDonacionesComponent } from './components/admin-detalle-dona
 import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { HomeComponent } from './components/home/home.component';
+import { IngresoComponent } from './components/ingreso/ingreso.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { AuthGuard } from "./auth.guard";
+import { TokenInterceptorService } from "./service/token-interceptor.service";
 
 
 
@@ -65,7 +69,9 @@ import { HomeComponent } from './components/home/home.component';
     AdminDetalleDonacionesComponent,
     DetalleCaninoPublicComponent,
     ContactoComponent,
-    HomeComponent
+    HomeComponent,
+    IngresoComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +82,14 @@ import { HomeComponent } from './components/home/home.component';
     NgxPaginationModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
