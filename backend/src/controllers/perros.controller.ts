@@ -235,4 +235,28 @@ export class CaninoController {
         
         return res.json('El canino se elimino completamente');
     }
+
+    async listarUnCanino(req:Request,res:Response)
+    {
+        let id_canino =req.params.id_canino;
+
+        const base = await con();
+
+        const unCanino = await base.query('select * from canino where id_canino = ?',[id_canino]);
+
+        res.json(unCanino[0]);
+
+    }
+
+    async listarImagenesUnCanino(req:Request,res:Response)
+    {
+        let id_canino =req.params.id_canino;
+
+        const base = await con();
+        
+        const imagenesUnCanino = await base.query('select * from imagenes_canino where id_canino = ?',[id_canino]);
+
+        res.json(imagenesUnCanino);
+    
+    }
 }

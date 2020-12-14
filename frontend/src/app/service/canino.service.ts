@@ -63,12 +63,23 @@ export class CaninoService {
    {
      return this.http.get<ICanino[]>('http://localhost:4200/canino');
    }
+
+   getOneCanino(id_canino:number)
+   {
+     return this.http.get<ICanino>('http://localhost:4200/canino/'+id_canino);
+   }
    
    getImagenesCanino(id_canino:number)
    {
       return this.http.get<ICaninoDetalle[]>('http://localhost:4200/listar-imagenes-canino/'+id_canino); // A través del metodo get obtenemos las imagenes de un evento especifico gracias a su id
      
    }
+   getImagenesOneCanino(id_canino:number)
+   {
+      return this.http.get<ICaninoDetalle[]>('http://localhost:4200/listar-imagenes-un-canino/'+id_canino); // A través del metodo get obtenemos las imagenes de un evento especifico gracias a su id
+     
+   }
+
 
    addImagenesCanino(id_canino:number,files:FileList) //Se comunica a traves de http y del metodo put a la ruta deseada
    {
