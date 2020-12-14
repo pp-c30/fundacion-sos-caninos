@@ -32,6 +32,7 @@ export class EventoComponent implements OnInit {
       }
     )
   }
+  
   contacto() 
   {
     

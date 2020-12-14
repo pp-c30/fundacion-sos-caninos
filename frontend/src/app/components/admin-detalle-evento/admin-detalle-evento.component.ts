@@ -103,7 +103,7 @@ export class AdminDetalleEventoComponent implements OnInit {
 
   establecerPortada(id_ie:number)
   {
-    this.serviceEvento.establecerPortada(id_ie).subscribe(
+    this.serviceEvento.establecerPortada(id_ie,this.id_evento).subscribe(
       resultado => {
         //Refrescamos la grilla
         this.listarImagenesEventos(this.id_evento);

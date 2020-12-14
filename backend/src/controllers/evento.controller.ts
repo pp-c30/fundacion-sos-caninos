@@ -22,7 +22,7 @@ export class EventoController {
 
         //Primero ponemos todas las imagenes como portada = 0
         const portadasEnEstadocero = {
-            portada:0.
+            portada:0
         }
         await base.query ('update imagenes_evento set ?',[portadasEnEstadocero,id_evento]);
 
@@ -107,21 +107,21 @@ export class EventoController {
             const resultado_cloudinary = await cloudinary.v2.uploader.upload(files[i].path);
 
             //obtiene la ubicacion exacta de la img
-            const imagen_evento = {
+            const imagenes_evento = {
                 id_evento:resultado.insertId,
                 imagen_url:resultado_cloudinary.url,
                 public_id:resultado_cloudinary.public_id
             }
         
-            await base.query('insert into imagenes_evento set ?',[imagen_evento]);
+            await base.query('insert into imagenes_evento set ?',[imagenes_evento]);
             await fs.unlink(files[i].path);
 
 
         }
         
         return res.json('El evento fue guardado');
-    }catch{
-        res.json('hello');
+    }catch(err){
+        res.json(err);
     }
     }
    

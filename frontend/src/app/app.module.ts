@@ -35,6 +35,7 @@ import { AdminDetalleCaninoComponent } from './components/admin-detalle-canino/a
 import { AdminDetalleDonacionesComponent } from './components/admin-detalle-donaciones/admin-detalle-donaciones.component';
 import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -63,7 +64,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     AdminDetalleCaninoComponent,
     AdminDetalleDonacionesComponent,
     DetalleCaninoPublicComponent,
-    ContactoComponent
+    ContactoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
