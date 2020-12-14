@@ -1,66 +1,105 @@
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <img src="assets/logo.jpg" alt="" width="9%" height="9%"> 
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="assets/logo.jpg" alt="" width="9%" height="9%">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-        <a class="nav-link" routerLink="home">Inicio</a>
-        <a class="nav-link" routerLink="">Nosotros</a>
-        <a class="nav-link" routerLink="nuestros-jordanes">Canino</a>
-        <a class="nav-link" routerLink="">Adoptá</a>
-        <a class="nav-link" routerLink="">Doná</a> 
-        <a class="nav-link" routerLink="contacto">Contacto</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" routerLink="home">Inicio</a>
+                <a class="nav-link" routerLink="">Nosotros</a>
+                <a class="nav-link" routerLink="nuestros-jordanes">Canino</a>
+                <a class="nav-link" routerLink="">Adoptá</a>
+                <a class="nav-link" routerLink="">Doná</a>
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
 
-        <div class="administrador">
-          <a class="nav-link" routerLink="ingresar">ingresar</a>
-          <a class="nav-link" routerLink="registro">Registrarme</a>
-          </div>
-          <a class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" *ngIf="authServ.verificarUsuarioLogueado()" data-toggle="dropdown" data-target="desplegable" href="#">
-              <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
-            </a>
-            <div class="dropdown-menu" style="background: white;">
-             
-             
-              <li class="nav-item">
-                <a class="nav-link"  *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/canino">Caninos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/admin-evento">Eventos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()"  href="#" routerLink="/form-adopcion">Adopcion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/requisitos">Requisitos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/donaciones">Donaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/categoria-donaciones">Categoría Donaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/provincia">Provincia</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/localidades">Localidades</a>
-            </li>
-            
+                <div class="administrador">
+                    <a class="nav-link" routerLink="ingresar">ingresar</a>
+                    <a class="nav-link" routerLink="registro">Registrarme</a>
+                </div>
+                <a class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" *ngIf="authServ.verificarUsuarioLogueado()" data-toggle="dropdown" data-target="desplegable" href="#">
+                        <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
+                    </a>
+                    <div class="dropdown-menu" style="background: white;">
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/canino">Caninos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/admin-evento">Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/form-adopcion">Adopcion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/requisitos">Requisitos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/donaciones">Donaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/categoria-donaciones">Categoría Donaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/provincia">Provincia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/localidades">Localidades</a>
+                        </li>
+
+                    </div>
+                </a>
+
             </div>
-          </a>
+
 
         </div>
-     
-      
-      </div>
-    
-      
+
+
     </div>
-  
-  </nav>
- 
+
+</nav>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+            <section id="contact">
+                <div class="social">
+
+                    <a href="https://www.facebook.com/guarderiacaninaislajordancipolletti"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5492994194451&fbclid=IwAR2rF6hLXZDdD9q5IzmUwCI1t1zlGnhTJZ8z5iN8tr5guwwmgVMuBYJgZwM"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/guarderia_canina_isla_jordan/"><i class="fab fa-instagram"></i></a>
+
+                </div>
+
+                <div class="contact-box">
+                    <!--heading---------->
+                    <div class="c-heading">
+                        <h1>Contactenos</h1>
+                        <p>Contactenos vía E-mail o teléfono para despejar sus dudas</p>
+                    </div>
+                    <!--inputs------------------>
+                    <div class="c-inputs">
+                        <form>
+                            <input type="text" name="fname" placeholder="Ingrese su Nombre Completo" />
+                            <input type="email" placeholder="Ingrese su E-Mail" />
+                            <textarea name="message" placeholder="¿En qué lo podemos ayudar?"></textarea>
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d10435.402831219191!2d-67.9798421772029!3d-38.95907584112851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d-38.96046!2d-67.9774868!5e0!3m2!1sen!2sar!4v1607724557430!5m2!1sen!2sar"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
