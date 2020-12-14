@@ -1,0 +1,33 @@
+.nav-link{
+    
+    color: #030708;
+
+  }
+  
+  .nav-link:hover{
+    color: #F89738;
+  }
+  .navbar-custom {
+    background-color: white;
+}
+
+.navbar-nav {
+  margin-left: 110px;
+  
+}
+
+.nav-item .dropdown{
+
+  list-style:none;
+  display: inline-block;
+
+}
+.scroll {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+
+
+
+

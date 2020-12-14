@@ -18,6 +18,7 @@ import { CaninoPublicComponent } from './components/canino-public/canino-public.
 import { DetalleCaninoPublicComponent } from './components/detalle-canino-public/detalle-canino-public.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -85,8 +86,8 @@ const routes: Routes = [
     component:DetalleCaninoPublicComponent
   },
   {
-    path:'contacto', 
-    component:ContactoComponent
+    path:'home', 
+    component:HomeComponent
   },
   {
     path:'nuestros-jordanes', 
