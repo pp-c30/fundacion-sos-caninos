@@ -12,6 +12,8 @@ export class CaninoPublicComponent implements OnInit {
 
   lista_caninos:ICanino[]=[];
 
+  p:number = 1;
+
   constructor(private router:Router,private caninoService:CaninoService) {
 
 
