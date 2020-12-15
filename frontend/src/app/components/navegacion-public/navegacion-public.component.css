@@ -1,5 +1,7 @@
 .nav-link {
     color: #030708;
+    font-weight: 500;
+
 }
 
 .nav-link:hover {
@@ -11,7 +13,7 @@
 }
 
 .navbar-nav {
-    margin-left: 110px;
+    margin-left: 70px;
 }
 
 .nav-item .dropdown {
