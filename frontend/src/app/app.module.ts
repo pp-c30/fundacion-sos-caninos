@@ -40,6 +40,7 @@ import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./service/token-interceptor.service";
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 
 
@@ -71,7 +72,8 @@ import { TokenInterceptorService } from "./service/token-interceptor.service";
     ContactoComponent,
     HomeComponent,
     IngresoComponent,
-    RegistroComponent
+    RegistroComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,

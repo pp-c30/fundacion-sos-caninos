@@ -8,8 +8,6 @@ import { FormularioAdopcionComponent } from './components/formulario-adopcion/fo
 import { AdminDetalleEventoComponent } from "./components/admin-detalle-evento/admin-detalle-evento.component";
 import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.component";
 import { RequisitosComponent } from './components/requisitos/requisitos.component';
-import { AdminNavegacionComponent } from './components/admin-navegacion/admin-navegacion.component';
-import { AdminCuerpoNavegacionComponent } from './components/admin-cuerpo-navegacion/admin-cuerpo-navegacion.component';
 import { LocalidadesComponent } from './components/localidades/localidades.component';
 import { Categoria_donacionComponent } from './components/categoria-donacion/categoria-donacion.component';
 import { ProvinciaComponent } from './components/provincia/provincia.component';
@@ -22,6 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
+
 
 const routes: Routes = [
   {
@@ -91,6 +91,10 @@ const routes: Routes = [
   {
     path:'registro', 
     component:RegistroComponent
+  },
+  {
+    path:'nosotros',
+    component:NosotrosComponent
   },
   {
     path:'ingreso', 
