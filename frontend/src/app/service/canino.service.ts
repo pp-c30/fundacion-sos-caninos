@@ -76,7 +76,7 @@ export class CaninoService {
    }
    getImagenesOneCanino(id_canino:number)
    {
-      return this.http.get<ICaninoDetalle[]>('http://localhost:4200/listar-imagenes-un-canino/'+id_canino); // A través del metodo get obtenemos las imagenes de un evento especifico gracias a su id
+      return this.http.get<ICaninoDetalle>('http://localhost:4200/listar-imagenes-un-canino/'+id_canino); // A través del metodo get obtenemos las imagenes de un evento especifico gracias a su id
      
    }
 

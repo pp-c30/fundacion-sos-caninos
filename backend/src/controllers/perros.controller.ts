@@ -250,11 +250,13 @@ export class CaninoController {
 
     async obtenerImagenesUnCanino(req:Request, res:Response) 
     {
-           let id_canino = req.params.id_canino;
+            let id_canino = req.params.id_canino;
 
             const base = await con();
-            let listar_imagenes_canino = await base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
-            res.json(listar_imagenes_canino);
+
+            const listar_imagenes_un_canino = await base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            
+            res.json(listar_imagenes_un_canino);
     }
        
     

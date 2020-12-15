@@ -25,17 +25,9 @@ import { RequisitosPublicComponent } from './components/requisitos-public/requis
 
 const routes: Routes = [
   {
-    path:'', redirectTo:'/admin-cuerpo-navegacion',
+    path:'', redirectTo:'/home',
     pathMatch:'full'
   },
-  {
-    path:'admin-cuerpo-navegacion', 
-    component:AdminCuerpoNavegacionComponent
-  }, 
-  {
-    path:'admin-navegacion', 
-    component:AdminNavegacionComponent
-  },  
   {
     path:'canino', 
     component:CaninoComponent

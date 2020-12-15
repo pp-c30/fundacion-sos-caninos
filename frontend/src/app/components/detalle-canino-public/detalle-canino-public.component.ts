@@ -17,7 +17,7 @@ export class DetalleCaninoPublicComponent implements OnInit {
 
  unCanino:ICanino;
 
- imagenesUnCanino:ICaninoDetalle[] = [];
+ imagenesUnCanino:ICaninoDetalle;
 
 constructor(private router:Router,private fb:FormBuilder,private activatedRoute:ActivatedRoute,private serviceCanino:CaninoService) { 
 
