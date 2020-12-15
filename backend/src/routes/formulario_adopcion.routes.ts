@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import {validarToken} from "../libs/verificarToken"
+
 import { FormularioAController } from "../controllers/formulario_adopcion.controller";
 
 let formularioAController = new FormularioAController;
@@ -7,7 +9,7 @@ let formularioAController = new FormularioAController;
 const enrutadorFormularioA = Router();
 
 //Defino las rutas de cada funcion 
-enrutadorFormularioA.route('/formulario_adopcion').get(formularioAController.listarFormularioA);
+enrutadorFormularioA.route('/formulario_adopcion').get(validarToken,formularioAController.listarFormularioA);
 enrutadorFormularioA.route('/formulario_adopcion').post(formularioAController.guardarFormularioA);
 enrutadorFormularioA.route('/formulario_adopcion/:id').delete(formularioAController.eliminarFormularioA);
 enrutadorFormularioA.route('/formulario_adopcion/:id').put(formularioAController.actualizarFormularioA);

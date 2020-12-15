@@ -9,7 +9,7 @@ export function validarToken(req:Request, res:Response, next:NextFunction){
         res.json('Acceso denegado');
     }
 
-    const datosToken = jwt.verify(token,process.env.TOKEN_SECRET || '3jdslf');
+    const datosToken = jwt.verify(token,process.env.TOKEN_SECRET || '12qwaszx');
 
     console.log(datosToken);
 

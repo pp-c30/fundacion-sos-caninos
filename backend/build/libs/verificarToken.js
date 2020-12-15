@@ -10,7 +10,7 @@ function validarToken(req, res, next) {
     if (!token) {
         res.json('Acceso denegado');
     }
-    const datosToken = jsonwebtoken_1.default.verify(token, process.env.TOKEN_SECRET || '3jdslf');
+    const datosToken = jsonwebtoken_1.default.verify(token, process.env.TOKEN_SECRET || '12qwaszx');
     console.log(datosToken);
     next();
 }

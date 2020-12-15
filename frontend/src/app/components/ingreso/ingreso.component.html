@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-6 mx-auto" >
-        <div class="card">
+        <div class="card"  style = "width: auto; margin-top: 10%; ">
             <div class="card-header">
-                Ingresar
+                <h3>Ingresar</h3>
             </div>
             <div class="card-body">
                 <form  [formGroup]="formIngreso" (ngSubmit)=" ingresar()"  novalidate> 
@@ -25,7 +25,7 @@
                     </div>
                    
                     <div class="form-group">
-                        <button [disabled]="formIngreso.invalid" class="btn btn-primary">Ingresar</button>
+                        <button [disabled]="formIngreso.invalid" type="submit" class="btn btn-primary">Ingresar</button>
                     </div>
 
                     
