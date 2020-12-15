@@ -21,6 +21,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
+import { RequisitosPublicComponent } from './components/requisitos-public/requisitos-public.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,10 @@ const routes: Routes = [
   {
     path:'ingreso', 
     component:IngresoComponent
+  },
+  {
+    path:'requisitos-adopcion', 
+    component:RequisitosPublicComponent
   }
 
 ];
