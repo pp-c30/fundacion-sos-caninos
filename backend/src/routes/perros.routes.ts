@@ -9,6 +9,8 @@ const enrutadorCanino = Router();
 //Defino las rutas de canino
 enrutadorCanino.route('/canino').get(caninoController.listarCanino);
 
+enrutadorCanino.route('/canino-home').get(caninoController.listarCaninoHome);
+
 enrutadorCanino.route('/canino').post(multer.array('img_canino'),caninoController.guardarCanino);
 
 enrutadorCanino.route('/eliminar-canino/:id_canino').delete(caninoController.eliminarCanino);

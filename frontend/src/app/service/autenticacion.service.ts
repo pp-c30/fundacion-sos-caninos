@@ -17,7 +17,7 @@ export class AutenticacionService {
 
   login(datosIngreso:IUsuario)
   {
-    return this.http.post('http://localhost:4200/ingreso',datosIngreso);
+    return this.http.post('http://localhost:4200/ingresar',datosIngreso);
   }
 
   verificarUsuarioLogueado()

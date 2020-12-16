@@ -1,35 +1,93 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/carrusel.jpg" class="d-block w-100" alt="...">
+<header>
+    <div class="wrapper" style="width: 99vw;">
+
     </div>
-    <div class="carousel-item">
-      <img src="assets/requisito4.jpg" class="d-block w-100" alt="...">
+    <div class="welcome-text">
+        <h1>
+            Fundación <span>SOS</span></h1>
+        <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
     </div>
-    <div class="carousel-item">
-      <img src="assets/requisito3.jpg" class="d-block w-100" alt="...">
+</header>
+
+
+
+<div class="modal " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+
+            <section id="contact">
+                <div class="social">
+
+                    <a href="https://www.facebook.com/guarderiacaninaislajordancipolletti"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5492994194451&fbclid=IwAR2rF6hLXZDdD9q5IzmUwCI1t1zlGnhTJZ8z5iN8tr5guwwmgVMuBYJgZwM"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/guarderia_canina_isla_jordan/"><i class="fab fa-instagram"></i></a>
+
+                </div>
+
+                <div class="contact-box">
+                    <!--heading---------->
+                    <div class="c-heading">
+                        <h1>Contactenos</h1>
+                        <p>Contactenos vía E-mail o teléfono para despejar sus dudas</p>
+                    </div>
+                    <!--inputs------------------>
+                    <div class="c-inputs">
+                        <form>
+                            <input type="text" name="fname" placeholder="Ingrese su Nombre Completo" />
+                            <input type="email" placeholder="Ingrese su E-Mail" />
+                            <textarea name="message" placeholder="¿En qué lo podemos ayudar?"></textarea>
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d10435.402831219191!2d-67.9798421772029!3d-38.95907584112851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d-38.96046!2d-67.9774868!5e0!3m2!1sen!2sar!4v1607724557430!5m2!1sen!2sar"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </section>
+        </div>
     </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
 
-<!---PUBLICACIONES-->
+<!---------------------------------------------------------------------------------------------------!-->
+<div class="p-3">
+    <div id="canino">
 
-<br>
+        <h2>
+            <p class="text-danger">Bienvenidos Jordanes</p>
+        </h2>
+        <p class="text-muted">Buscan un hogar donde sean cuidados con <strong>responsabilidad, amor y compromiso.</strong></p>
 
-<div data-bs-spy="scroll">
+        <div class="row">
 
-<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fguarderiacaninaislajordancipolletti%2Fposts%2F1550936138449060&show_text=true&width=552&height=513&appId" width="552" height="513" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            <div class="col-lg-2" *ngFor="let canino of lista_caninos | paginate:{itemsPerPage:5,currentPage:p}">
+                <!--<div class="card border-danger mb-3 "><br>
+                    <img [src]="canino.imagen_portada " class="card-img-top" alt="..." style="width: 275px; margin-left: 0%;">
+                    <div class="card-body ">
+                        <h5 class="card-title ">{{canino.nombre}}</h5>
+                        <button (click)="detalleCaninoPublic(canino.id_canino) " class="btn btn-primary ">Conoce más de {{canino.nombre}}</button>
+                    </div>
+                </div>-->
+                <div class="card">
+                    <img [src]="canino.imagen_portada" class="card-img-top" style="height: 300px;" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{canino.nombre}}</h5>
+                        <a href="#" class="btn btn-primary">Conocé más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+
+    </div>
 </div>

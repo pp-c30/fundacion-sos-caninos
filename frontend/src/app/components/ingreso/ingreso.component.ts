@@ -16,10 +16,10 @@ export class IngresoComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private autServ:AutenticacionService, private route:Router) {
     this.formIngreso= this.fb.group({
-      username:['',[Validators.required,Validators.minLength(8)]],
-      password:['',[Validators.required,Validators.minLength(8)]]
+      username:['',[Validators.required]],
+      password:['',[Validators.required]]
       
-    });
+    })
   }
    
 
