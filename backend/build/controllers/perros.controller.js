@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CaninoController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -211,7 +210,7 @@ class CaninoController {
         return __awaiter(this, void 0, void 0, function* () {
             let id_canino = req.params.id_canino;
             const base = yield database_1.con();
-            const listar_imagenes_un_canino = yield base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            const listar_imagenes_un_canino = yield base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
             res.json(listar_imagenes_un_canino);
         });
     }

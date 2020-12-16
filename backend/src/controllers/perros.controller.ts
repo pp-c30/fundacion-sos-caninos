@@ -265,7 +265,7 @@ export class CaninoController {
 
             const base = await con();
 
-            const listar_imagenes_un_canino = await base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            const listar_imagenes_un_canino = await base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
             
             res.json(listar_imagenes_un_canino);
     }
