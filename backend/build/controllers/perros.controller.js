@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CaninoController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -73,6 +74,14 @@ class CaninoController {
             //Logro la conexion con la base 
             const base = yield database_1.con();
             let canino = yield base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino');
+            return res.json(canino);
+        });
+    }
+    listarCaninoHome(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Logro la conexion con la base 
+            const base = yield database_1.con();
+            let canino = yield base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino order by id_canino DESC limit 6');
             return res.json(canino);
         });
     }

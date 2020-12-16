@@ -1,5 +1,6 @@
 import { server  } from './server';
-
+import dotenv from "dotenv";
+dotenv.config();
 //Creo la funcion
 function principal()
 {

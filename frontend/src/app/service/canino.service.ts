@@ -63,6 +63,10 @@ export class CaninoService {
    {
      return this.http.get<ICanino[]>('http://localhost:4200/canino');
    }
+   getCaninoHome()
+   {
+     return this.http.get<ICanino[]>('http://localhost:4200/canino-home');
+   }
 
    getOneCanino(id_canino:number)
    {

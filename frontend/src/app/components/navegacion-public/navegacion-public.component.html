@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" style="width: 99vw;">
     <div class="container-fluid">
         <img src="assets/logo.jpg" alt="" width="9%" height="9%">
 
@@ -14,8 +14,8 @@
                 <a class="nav-link" routerLink="">Doná</a>
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
 
-                   
-                
+
+
                 <a class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" *ngIf="authServ.verificarUsuarioLogueado()" data-toggle="dropdown" data-target="desplegable" href="#">
                         <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
@@ -50,16 +50,14 @@
 
                     </div>
                 </a>
-                <a class="nav-link" routerLink="ingreso" style="margin-left: 5%;">Ingresar</a>
-                <a class="nav-link" routerLink="registro">Registrarse
-                    
-                </a>
-
             </div>
 
 
-        </div>
 
+
+        </div>
+        <a class="nav-link" routerLink="ingreso">Ingresar    </a>
+        <a class="nav-link" routerLink="registro" style="margin-right: 2.5%">Registrarse</a>
 
     </div>
 

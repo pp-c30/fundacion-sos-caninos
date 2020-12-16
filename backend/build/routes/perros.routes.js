@@ -11,6 +11,7 @@ const caninoController = new perros_controller_1.CaninoController();
 const enrutadorCanino = express_1.Router();
 //Defino las rutas de canino
 enrutadorCanino.route('/canino').get(caninoController.listarCanino);
+enrutadorCanino.route('/canino-home').get(caninoController.listarCaninoHome);
 enrutadorCanino.route('/canino').post(multer_1.default.array('img_canino'), caninoController.guardarCanino);
 enrutadorCanino.route('/eliminar-canino/:id_canino').delete(caninoController.eliminarCanino);
 enrutadorCanino.route('/canino/:id_canino').put(caninoController.actualizarCanino);
