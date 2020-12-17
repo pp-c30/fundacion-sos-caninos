@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CaninoComponent } from './components/canino/canino.component';
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
+import { DonacionesPublicComponent } from './components/donaciones-public/donaciones-public.component';
 import { FormularioAdopcionComponent } from './components/formulario-adopcion/formulario-adopcion.component';
 import { AdminDetalleEventoComponent } from "./components/admin-detalle-evento/admin-detalle-evento.component";
 import { AdmindEventoComponent } from "./components/admind-evento/admind-evento.component";
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path:'donaciones', 
     component:DonacionesComponent
+  },
+  {
+    path:'dona', 
+    component:DonacionesPublicComponent
   },
     {
     path:'contacto', 
