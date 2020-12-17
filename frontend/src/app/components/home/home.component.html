@@ -3,6 +3,7 @@
 
     </div>
     <div class="welcome-text">
+
         <h1>
             Fundación <span>SOS</span></h1>
         <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
@@ -64,14 +65,7 @@
         <div class="row">
 
             <div class="col-lg-2" *ngFor="let canino of lista_caninos | paginate:{itemsPerPage:5,currentPage:p}">
-                <!--<div class="card border-danger mb-3 "><br>
-                    <img [src]="canino.imagen_portada " class="card-img-top" alt="..." style="width: 275px; margin-left: 0%;">
-                    <div class="card-body ">
-                        <h5 class="card-title ">{{canino.nombre}}</h5>
-                        <button (click)="detalleCaninoPublic(canino.id_canino) " class="btn btn-primary ">Conoce más de {{canino.nombre}}</button>
-                    </div>
-                </div>-->
-                <div class="card">
+                <div class="card border-danger">
                     <img [src]="canino.imagen_portada" class="card-img-top" style="height: 300px;" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{canino.nombre}}</h5>

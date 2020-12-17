@@ -7,6 +7,7 @@
       </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
+<<<<<<< HEAD
                 <a class="nav-link" routerLink="home">Inicio</a>
                 <a class="nav-link" routerLink="nosotros">Nosotros</a>
                 <a class="nav-link" routerLink="nuestros-eventos">Eventos</a>
@@ -14,6 +15,14 @@
                 <a class="nav-link" routerLink="requisitos-adopcion">Adoptá</a>
                 <a class="nav-link" routerLink="">Doná</a>
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
+=======
+                <h4><a class="nav-link" routerLink="home">Inicio</a></h4>
+                <h4><a class="nav-link" routerLink="nosotros">Nosotros</a></h4>
+                <h4><a class="nav-link" routerLink="nuestros-jordanes">Canino</a></h4>
+                <h4><a class="nav-link" routerLink="requisitos-adopcion">Adoptá</a></h4>
+                <h4><a class="nav-link" routerLink="">Doná</a></h4>
+                <h4><a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a></h4>
+>>>>>>> c4685ad7fc3c202c63297d8ecbc65f16712d06d9
 
 
 
@@ -31,7 +40,7 @@
                             <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/admin-evento">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/form-adopcion">Adopcion</a>
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/form-adopcion/1">Adopcion</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/requisitos">Requisitos</a>
@@ -57,8 +66,8 @@
 
 
         </div>
-        <a class="nav-link" routerLink="ingreso">Ingresar    </a>
-        <a class="nav-link" routerLink="registro" style="margin-right: 2.5%">Registrarse</a>
+        <h4><a class="nav-link" routerLink="ingreso">Ingresar    </a></h4>
+        <h4><a class="nav-link" routerLink="registro" style="margin-right: 5%">Registrarse</a></h4>
 
     </div>
 
