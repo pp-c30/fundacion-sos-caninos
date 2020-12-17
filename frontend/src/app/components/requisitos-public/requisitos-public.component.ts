@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-requisitos-public',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequisitosPublicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
 
+
+
+  obtenerCaninos() 
+{
+  
+  //Para redirigirme a una ruta voy a tener que importarme un par de modulos. Para esto debe existir la ruta en el app-routing
+  this.router.navigate(['/nuestros-jordanes']);
+  
+}
 }

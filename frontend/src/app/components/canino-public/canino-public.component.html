@@ -6,6 +6,14 @@
 
     <div class="row">
 
+<<<<<<< HEAD
+    <div class="col-lg-2" *ngFor="let canino of lista_caninos | paginate:{itemsPerPage:5,currentPage:p}">
+        <div class="card border-danger mb-3 "><br>
+            <center><img [src]="canino.imagen_portada" class="card-img-top" alt="..." style="width: 275px; margin-left: 0%;"></center>
+            <div class="card-body ">
+                <h5 class="card-title ">{{canino.nombre}}</h5>
+                <button (click)="detalleCaninoPublic(canino.id_canino) " class="btn btn-primary ">Conoce más de {{canino.nombre}}</button>
+=======
         <div class="col-lg-2" *ngFor="let canino of lista_caninos | paginate:{itemsPerPage:5,currentPage:p}">
             <div class="card border-danger mb-3 " style="border-radius: 5%"><br>
                 <img [src]="canino.imagen_portada " class="card-img-top" style="border-radius: 20%;" alt="..." style="height: 300px;">
@@ -13,6 +21,7 @@
                     <h5 class="card-title ">{{canino.nombre}}</h5>
                     <button (click)="detalleCaninoPublic(canino.id_canino) " class="btn btn-primary ">Conoce más de {{canino.nombre}}</button>
                 </div>
+>>>>>>> c4685ad7fc3c202c63297d8ecbc65f16712d06d9
             </div>
         </div>
     </div>
