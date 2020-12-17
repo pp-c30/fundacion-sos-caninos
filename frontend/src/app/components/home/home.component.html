@@ -66,10 +66,10 @@
 
             <div class="col-lg-2" *ngFor="let canino of lista_caninos | paginate:{itemsPerPage:5,currentPage:p}">
                 <div class="card border-danger">
-                    <img [src]="canino.imagen_portada" class="card-img-top" style="height: 300px;" alt="...">
+                    <img [src]="canino.imagen_portada" class="card-img-top" style="height: 250px;" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{canino.nombre}}</h5>
-                        <a href="#" class="btn btn-primary">Conocé más</a>
+                        <a routerLink="../nuestros-jordanes" class="btn btn-primary">Conocé más</a>
                     </div>
                 </div>
             </div>
