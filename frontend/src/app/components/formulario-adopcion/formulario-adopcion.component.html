@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12 col-lg-8" [style]="display">
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -21,7 +21,7 @@
                     <th>Canino</th>
                     <th>Provincia</th>
                     <th>Localidad</th>
-                    <th>Requisito</th>
+                    <!--<th>Requisito</th>-->
                     <th>Operaciones</th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <td>{{formularioA.canino}}</td>
                     <td>{{formularioA.provincia_id}}</td>
                     <td>{{formularioA.id_localidad}}</td>
-                    <td>{{formularioA.requisito}}</td>
+                    <!--<td>{{formularioA.requisito}}</td>-->
                     <td>
                         <div class="btn-group btn-group-sm">
                             <button (click)="eliminarFormularioA(formularioA.id_formulario)" class="btn btn-danger">Eliminar</button>
@@ -56,7 +56,7 @@
 
     </div>
 
-    <div class="col-sm-4">
+    <div [class]="responsive">
 
         <div class="card">
             <div class="card-header"> Formulario Adopción</div>
@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('correo')?.touched || formAdopcion.get('correo')?.dirty) && formAdopcion.get('correo')?.invalid}" formControlName="correo" placeholder="Correo" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formAdopcion.get('correo')?.touched || formAdopcion.get('correo')?.dirty) && formAdopcion.get('correo')?.invalid}" formControlName="correo" placeholder="Correo" type="email" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -127,7 +127,7 @@
 
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('requisito')?.touched || formAdopcion.get('requisito')?.dirty) && formAdopcion.get('requisito')?.invalid}" formControlName="requisito" placeholder="Requisito" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formAdopcion.get('requisito')?.touched || formAdopcion.get('requisito')?.dirty) && formAdopcion.get('requisito')?.invalid}" formControlName="requisito" placeholder="Requisito" type="hidden" class="form-control">
                     </div>
 
                     <button class="btn btn-primary">Enviar</button>

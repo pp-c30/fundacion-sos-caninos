@@ -82,6 +82,17 @@ export class CaninoController {
         return res.json(canino);
         
     }
+
+    public async listarCaninoHome(req:Request,res:Response)
+    {
+        //Logro la conexion con la base 
+        const base = await con();
+
+        let canino = await base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino order by id_canino DESC limit 6');
+             
+        return res.json(canino);
+        
+    }
     //guardar eventos
     public  async guardarCanino(req:Request,res:Response) 
     {
@@ -254,7 +265,7 @@ export class CaninoController {
 
             const base = await con();
 
-            const listar_imagenes_un_canino = await base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            const listar_imagenes_un_canino = await base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
             
             res.json(listar_imagenes_un_canino);
     }

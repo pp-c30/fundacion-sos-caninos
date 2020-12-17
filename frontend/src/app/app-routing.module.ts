@@ -34,7 +34,7 @@ const routes: Routes = [
     component:CaninoComponent
   },
   {
-    path:'form-adopcion', 
+    path:'form-adopcion/:numero', 
     component:FormularioAdopcionComponent
   },
   {

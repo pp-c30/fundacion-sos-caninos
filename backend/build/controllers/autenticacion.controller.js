@@ -26,26 +26,26 @@ class AutenticacionController {
                 password: password_cifrada,
                 email: req.body.email
             };
-            const base = yield database_1.con();
-            const resultado = yield base.query('insert into usuario set ?', [unUsuario]);
-            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN_SECRET || '12qwaszx');
+            const db = yield database_1.con();
+            const resultado = yield db.query('insert into usuario set ?', [unUsuario]);
+            const token = jsonwebtoken_1.default.sign({ _id: resultado.insertId }, process.env.TOKEN_SECRET || '1f58hdgd');
             res.json(token);
         });
     }
     ingresar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const base = yield database_1.con();
-            const usuario = yield base.query('select * from usuario where username = ?', [req.body.username]);
+            const db = yield database_1.con();
+            const usuario = yield db.query('select * from usuario where username = ?', [req.body.username]);
             if (!usuario[0]) {
                 res.json(0);
             }
             else {
-                const correctPasword = yield bcryptjs_1.default.compare(req.body.password, usuario[0].password);
-                if (!correctPasword) {
+                const correctpassword = yield bcryptjs_1.default.compare(req.body.password, usuario[0].password);
+                if (!correctpassword) {
                     res.json(1);
                 }
                 else {
-                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN_SECRET || '12qwaszx', { expiresIn: 60 * 60 * 24 });
+                    const token = jsonwebtoken_1.default.sign({ _id: usuario[0].id_usuario }, process.env.TOKEN_SECRET || '1f58hdgd', { expiresIn: 60 * 60 * 24 });
                     res.json(token);
                 }
             }

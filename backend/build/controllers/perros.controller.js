@@ -77,6 +77,14 @@ class CaninoController {
             return res.json(canino);
         });
     }
+    listarCaninoHome(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Logro la conexion con la base 
+            const base = yield database_1.con();
+            let canino = yield base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y") as fa_formateada, DATE_FORMAT(fecha_nacimiento, "%d/%m/%Y") as fn_formateada from canino order by id_canino DESC limit 6');
+            return res.json(canino);
+        });
+    }
     //guardar eventos
     guardarCanino(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -203,7 +211,7 @@ class CaninoController {
         return __awaiter(this, void 0, void 0, function* () {
             let id_canino = req.params.id_canino;
             const base = yield database_1.con();
-            const listar_imagenes_un_canino = yield base.query('select * from imagenes_caninos where id_canino = ?', [id_canino]);
+            const listar_imagenes_un_canino = yield base.query('select * from imagenes_canino where id_canino = ?', [id_canino]);
             res.json(listar_imagenes_un_canino);
         });
     }

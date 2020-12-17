@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" style="width: 99vw;">
     <div class="container-fluid">
         <img src="assets/logo.jpg" alt="" width="9%" height="9%">
 
@@ -7,15 +7,17 @@
       </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" routerLink="home">Inicio</a>
-                <a class="nav-link" routerLink="nosotros">Nosotros</a>
-                <a class="nav-link" routerLink="nuestros-jordanes">Canino</a>
-                <a class="nav-link" routerLink="requisitos-adopcion">Adoptá</a>
-                <a class="nav-link" routerLink="dona">Doná</a>
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a>
-
-                   
+                                
                 
+                <h4><a class="nav-link" routerLink="home">Inicio</a></h4>
+                <h4><a class="nav-link" routerLink="nosotros">Nosotros</a></h4>
+                <h4><a class="nav-link" routerLink="nuestros-jordanes">Canino</a></h4>
+                <h4><a class="nav-link" routerLink="requisitos-adopcion">Adoptá</a></h4>
+                <h4><a class="nav-link" routerLink="dona">Doná</a></h4>
+                <h4><a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">Contacto</a></h4>
+
+
+
                 <a class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" *ngIf="authServ.verificarUsuarioLogueado()" data-toggle="dropdown" data-target="desplegable" href="#">
                         <img src="assets/usuarioAdmin.png" alt="" width="15%" height="15%">
@@ -30,7 +32,7 @@
                             <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/admin-evento">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/form-adopcion">Adopcion</a>
+                            <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/form-adopcion/1">Adopcion</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" *ngIf="authServ.verificarUsuarioLogueado()" href="#" routerLink="/requisitos">Requisitos</a>
@@ -50,16 +52,14 @@
 
                     </div>
                 </a>
-                <a class="nav-link" routerLink="ingreso" style="margin-left: 5%;">Ingresar</a>
-                <a class="nav-link" routerLink="registro">Registrarse
-                    
-                </a>
-
             </div>
 
 
-        </div>
 
+
+        </div>
+        <h4><a class="nav-link" routerLink="ingreso">Ingresar    </a></h4>
+        <h4><a class="nav-link" routerLink="registro" style="margin-right: 5%">Registrarse</a></h4>
 
     </div>
 

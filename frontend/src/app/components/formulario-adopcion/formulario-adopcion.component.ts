@@ -9,6 +9,7 @@ import { IProvincia } from 'src/app/models/provincia';
 import { ILocalidades } from 'src/app/models/localidades';
 import { ICanino } from 'src/app/models/canino' 
 import { CaninoService } from "../../service/canino.service";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-adopcion',
@@ -28,8 +29,13 @@ export class FormularioAdopcionComponent implements OnInit {
 
  p:number = 1;
 
+ identificador: number;
 
-  constructor(private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder, private localidadesServ:LocalidadesService, private provinciaServ:ProvinciaService, private caninoServ:CaninoService) {
+ display: any = 'display:none';
+ responsive: any = 'col-lg-12 col-sm-12 col-xs-12'
+
+
+  constructor(private activatedRoute:ActivatedRoute, private formularioAdopcionServ:FormularioAdopcionService,private fb:FormBuilder, private localidadesServ:LocalidadesService, private provinciaServ:ProvinciaService, private caninoServ:CaninoService) {
    
       this.formAdopcion = this.fb.group({
         id_formulario:[null],
@@ -42,7 +48,8 @@ export class FormularioAdopcionComponent implements OnInit {
         canino:['',[Validators.required]],
         id_localidad:['',[Validators.required]],
         provincia_id:[,[Validators.required]],
-        requisito:['',[Validators.required]],
+        requisito:[8,[Validators.required]],
+
       });
    }
 
@@ -52,6 +59,17 @@ export class FormularioAdopcionComponent implements OnInit {
    this.obtenerProvincia();
    this.dameLocalidades;
    this.obtenerCanino();
+
+   this.activatedRoute.params.subscribe(
+    params => {
+      this.identificador = params.numero;
+      if (this.identificador == 1){
+        this.display = 'display:block';
+        this.responsive = 'col-lg-4 col-sm-12 col-xs-12'
+      }
+    }
+  );
+
  
   }
 
@@ -102,8 +120,8 @@ export class FormularioAdopcionComponent implements OnInit {
         respuesta =>{
           console.log(respuesta);
           //refresca la grilla
-          this.listarFormularioA();
           this.formAdopcion.reset();
+          this.listarFormularioA();
 
         },
         error => console.log(error)
@@ -116,6 +134,7 @@ export class FormularioAdopcionComponent implements OnInit {
       resultado => {
         console.log(resultado);
         //refresca la grilla
+        this.formAdopcion.reset();
         this.listarFormularioA();
       },
       error => console.log(error)

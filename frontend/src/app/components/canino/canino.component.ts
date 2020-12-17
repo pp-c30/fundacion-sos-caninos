@@ -24,6 +24,8 @@ export class CaninoComponent implements OnInit {
 
   ocultar_boton_archivos:any = 'display:block';
 
+  display: any = 'display:none';
+
   constructor(private router:Router,private fb:FormBuilder,private serviceCanino:CaninoService) { 
 
     this.formCanino = this.fb.group({
