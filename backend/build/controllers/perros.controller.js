@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CaninoController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -139,7 +140,7 @@ class CaninoController {
         return __awaiter(this, void 0, void 0, function* () {
             const base = yield database_1.con();
             let id_canino = req.params.id_canino;
-            let unCanino = yield base.query('select * from canino where id_canino = ?', [id_canino]);
+            let unCanino = yield base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y")as fa_formateada from canino where id_canino = ?', [id_canino]);
             return res.json(unCanino[0]);
         });
     }

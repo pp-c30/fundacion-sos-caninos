@@ -39,13 +39,13 @@ export class CaninoService {
    fd.append('nombre',datosCanino.nombre);
    fd.append('fecha_nacimiento',datosCanino.fecha_nacimiento);
    fd.append('edad',datosCanino.edad);
-   fd.append('sexo',datosCanino.sexo);
-   fd.append('tamanio',datosCanino.tamanio);
-   fd.append('castrado',datosCanino.castrado);
-   fd.append('desparasitado',datosCanino.desparasitado);
-   fd.append('vacunado',datosCanino.vacunado);
+   fd.append('sexo',String(datosCanino.sexo));
+   fd.append('tamanio',String(datosCanino.tamanio));
+   fd.append('castrado',String(datosCanino.castrado));
+   fd.append('desparasitado',String(datosCanino.desparasitado));
+   fd.append('vacunado',String(datosCanino.vacunado));
    fd.append('descripcion',datosCanino.descripcion);
-   fd.append('estado_adopcion',datosCanino.estado_adopcion);
+   fd.append('estado_adopcion',String(datosCanino.estado_adopcion));
    fd.append('fecha_adopcion',datosCanino.fecha_adopcion);
 
    //Recorro la lista de imagenes con un FOR, a medida que se recorren se insertan

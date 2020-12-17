@@ -162,7 +162,7 @@ export class CaninoController {
 
         let id_canino = req.params.id_canino;
 
-        let unCanino = await base.query('select * from canino where id_canino = ?',[id_canino]);
+        let unCanino = await base.query('select *, DATE_FORMAT(fecha_adopcion, "%d/%m/%Y")as fa_formateada from canino where id_canino = ?',[id_canino]);
 
         return res.json(unCanino[0]);
     }

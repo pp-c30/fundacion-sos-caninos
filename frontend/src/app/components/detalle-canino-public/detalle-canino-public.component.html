@@ -17,16 +17,6 @@
                 </a>
             </div>
 
-<<<<<<< HEAD
- </div>    
-  
-  <div class="col-lg-6"> 
-      <!--<div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-=======
         </div>
 
         <div class="col-lg-6">
@@ -35,7 +25,6 @@
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
->>>>>>> c4685ad7fc3c202c63297d8ecbc65f16712d06d9
                 Datos principales (Nombre, fecha de nacimiento, edad, sexo y tamaño)
               </button>
                         </h2>
@@ -85,7 +74,7 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div *ngIf="unCanino.castrado == 0; else castrado_bool">
+                            <div *ngIf="unCanino.castrado == 0">
                                 <span class="badge badge-danger">No Castrado</span>
                             </div>
                             <div *ngIf="unCanino.castrado == 1">
@@ -132,9 +121,7 @@
                 <div class="card">
                     <div class="card-header" id="headingFour">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-               Estado de adopción y fecha
-                </button>
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Estado de adopción y fecha</button>
                         </h2>
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
@@ -148,23 +135,19 @@
                             <div *ngIf="unCanino.estado_adopcion == 2">
                                 <span class="badge badge-danger">No Registrado</span>
                             </div>
-                            <li>{{unCanino.fecha_adopcion}}</li>
+                            <li>{{unCanino.fa_formateada}}</li>
                         </div>
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-          </div>
-      </div>-->
-
-=======
-            <br>
-
-            <button type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#exampleModalcaninodetalle">Adoptame</button>
         </div>
->>>>>>> c4685ad7fc3c202c63297d8ecbc65f16712d06d9
     </div>
+    <br>
+
+    <button type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#exampleModalcaninodetalle">Adoptame</button>
 </div>
+
+
 
 
 
