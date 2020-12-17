@@ -1,137 +1,139 @@
-<div class="row">
-    <div class="col-sm-12 col-lg-8" [style]="display">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <input placeholder="Buscar" [(ngModel)]="buscarFormulario" type="text" class="form-control">
+<div class="p-3">
+    <div class="row">
+        <div class="col-sm-12 col-lg-8" [style]="display">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input placeholder="Buscar" [(ngModel)]="buscarFormulario" type="text" class="form-control">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Direccion</th>
-                    <th>DNI</th>
-                    <th>Telefono</th>
-                    <th>Correo</th>
-                    <th>Canino</th>
-                    <th>Provincia</th>
-                    <th>Localidad</th>
-                    <!--<th>Requisito</th>-->
-                    <th>Operaciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let formularioA of listFormularioA | filter:buscarFormulario | paginate:{itemsPerPage:10,currentPage:p}">
-                    <td>{{formularioA.id_formulario}}</td>
-                    <td>{{formularioA.nombre}}</td>
-                    <td>{{formularioA.apellido}}</td>
-                    <td>{{formularioA.direccion}}</td>
-                    <td>{{formularioA.dni}}</td>
-                    <td>{{formularioA.telefono}}</td>
-                    <td>{{formularioA.correo}}</td>
-                    <td>{{formularioA.canino}}</td>
-                    <td>{{formularioA.provincia_id}}</td>
-                    <td>{{formularioA.id_localidad}}</td>
-                    <!--<td>{{formularioA.requisito}}</td>-->
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button (click)="eliminarFormularioA(formularioA.id_formulario)" class="btn btn-danger">Eliminar</button>
-                            <button (click)="editarFormularioA(formularioA)" class="btn btn-primary">Editar</button>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Direccion</th>
+                        <th>DNI</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Canino</th>
+                        <th>Provincia</th>
+                        <th>Localidad</th>
+                        <!--<th>Requisito</th>-->
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let formularioA of listFormularioA | filter:buscarFormulario | paginate:{itemsPerPage:10,currentPage:p}">
+                        <td>{{formularioA.id_formulario}}</td>
+                        <td>{{formularioA.nombre}}</td>
+                        <td>{{formularioA.apellido}}</td>
+                        <td>{{formularioA.direccion}}</td>
+                        <td>{{formularioA.dni}}</td>
+                        <td>{{formularioA.telefono}}</td>
+                        <td>{{formularioA.correo}}</td>
+                        <td>{{formularioA.canino}}</td>
+                        <td>{{formularioA.provincia_id}}</td>
+                        <td>{{formularioA.id_localidad}}</td>
+                        <!--<td>{{formularioA.requisito}}</td>-->
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button (click)="eliminarFormularioA(formularioA.id_formulario)" class="btn btn-danger">Eliminar</button>
+                                <button (click)="editarFormularioA(formularioA)" class="btn btn-primary">Editar</button>
 
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-5">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-sm-5">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
             </div>
+
         </div>
 
-    </div>
+        <div [class]="responsive">
 
-    <div [class]="responsive">
+            <div class="card">
+                <div class="card-header"> Formulario Adopción</div>
+                <div class="card-body">
+                    <form [formGroup]="formAdopcion" (ngSubmit)="guardarFormularioA()" novalidate>
 
-        <div class="card">
-            <div class="card-header"> Formulario Adopción</div>
-            <div class="card-body">
-                <form [formGroup]="formAdopcion" (ngSubmit)="guardarFormularioA()" novalidate>
+                        <input formControlName="id_formulario" type="text" type="hidden">
 
-                    <input formControlName="id_formulario" type="text" type="hidden">
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('nombre')?.touched || formAdopcion.get('nombre')?.dirty) && formAdopcion.get('nombre')?.invalid}" formControlName="nombre" placeholder="Nombre" type="text" class="form-control">
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('nombre')?.touched || formAdopcion.get('nombre')?.dirty) && formAdopcion.get('nombre')?.invalid}" formControlName="nombre" placeholder="Nombre" type="text" class="form-control">
-
-                        <div class="invalid-feedback">
-                            <span *ngIf="formAdopcion.get('nombre').hasError('required')">Requerido </span>
-                            <span *ngIf="!formAdopcion.get('nombre').hasError('minLength')">Mínimo 3 Caracteres</span>
+                            <div class="invalid-feedback">
+                                <span *ngIf="formAdopcion.get('nombre').hasError('required')">Requerido </span>
+                                <span *ngIf="!formAdopcion.get('nombre').hasError('minLength')">Mínimo 3 Caracteres</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('apellido')?.touched || formAdopcion.get('apellido')?.dirty) && formAdopcion.get('apellido')?.invalid}" formControlName="apellido" placeholder="Apellido" type="text" class="form-control">
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('apellido')?.touched || formAdopcion.get('apellido')?.dirty) && formAdopcion.get('apellido')?.invalid}" formControlName="apellido" placeholder="Apellido" type="text" class="form-control">
 
-                        <div class="invalid-feedback">
-                            <span *ngIf="formAdopcion.get('apellido').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formAdopcion.get('apellido').hasError('minLength')">Mínimo 3 Caracteres</span>
+                            <div class="invalid-feedback">
+                                <span *ngIf="formAdopcion.get('apellido').hasError('required')">Campo Requerido </span>
+                                <span *ngIf="!formAdopcion.get('apellido').hasError('minLength')">Mínimo 3 Caracteres</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('direccion')?.touched || formAdopcion.get('direccion')?.dirty) && formAdopcion.get('direccion')?.invalid}" formControlName="direccion" placeholder="Direccion" type="text" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('dni')?.touched || formAdopcion.get('dni')?.dirty) && formAdopcion.get('dni')?.invalid}" formControlName="dni" placeholder="DNI" type="value" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('telefono')?.touched || formAdopcion.get('telefono')?.dirty) && formAdopcion.get('telefono')?.invalid}" formControlName="telefono" placeholder="Telefono" type="value" class="form-control">
-
-                        <div class="invalid-feedback">
-                            <span *ngIf="formAdopcion.get('telefono').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formAdopcion.get('telefono').hasError('minLength')">Mínimo 8 Caracteres</span>
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('direccion')?.touched || formAdopcion.get('direccion')?.dirty) && formAdopcion.get('direccion')?.invalid}" formControlName="direccion" placeholder="Direccion" type="text" class="form-control">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('correo')?.touched || formAdopcion.get('correo')?.dirty) && formAdopcion.get('correo')?.invalid}" formControlName="correo" placeholder="Correo" type="email" class="form-control">
-                    </div>
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('dni')?.touched || formAdopcion.get('dni')?.dirty) && formAdopcion.get('dni')?.invalid}" formControlName="dni" placeholder="DNI" type="value" class="form-control">
+                        </div>
 
-                    <div class="form-group">
-                        <select formControlName="canino" class="form-control">
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('telefono')?.touched || formAdopcion.get('telefono')?.dirty) && formAdopcion.get('telefono')?.invalid}" formControlName="telefono" placeholder="Telefono" type="value" class="form-control">
+
+                            <div class="invalid-feedback">
+                                <span *ngIf="formAdopcion.get('telefono').hasError('required')">Campo Requerido </span>
+                                <span *ngIf="!formAdopcion.get('telefono').hasError('minLength')">Mínimo 8 Caracteres</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('correo')?.touched || formAdopcion.get('correo')?.dirty) && formAdopcion.get('correo')?.invalid}" formControlName="correo" placeholder="Correo" type="email" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <select formControlName="canino" class="form-control">
                             <option value="0" disabled selected>Seleccionar Canino</option>
                             <option *ngFor="let canino of lista_caninos" [value]="canino.id_canino">{{canino.nombre}}</option>
                         </select>
-                    </div>
+                        </div>
 
-                    <div class="form-group">
-                        <select (change)="dameLocalidades($event.target.value)" formControlName="provincia_id" class="form-control">
+                        <div class="form-group">
+                            <select (change)="dameLocalidades($event.target.value)" formControlName="provincia_id" class="form-control">
                             <option value="0" disabled selected>Seleccionar Provincia</option>
                             <option *ngFor="let provincia of lista_provincia" [value]="provincia.id">{{provincia.nombre}}</option>
                         </select>
-                    </div>
+                        </div>
 
-                    <div class="form-group">
-                        <select formControlName="id_localidad" class="form-control">
+                        <div class="form-group">
+                            <select formControlName="id_localidad" class="form-control">
                             <option value="0" disabled selected>Seleccionar Localidad</option>
                             <option *ngFor="let localidades of lista_localidades" [value]="localidades.id_localidad">{{localidades.nombre}}</option>
                         </select>
-                    </div>
+                        </div>
 
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formAdopcion.get('requisito')?.touched || formAdopcion.get('requisito')?.dirty) && formAdopcion.get('requisito')?.invalid}" formControlName="requisito" placeholder="Requisito" type="hidden" class="form-control">
-                    </div>
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formAdopcion.get('requisito')?.touched || formAdopcion.get('requisito')?.dirty) && formAdopcion.get('requisito')?.invalid}" formControlName="requisito" placeholder="Requisito" type="hidden" class="form-control">
+                        </div>
 
-                    <button class="btn btn-primary">Enviar</button>
-                </form>
+                        <button class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

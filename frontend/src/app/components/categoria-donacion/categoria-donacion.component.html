@@ -1,62 +1,64 @@
-<div class="row">
-    <div class="col-sm-8">
+<div class="p-3">
+    <div class="row">
+        <div class="col-sm-8">
 
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarCategoria_donacion" type="text" class="form-control">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarCategoria_donacion" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripcion</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let categoria_donacion of listCategoria_donacion | filter:buscarCategoria_donacion | paginate:{itemsPerPage:5,currentPage:p}">
+                        <td>{{categoria_donacion.id_categoria_donacion}}</td>
+                        <td>{{categoria_donacion.descripcion}}</td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <button class="btn btn-danger" (click)="eliminarCategoria_donacion(categoria_donacion.id_categoria_donacion)">Eliminar</button>
+                                <button class="btn btn-primary" (click)="editarCategoria_donacion(categoria_donacion)">Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-sm-4">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
             </div>
         </div>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descripcion</th>
+        <div class="col-sm-4">
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let categoria_donacion of listCategoria_donacion | filter:buscarCategoria_donacion | paginate:{itemsPerPage:5,currentPage:p}">
-                    <td>{{categoria_donacion.id_categoria_donacion}}</td>
-                    <td>{{categoria_donacion.descripcion}}</td>
-                    <td>
-                        <div class="btn-group-sm">
-                            <button class="btn btn-danger" (click)="eliminarCategoria_donacion(categoria_donacion.id_categoria_donacion)">Eliminar</button>
-                            <button class="btn btn-primary" (click)="editarCategoria_donacion(categoria_donacion)">Editar</button>
+            <div class="card">
+                <div class="card-header">Formulario Categoria de Donación</div>
+                <div class="card-body">
+                    <form [formGroup]="formCategoria_donacion" (ngSubmit)="guardarCategoria_donacion()" novalidate>
+
+                        <input formControlName="id_categoria_donacion" type="text" type="hidden">
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formCategoria_donacion.get('descripcion')?.touched || formCategoria_donacion.get('descripcion')?.dirty) && formCategoria_donacion.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion"
+                                type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formCategoria_donacion.get('descripcion').hasError('required')">Campo Requerido </span>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-4">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-sm-4">
+                        <button [disabled]="formCategoria_donacion.invalid" class="btn btn-success">Guardar Categoria de Donación</button>
 
-        <div class="card">
-            <div class="card-header">Formulario Categoria de Donación</div>
-            <div class="card-body">
-                <form [formGroup]="formCategoria_donacion" (ngSubmit)="guardarCategoria_donacion()" novalidate>
-
-                    <input formControlName="id_categoria_donacion" type="text" type="hidden">
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formCategoria_donacion.get('descripcion')?.touched || formCategoria_donacion.get('descripcion')?.dirty) && formCategoria_donacion.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion"
-                            type="text" class="form-control">
-                        <div class="invalid-feedback">
-                            <span *ngIf="formCategoria_donacion.get('descripcion').hasError('required')">Campo Requerido </span>
-                        </div>
-                    </div>
-
-                    <button [disabled]="formCategoria_donacion.invalid" class="btn btn-success">Guardar Categoria de Donación</button>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

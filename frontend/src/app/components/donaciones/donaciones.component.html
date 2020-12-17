@@ -1,94 +1,96 @@
-<div class="row">
-    <div class="col-sm-8">
+<div class="p-3">
+    <div class="row">
+        <div class="col-sm-8">
 
-        <div class="row">
-            <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-4">
 
+                </div>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripcion</th>
+                        <th>Contacto</th>
+                        <th>Direccion</th>
+                        <th>Categoria Donaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let donaciones of listDonaciones |  paginate:{itemsPerPage:5,currentPage:p}">
+                        <td>{{donaciones.id_donaciones}}</td>
+                        <td>{{donaciones.descripcion}}</td>
+                        <td>{{donaciones.contacto}}</td>
+                        <td>{{donaciones.direccion}}</td>
+                        <td>{{donaciones.categoria_donaciones}}</td>
+                        <td>
+                            <div class="btn-group-sm">
+                                <button class="btn btn-danger" (click)="eliminarDonaciones(donaciones.id_donaciones)">Eliminar</button>
+                                <button class="btn btn-primary" (click)="editarDonaciones(donaciones)">Editar</button>
+                                <button (click)="detalleDonaciones(fila.id_donaciones)" class="btn btn-primary">Detalle</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-sm-4">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
             </div>
         </div>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descripcion</th>
-                    <th>Contacto</th>
-                    <th>Direccion</th>
-                    <th>Categoria Donaciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let donaciones of listDonaciones |  paginate:{itemsPerPage:5,currentPage:p}">
-                    <td>{{donaciones.id_donaciones}}</td>
-                    <td>{{donaciones.descripcion}}</td>
-                    <td>{{donaciones.contacto}}</td>
-                    <td>{{donaciones.direccion}}</td>
-                    <td>{{donaciones.categoria_donaciones}}</td>
-                    <td>
-                        <div class="btn-group-sm">
-                            <button class="btn btn-danger" (click)="eliminarDonaciones(donaciones.id_donaciones)">Eliminar</button>
-                            <button class="btn btn-primary" (click)="editarDonaciones(donaciones)">Editar</button>
-                            <button (click)="detalleDonaciones(fila.id_donaciones)" class="btn btn-primary">Detalle</button>
+        <div class="col-sm-4">
+
+            <div class="card">
+                <div class="card-header">Formulario Donaciones</div>
+                <div class="card-body">
+                    <form [formGroup]="formDonaciones" (ngSubmit)="guardarDonaciones()" novalidate>
+
+                        <input formControlName="id_donaciones" type="text" type="hidden">
+
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formDonaciones.get('descripcion')?.touched || formDonaciones.get('descripcion')?.dirty) && formDonaciones.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion" type="text" class="form-control">
+                            <div class="invalid-feedback">
+                                <span *ngIf="formDonaciones.get('descripcion').hasError('required')">Campo Requerido </span>
+                                <span *ngIf="!formDonaciones.get('descripcion').hasError('minLength')">Mínimo 2 Caracteres</span>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-4">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-sm-4">
-
-        <div class="card">
-            <div class="card-header">Formulario Donaciones</div>
-            <div class="card-body">
-                <form [formGroup]="formDonaciones" (ngSubmit)="guardarDonaciones()" novalidate>
-
-                    <input formControlName="id_donaciones" type="text" type="hidden">
-
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonaciones.get('descripcion')?.touched || formDonaciones.get('descripcion')?.dirty) && formDonaciones.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Ingrese la Descripcion" type="text" class="form-control">
-                        <div class="invalid-feedback">
-                            <span *ngIf="formDonaciones.get('descripcion').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formDonaciones.get('descripcion').hasError('minLength')">Mínimo 2 Caracteres</span>
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formDonaciones.get('contacto')?.touched || formDonaciones.get('contacto')?.dirty) && formDonaciones.get('contacto')?.invalid}" formControlName="contacto" placeholder="Ingrese el contacto" type="text" class="form-control">
+                            <div class="invalid-feedback"><span *ngIf="formDonaciones.get('contacto').hasError('required')">Campo Requerido </span>
+                                <span *ngIf="!formDonaciones.get('contacto').hasError('minLength')">Ejemplo: 299 111-1111</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonaciones.get('contacto')?.touched || formDonaciones.get('contacto')?.dirty) && formDonaciones.get('contacto')?.invalid}" formControlName="contacto" placeholder="Ingrese el contacto" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formDonaciones.get('contacto').hasError('required')">Campo Requerido </span>
-                            <span *ngIf="!formDonaciones.get('contacto').hasError('minLength')">Ejemplo: 299 111-1111</span>
+                        <div class="form-group">
+                            <input [ngClass]="{'is-invalid':(formDonaciones.get('direccion')?.touched || formDonaciones.get('direccion')?.dirty) && formDonaciones.get('direccion')?.invalid}" formControlName="direccion" placeholder="Ingrese la Direccion" type="text" class="form-control">
+                            <div class="invalid-feedback"><span *ngIf="formDonaciones.get('direccion').hasError('required')">Campo Requerido </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonaciones.get('direccion')?.touched || formDonaciones.get('direccion')?.dirty) && formDonaciones.get('direccion')?.invalid}" formControlName="direccion" placeholder="Ingrese la Direccion" type="text" class="form-control">
-                        <div class="invalid-feedback"><span *ngIf="formDonaciones.get('direccion').hasError('required')">Campo Requerido </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <select formControlName="categoria_donaciones" class="form-control">
+                        <div class="form-group">
+                            <select formControlName="categoria_donaciones" class="form-control">
                                 <option >Seleccionar Categoria</option>
                                 <option *ngFor="let categoria_donacion of lista_categoria" [value]="categoria_donacion.id_categoria_donacion">{{categoria_donacion.descripcion}}
                                 </option>
                         </select>
 
-                    </div>
-                    <div [style]="ocultar_boton_archivos" class="form-group">
-                        <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
-                    </div>
+                        </div>
+                        <div [style]="ocultar_boton_archivos" class="form-group">
+                            <input (change)="mostrarImagenSeleccionada($event)" formControlName="archivo" class="form-control-file" type="file" name="" id="" multiple>
+                        </div>
 
-                    <div class="btn-group">
-                        <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar donacion</button>
-                        <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
-                    </div>
+                        <div class="btn-group">
+                            <button [disabled]="formDonaciones.invalid" class="btn btn-success">Guardar donacion</button>
+                            <button type="button" (click)="vaciarForm()" class="btn btn-primary">vaciar</button>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
