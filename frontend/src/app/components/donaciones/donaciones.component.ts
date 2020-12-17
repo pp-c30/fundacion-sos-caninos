@@ -42,7 +42,7 @@ export class DonacionesComponent implements OnInit {
       contacto:["",[Validators.required,Validators.minLength(12)]],
       direccion:["",[Validators.required]],
       categoria_donaciones:[null,[Validators.required]],
-      archivo:['',[Validators.required]]
+      archivo:['']
     });
 
    }
